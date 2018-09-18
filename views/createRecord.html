@@ -355,10 +355,12 @@
 								    <div class="form-group col-md-4">
 								      <label for="">Voter Image Front</label>
 								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.voter.image_front" name="Image Front Voter" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.voter.image_front" style="width:50px;height:50px;">
 								    </div>
 								    <div class="form-group col-md-4">
 								      <label for="">Voter Image Back</label>
 								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.voter.image_back" name="Image Back Voter" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.voter.image_back" style="width:50px;height:50px;">
 								    </div>
 							  	</div>
 							  	<div class="row">
@@ -369,10 +371,12 @@
 								    <div class="form-group col-md-4">
 								      <label for="">Pan Image Front</label>
 								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.pan.image_front" name="Image Front Pan" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.pan.image_front" style="width:50px;height:50px;">
 								    </div>
 								    <div class="form-group col-md-4">
 								      <label for="">Pan Image Back</label>
 								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.pan.image_back" name="Image Back Pan" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.pan.image_back" style="width:50px;height:50px;">
 								    </div>
 							  	</div>
 							  	<button type="submit" class="btn btn-primary" ng-click="submitRecord(record)">Submit</button>
