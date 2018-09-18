@@ -23,17 +23,15 @@
 
             $scope.upload = function (file) {
                 var fd=new FormData();
-                fd.append("profile_pic",$scope.file);
-                fd.append("name",$scope.user.name);
-                fd.append("phone",$scope.user.phone);
-                fd.append("email",$scope.user.email);
+                fd.append("image",$scope.file);
+                fd.append("confidence",50);
                 $http({
-                    method:'PUT',
-                    url: $scope.base_url+'/api/v1/profiles/'+$scope.user.user_id,
+                    method:'POST',
+                    url: $scope.base_url+'/records/facial-searches/',
                     transformRequest: angular.identity,
                     headers: {
                         'Content-Type': undefined,
-                        'authorization': 'JWT '+$localStorage['user']['token']
+                        'authorization': 'Bearer '+$localStorage['user']['token']
                     },
                     data:fd
                 })

@@ -47,24 +47,25 @@
 		<div class="pull-right">
 			<div class="paginationCont flexCont">
 				<div ng-if="enableSearchDisp" ng-click="enableSearch()">back</div>
+				<div class="clearfix pull-right" style="padding: 0;overflow: hidden;">
+					<div class="UserImg UserImgRecP" style="width: 100px;padding: 0;">
+					    <img src="{{user.profile_pic}}">
+					    <form name="upload_form" enctype="multipart/form-data">
+					         <label for="file-input">
+					            <i class="fa fa-plus imgEdit"></i>
+					        </label>
+					        <input type="file" id="file-input" ngf-select ng-model="file" name="file" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+					    </form>
+					</div>
+				    <img ngf-thumbnail="file" style="max-height: 40px;max-width: 40px;">
+				    <button ng-if="file" type="submit" ng-click="submitimage()" class="ImgSubmit btn btn-success">Submit Image</button>
+				</div>
 				<!-- <div ng-click="enable('counts')">counts</div>
 				<div ng-click="enable('search')">searches</div> -->
 
 			</div>
 			<div class="dataCont">
-				<div class="clearfix">
-					<div class="UserImg" style="width: 500px;">
-					    <img src="{{user.profile_pic}}">
-					    <form name="upload_form" enctype="multipart/form-data">
-					         <label for="file-input">
-					            <i class="fa fa-pencil imgEdit"></i>
-					        </label>
-					        <input type="file" id="file-input" ngf-select ng-model="file" name="file" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
-					    </form>
-					</div>
-				    <img ngf-thumbnail="file" style="max-height: 50px;max-width: 50px;">
-				    <button ng-if="file" type="submit" ng-click="submitimage()" class="ImgSubmit btn btn-success">Submit Image</button>
-				</div>
+				
 				
 				<div class="criminalList searchList" ng-if="!enableSearchDisp">
 
