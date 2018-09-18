@@ -53,10 +53,7 @@
 			<div class="dataCont">
 				
 				<div class="criminalList">
-					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalEn()">
-						<i class="fa fa-plus"></i>
-						<p>Add a record</p>
-					</div>
+					
 					<div ng-repeat="criminal in criminals" class="clearfix flexCont eachCriminal">
 						<div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 						<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div>
