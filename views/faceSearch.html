@@ -77,7 +77,7 @@
 				</div>
 				<div class="criminalList searchList" ng-if="enableSearchDisp">
 
-					<div ng-repeat="eachRec in faceSearchRecordData" class="col-md-12 eachRec">
+					<div ng-repeat="eachRec in faceSearchRecordData" class="col-md-12 eachRec" ng-if="faceSearchRecordData.length>0">
 						<div class="col-md-4 eachRecRow">
 							<div class="imgCont"><img src="{{faceSearchRecordDataComp.image}}" alt=""></div>
 							<span class="inter"><img src="/images/layer_514.png" alt=""></span>
@@ -94,6 +94,9 @@
 							<div class="smalldet"><b>Address : </b>{{eachRec.record.address1}}</div>
 							
 						</div>
+					</div>
+					<div class="col-md-12 jumbotron flexCont eachRec" ng-if="faceSearchRecordData.length==0">
+						<h1 style="margin: auto;">No matches found!</h1>
 					</div>
 				</div>
 			</div>
