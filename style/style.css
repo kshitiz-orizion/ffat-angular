@@ -4840,10 +4840,32 @@ span.inter {
     flex-basis: 26%;
     margin: 20px auto;
 }
-
-
-
-
+.form-row:after{
+    content: " ";
+    display: block;
+    clear: both;
+}
+.form-group.col-md-6,.form-group.col-md-12 {
+    display: flex;
+}
+.form-group.col-md-6 label,.form-group.col-md-12 label{
+    width: 150px;
+    min-width: 150px;
+    margin: auto;
+}
+.form-group.col-md-4 input,.form-group.col-md-6 input,.form-group.col-md-12 input,.form-control{
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    box-shadow: none;
+    outline: none;
+    border-radius: 0;
+}
+.form-group.col-md-4 input[type=file],.form-group.col-md-6 input[type=file],.form-group.col-md-12 input[type=file],.form-control{
+    border-bottom: none;
+}
+.form-group.col-md-4 input{}
 
 
 
