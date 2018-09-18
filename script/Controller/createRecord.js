@@ -6,12 +6,12 @@
         function($routeProvider) {
             $routeProvider.when('/createrecord', {
                 templateUrl: '/views/createRecord.html',
-                controller: 'recordCtrl'
+                controller: 'createRecordCtrl'
             });
             
         }
     ])
-  angular.module('myApp.createRecord').controller('recordCtrl',
+  angular.module('myApp.createRecord').controller('createRecordCtrl',
     ['$rootScope','$scope', '$location', '$http','$localStorage','CONFIG',
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
             $scope.submitRecord=async function(record){
