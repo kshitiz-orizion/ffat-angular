@@ -1,0 +1,34 @@
+<div class="searchbar flexCont" ng-controller="searchBarCtrl">
+	<div class="logo"><img src="/images/f1.png" alt=""></div>
+	<div class="searchbarConnt addressbarConnt">
+		<h2>Admin / <span ng-if="userEnable">User</span> <span ng-if="!userEnable">Criminal</span></h2>
+	</div>
+	<div class="searchbarConnt">
+		<div class="input-control adminSearch">
+			<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="mainSearchText" ng-required="true" ng-change="search()">
+			<button class="btn">Go</button>
+			<div ng-show="form.search.$dirty && form.search.$error.required">
+				<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
+			</div>	
+		</div>
+	</div>
+	<div class="searchResultCont">
+		<div ng-repeat="search in searchData" class="eachItem" ng-click="hideRes()">
+			<a href="/showRecord?id={{search.id}}">
+				<img src="{{search.images[0].image}}" alt="">
+				<div class="onHvr">
+					<h3>{{search.name}}</h3>
+					<p>{{eachRec.record.name}}</p>
+					<p>{{eachRec.record.guardian_rel}} : {{eachRec.record.guardian_name}}</p>
+					<p class="smalldet">{{eachRec.record.dob}} | {{eachRec.record.community}} | {{eachRec.record.sex}}</p>
+					<p class="smalldet">{{eachRec.record.complexion}} complexion | {{eachRec.record.hair}} hair | {{eachRec.record.eyes}} eyes</p>
+					<p class="smalldet"><b>Address : </b>{{eachRec.record.address1}}</p>
+				</div>	
+			</a>
+			
+		</div>
+	</div>
+	<div class="filter">
+		<img src="/images/filter.svg" alt="">
+	</div>
+</div>

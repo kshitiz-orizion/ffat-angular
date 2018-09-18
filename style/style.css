@@ -2253,13 +2253,16 @@ span#itin_place {
 }
 .searchResultCont {
     position: absolute;
-    top: 66px;
-    left: 10px;
-    width: 97%;
+    top: 80px;
+    right: 0;
+    width: auto;
     z-index: 10;
     background: #FFF;
     color: rgba(0,0,0,0.6);
     text-align: left;
+    max-width: 100%;
+    max-height: 369px;
+    overflow-y: scroll;
 }
 .searchResultCont .searchBlock ul.list-group li.list-group-item {
     border: none;
@@ -4547,7 +4550,8 @@ section.adminPanelCont{
 .adminPanel>.pull-left{
     background: #999;
     width: 80px;
-    /* height: 100%; */
+    height: 100vh;
+    padding-top: 80px;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -4568,7 +4572,8 @@ section.adminPanelCont{
     flex-grow: 1;
     overflow: scroll;
     width: calc(100vw - 80px);
-    padding-top: 80px;
+    padding: 80px 0 0;
+    margin: 0;
 }
 .adminPanelCont .logo,.adminPanelCont .filter{
     width: 80px;
@@ -4872,9 +4877,81 @@ span.inter {
     border-radius: 0;
 }
 .form-group.col-md-4 input{}
+.eachItem{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 10px;
+    width: 150px;
+    float: left;
+    height: 150px;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.3);
+}
+.eachItem img{
+    filter: grayscale(0%);
+    transition: all 0.4s ease-in-out;
+}
+.eachItem:hover img{
+    filter: grayscale(100%);
+}
+.ver .eachItem {
+    height: 340px;
+    overflow: hidden;
+    margin: 0 10px 10px;
+}
+.eachItem .onHvr{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.9);
+    transition: all 250ms ease-in-out;
+}
+.eachItem:hover .onHvr{
+    opacity: 1;
+    visibility: visible;
+}
+.onHvr h3{
+    margin: auto auto 0;
+    transition: all 250ms ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.eachItem:hover .onHvr h3{
+    opacity: 1;
+    transform: translateY(0px); 
+}
+.onHvr p{
+    margin: 0 auto auto;
+    opacity: 0;
+    
+    transition: all 250ms ease-in-out;
+    transition-delay: 0.2s;
+}
+.eachItem:hover .onHvr p{
+    opacity: 1;
+}
+.recordHolder .text-center.container-fluid {
+    float: left;
+    width: 28%;
+    text-align: left;
+    margin: 10px 25px;
+    color: rgba(0,0,0,0.6);
+    font-size: 18px;
+    line-height: 40px;
+}
 
-
-
+.recordHolder label{
+    font-weight: 300;
+    min-width: 100px;
+    font-size: 18px;
+    margin: 0;
+    color: rgba(252, 128, 25, 0.6);
+}
 
 
 
