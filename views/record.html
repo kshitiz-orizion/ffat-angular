@@ -65,6 +65,16 @@
 						<i class="fa fa-plus"></i>
 						<p>Create a case</p>
 					</div>
+					<div ng-repeat="user in users" class="clearfix flexCont eachCriminal eachCriminalAdd">
+						<div class="closeEach" ng-click="deleteCriminal(user)"><i class="fa fa-times"></i></div>
+						<div class="editEach" ng-click="editCriminal(user)"><i class="fa fa-pencil"></i></div>
+						
+						<div>{{user.email}}</div>
+						<div>{{user.mobile}}</div>
+						<div>{{user.name}}</div>
+						<div><label for="">Active : </label>{{user.is_active}}</div>
+						<div><label for="">Active : </label>{{user.is_staff}}</div>
+					</div>
 				</div>
 		</div>
 	</div>

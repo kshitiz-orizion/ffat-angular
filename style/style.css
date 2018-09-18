@@ -4836,7 +4836,10 @@ span.inter {
     border: 1px solid #fff;
     border-radius: 50%;
 }
-
+.clearfix.flexCont.eachCriminal.eachCriminalAdd {
+    flex-basis: 26%;
+    margin: 20px auto;
+}
 
 
 
