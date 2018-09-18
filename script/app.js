@@ -18,6 +18,7 @@ var app = angular.module("myApp",
         "myApp.record",
         "myApp.createRecord",
         "ngFileUpload",
+        "720kb.datepicker"
         
     ])
     .config(['$locationProvider',
