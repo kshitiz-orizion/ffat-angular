@@ -43,6 +43,12 @@
 					<p>Criminal</p>
 				</a>
 			</div>
+			<div>
+				<a href="/record">
+					<img src="/images/user.png" alt="">
+					<p>Record</p>
+				</a>
+			</div>
 		</div>
 		<div class="pull-right">
 			<div class="paginationCont flexCont">
@@ -97,12 +103,12 @@
 			                         <label for="ImgLfile">
 			                            <i class="fa fa-pencil imgEdit"></i>
 			                        </label>
-			                        <input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+			                        <input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none" >
 			                    </form> 
 								<p>Left</p>
 								<img ng-if="thisCriminalImgL" src="{{thisCriminalImgL.image}}" alt="">
 								<div ng-if="!thisCriminalImgL"><i class="fa fa-plus"></i></div>
-								<button class="btn btn-sm btn-main" ng-if="thisCriminalImgLfile" ng-click="thisCriminalImgfileSave('L')">Save</button>
+								<button class="btn btn-sm btn-main" ng-if="thisCriminalImgLfile" ng-click="thisCriminalImgfileSave('L',thisCriminalImgLfile)">Save</button>
 							</div>
 							<div class="frtImg UserImg">
 								<form name="upload_formF" enctype="multipart/form-data">

@@ -1,0 +1,383 @@
+<section class="adminPanelCont">
+	<div class="searchbar flexCont">
+		<div class="logo"><img src="/images/f1.png" alt=""></div>
+		<div class="searchbarConnt addressbarConnt">
+			<h2>Admin / Analysis</h2>
+		</div>
+		<div class="searchbarConnt">
+			<div class="input-control adminSearch">
+				<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="search" ng-required="true">
+				<button class="btn">Go</button>
+				<div ng-show="form.search.$dirty && form.search.$error.required">
+					<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
+				</div>	
+			</div>
+		</div>
+		<div class="filter">
+			<img src="/images/filter.svg" alt="">
+		</div>
+	</div>
+	<div class="adminPanel clearfix">
+		<div class="pull-left">
+			<div>
+				<a href="/faceSearch">
+					<i class="fa fa-line-chart"></i>
+					<p>face</p>
+				</a>
+			</div>
+			<div>
+				<a href="/analysis">
+					<i class="fa fa-line-chart"></i>
+					<p>Analysis</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=true">
+				<a href="/admin">
+					<img src="/images/user.png" alt="">
+					<p>User</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=false">
+				<a href="/admin">
+					<img src="/images/location_search.svg" alt="">
+					<p>Criminal</p>
+				</a>
+			</div>
+			<div>
+				<a href="/record">
+					<img src="/images/user.png" alt="">
+					<p>Record</p>
+				</a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<div class="paginationCont flexCont">
+							<form style="width:90vw;">				
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label >Name</label>
+							      <input type="text" class="form-control"  ng-model="record.name" placeholder="Name">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label >Guardian Name</label>
+							      <input type="text" class="form-control"  ng-model="record.guardian_name" placeholder="Guardian Name">
+							    </div>
+							  </div>
+							  <div class="form-row">
+
+							    <div class="form-group col-md-6">
+							    	<label >State</label>
+								      <select ng-model="record.guardian_rel" class="form-control">
+								      	<option value>Select Relation</option>
+								        <option value="h/o">H/O</option>
+								        <option value="s/o">S/O</option>
+								        <option value="d/o">D/O</option>
+								        <option value="w/o">W/O</option>
+								      </select>
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label >Yob</label>
+							      <input type="text" class="form-control"  ng-model="record.yob" placeholder="Yob">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label >DOB</label>
+							      <input type="text" class="form-control"  ng-model="record.dob" placeholder="DOB">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">Community</label>
+							      <input type="text" class="form-control" ng-model="record.community" placeholder="Community">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="">Religion</label>
+							      <select ng-model="record.religion" class="form-control">
+							      		<option value>Select Religion</option>
+								        <option value="hindu">Hindu</option>
+								        <option value="muslim">Muslim</option>
+								        <option value="sikh">Sikh</option>
+								        <option value="christian">Christian</option>
+								        <option value="jain">Jain</option>
+								        <option value="jew">Jew</option>
+								      </select>
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">Gender</label>
+							      <select ng-model="record.sex" class="form-control">
+							      		<option value>Select Gender</option>
+								        <option value="male">Male</option>
+								        <option value="famale">Female</option>
+								        <option value="others">Others</option>
+								      </select>
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="">Height(cm)</label>
+							      <input type="number" class="form-control" ng-model="record.height" placeholder="Height">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">Build</label>
+							      <select ng-model="record.build" class="form-control">
+							      		<option value>Select Build</option>
+								        <option value="slim">Slim</option>
+								        <option value="fat">Fat</option>
+								        <option value="muscular">Muscular</option>
+								      </select>
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="">Complexion</label>
+							      <select ng-model="record.complexion" class="form-control">
+							      		<option value>Select Complexion</option>
+								        <option value="fair">Fair</option>
+								        <option value="dark">Dark</option>
+								        <option value="wheatish">Wheatish</option>
+								        <option value="w/o">W/O</option>
+								      </select>
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">Face</label>
+							      <select ng-model="record.face" class="form-control">
+							      		<option value>Select Type of Face</option>
+								        <option value="round">Round</option>
+								        <option value="long">Long</option>
+								        <option value="oval">Oval</option>
+								      </select>
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="">Hair</label>
+							      <select ng-model="record.hair" class="form-control">
+							      		<option value>Select Type of Hair</option>
+								        <option value="black">Black</option>
+								        <option value="brown">Brown</option>
+								        <option value="red">Red</option>
+								      </select>
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">Eyes</label>
+							      <select ng-model="record.eyes" class="form-control">
+							      		<option value>Select Type of Eyes</option>
+								        <option value="black">Black</option>
+								        <option value="brown">Brown</option>
+								        <option value="blue">Blue</option>
+								   </select>
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-12">
+							      <label for="">Address1</label>
+							      <input type="text" class="form-control" ng-mdoel="record.address1" placeholder="Address1">
+							    </div>
+							    <div class="form-group col-md-12">
+							      <label for="">Address2</label>
+							      <input type="text" class="form-control" ng-model="record.address2" placeholder="Address2">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="">City</label>
+							      <input type="text" class="form-control" ng-model="record.city" placeholder="City">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">State</label>
+							      <input type="text" class="form-control" ng-model="record.state" placeholder="State">
+							    </div>
+							  </div>
+							  <div class="form-row">
+							    <div class="form-group col-md-6">
+							      <label for="">Police Post</label>
+							      <input type="text" class="form-control" ng-model="record.police_post" placeholder="Police Post">
+							    </div>
+							    <div class="form-group col-md-6">
+							      <label for="">Police Station</label>
+							      <input type="text" class="form-control" ng-model="record.police_station" placeholder="Police Station">
+							    </div>
+							 </div> 
+							    <div class="form-row">
+								    <div class="form-group col-md-6">
+								      <label for="">District</label>
+								      <input type="text" class="form-control" ng-model="record.district" placeholder="District">
+								    </div>
+								    <div class="form-group col-md-6">
+								      <label for="">FIR num</label>
+								      <input type="text" class="form-control" ng-model="record.fir_num" placeholder="Fir Num">
+								    </div>
+							  	</div>
+							  	<div class="form-row">
+								    <div class="form-group col-md-6">
+								      <label for="">DD Num</label>
+								      <input type="text" class="form-control" ng-model="record.dd_num" placeholder="DD Num">
+								    </div>
+								    <div class="form-group col-md-6">
+								      <label for="">DD date</label>
+								      <input type="text" class="form-control"  ng-model="record.dd_date" placeholder="DD date">
+								    </div>
+								 </div>
+								<div class="form-row">
+								    <div class="form-group col-md-6">
+								      <label for="">Offence Type</label>
+								      <select ng-model="record.offence_type" class="form-control">
+								      	<option value>Select a Offence Type</option>
+								        <option value="Rape">Rape</option>
+								        <option value="Dowry">Dowry</option>
+								        <option value="Female infanticides">Female infanticides</option>
+								        <option value="Domestic violences">Domestic violences</option>
+								        <option value="Illegal drug trade">Illegal drug trade</option>
+								        <option value="Human Trafficking">Human Trafficking</option>
+								        <option value="Cyber crime">Cyber crime</option>
+								        <option value="Corruption and police misconduct">Corruption and police misconduct</option>
+								        <option value="Petty crimes">Petty crimes</option>
+								        <option value="Poaching and wildlife trafficking">Poaching and wildlife trafficking</option>
+								        <option value="Murder">Murder</option>
+								        <option value="Terrorism">Terrorism</option>
+								        <option value="Arms Trafficking">Arms Trafficking</option>
+								        <option value="Child abuse">Child abuse</option>
+								        <option value="Kidnapping">Kidnapping</option>
+								        <option value="Tax Evasion">Tax Evasion</option>
+								   </select>				      
+								    </div>
+								    <div class="form-group col-md-6">
+								      <label for="">Offence Area</label>
+								      <input type="text" class="form-control" ng-model="record.offence_area"  placeholder="Offence Area">
+								    </div>
+							  	</div>
+							  	<div class="form-row">
+								    <div class="form-group col-md-12">
+								     <label for="">Criminal Category</label>
+								     <select ng-model="record.criminal_category" class="form-control">
+								     	<option value>Select a Criminal Category</option>
+								        <option value="Indian fraudsters‎ (1 C, 10 P)">Indian fraudsters‎ (1 C, 10 P)</option>
+								        <option value="Indian counterfeiters‎ (2 P)">Indian counterfeiters‎ (2 P)</option>
+								        <option value="Indian drug traffickers‎ (4 P)">Indian drug traffickers‎ (4 P)</option>
+								        <option value="Indian extortionists‎ (8 P)">Indian extortionists‎ (8 P)</option>
+								        <option value="Indian kidnappers‎ (3 P)">Indian kidnappers‎ (3 P)</option>
+								        <option value="Indian mobsters‎ (4 C, 23 P)">Indian mobsters‎ (4 C, 23 P)</option>
+								        <option value="Indian murderers‎ (4 C, 6 P)">Indian murderers‎ (4 C, 6 P)</option>
+								        <option value="Indian poachers‎ (1 P)">Indian poachers‎ (1 P)</option>
+								        <option value="Indian rapists‎ (1 C, 11 P)">Indian rapists‎ (1 C, 11 P)</option>
+								        <option value="Indian robbers‎ (13 P)">Indian robbers‎ (13 P)</option>
+								        <option value="Indian smugglers‎ (11 P)">Indian smugglers‎ (11 P)</option>
+								        <option value="Indian people convicted of manslaughter‎ (2 P)">Indian people convicted of manslaughter‎ (2 P)</option>
+								   </select>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Image Left</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.image.image_left" name="Image Left" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" >
+								      <img ngf-thumbnail="record.image.image_left" style="width:50px;height:50px;">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.image.image_front" name="Image Front" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" >
+								      <img ngf-thumbnail="record.image.image_front" style="width:50px;height:50px;">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Image Right</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.image.image_right" name="Image Right" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" >
+								      <img ngf-thumbnail="record.image.image_right" style="width:50px;height:50px;">
+								    </div>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Aadhar Id </label>
+								      <input type="text" class="form-control" ng-model="record.identities.aadhar.identity_number" placeholder="aadhar identity_number">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">AAdhar Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.aadhar.image_front" name="Image Front Aadhar" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.aadhar.image_front" style="width:50px;height:50px;">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">AAdhar Image Back</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.aadhar.image_back" name="Image Back AAdhar" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.aadhar.image_back" style="width:50px;height:50px;">
+								    </div>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Driving Id </label>
+								      <input type="text" class="form-control"  ng-model="record.identities.driving.identity_number" placeholder="driving identity_number">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Driving Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.driving.image_front" name="Image Front Driving" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.driving.image_front" style="width:50px;height:50px;">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Driving Image Back</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.driving.image_back" name="Image Back Driving" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.driving.image_back" style="width:50px;height:50px;">
+								    </div>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Ration  Id </label>
+								      <input type="text" class="form-control" ng-model="record.identities.ration.identity_number" placeholder="Ration identity_number">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Ration  Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.ration.image_front" name="Image Front Ration" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.ration.image_front" style="width:50px;height:50px;">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Ration  Image Back</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.ration.image_back" name="Image Back Ration" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.ration.image_back" style="width:50px;height:50px;">
+								    </div>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Passport Id </label>
+								      <input type="text" class="form-control" ng-model="record.identities.passport.identity_number" placeholder="Passport identity_number">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Passport Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.passport.image_front" name="Image Front Passport" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.passport.image_front" style="width:50px;height:50px;">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Passport Image Back</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.passport.image_back" name="Image Back Passport" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								      <img ngf-thumbnail="record.identities.passport.image_back" style="width:50px;height:50px;">
+								    </div>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Voter Id </label>
+								      <input type="text" class="form-control" ng-model="record.identities.voter.identity_number" placeholder="Voter identity_number">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Voter Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.voter.image_front" name="Image Front Voter" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Voter Image Back</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.voter.image_back" name="Image Back Voter" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								    </div>
+							  	</div>
+							  	<div class="row">
+								    <div class="form-group col-md-4">
+								      <label for="">Pan Id </label>
+								      <input type="text" class="form-control" ng-model="record.identities.pan.identity_number" placeholder="Pan identity_number">
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Pan Image Front</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.pan.image_front" name="Image Front Pan" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								    </div>
+								    <div class="form-group col-md-4">
+								      <label for="">Pan Image Back</label>
+								      <input type="file" id="ImgLfile" ngf-select ng-model="record.identities.pan.image_back" name="Image Back Pan" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB"  >
+								    </div>
+							  	</div>
+							  	<button type="submit" class="btn btn-primary" ng-click="submitRecord(record)">Submit</button>
+							</form>
+			</div>
+		</div>
+	</div>
+</section>

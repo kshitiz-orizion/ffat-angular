@@ -1,0 +1,77 @@
+<section class="adminPanelCont">
+	<div class="searchbar flexCont">
+		<div class="logo"><img src="/images/f1.png" alt=""></div>
+		<div class="searchbarConnt addressbarConnt">
+			<h2>Admin / Analysis</h2>
+		</div>
+		<div class="searchbarConnt">
+			<div class="input-control adminSearch">
+				<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="search" ng-required="true">
+				<button class="btn">Go</button>
+				<div ng-show="form.search.$dirty && form.search.$error.required">
+					<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
+				</div>	
+			</div>
+		</div>
+		<div class="filter">
+			<img src="/images/filter.svg" alt="">
+		</div>
+	</div>
+	<div class="adminPanel clearfix">
+		<div class="pull-left">
+			<div>
+				<a href="/faceSearch">
+					<i class="fa fa-line-chart"></i>
+					<p>face</p>
+				</a>
+			</div>
+			<div>
+				<a href="/analysis">
+					<i class="fa fa-line-chart"></i>
+					<p>Analysis</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=true">
+				<a href="/admin">
+					<img src="/images/user.png" alt="">
+					<p>User</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=false">
+				<a href="/admin">
+					<img src="/images/location_search.svg" alt="">
+					<p>Criminal</p>
+				</a>
+			</div>
+			<div>
+				<a href="/record">
+					<img src="/images/user.png" alt="">
+					<p>Record</p>
+				</a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<div class="paginationCont flexCont">
+				<!-- <div ng-click="enable('records')">records</div>
+				<div ng-click="enable('counts')">counts</div>
+				<div ng-click="enable('search')">searches</div> -->
+			</div>
+			<div class="criminalList">
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" >
+						<a href="/createrecord">
+						<i class="fa fa-plus"></i>
+						<p>Create a record</p>
+						</a>
+					</div>
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalRec()">
+						<i class="fa fa-plus"></i>
+						<p>Create a user</p>
+					</div>
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalRec()">
+						<i class="fa fa-plus"></i>
+						<p>Create a case</p>
+					</div>
+				</div>
+		</div>
+	</div>
+</section>

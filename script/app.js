@@ -13,6 +13,8 @@ var app = angular.module("myApp",
         "myApp.admin",
         "myApp.analysis",
         "myApp.faceSearch",
+        "myApp.record",
+        "myApp.createRecord",
         "myApp.detail",
         "myApp.header",
         "myApp.footer",
@@ -35,7 +37,8 @@ var app = angular.module("myApp",
         "myApp.checkout",
         "myApp.thank",
         "myApp.guidePlaces",
-        "ngFileUpload"
+        "ngFileUpload",
+        
     ])
     .config(['$locationProvider',
         '$routeProvider','$localStorageProvider','$authProvider', function($locationProvider,$routeProvider,$localStorageProvider,$authProvider) {

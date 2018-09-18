@@ -12,8 +12,8 @@
         }
     ])
   angular.module('myApp.admin').controller('adminCtrl',
-    ['$rootScope','$scope', '$location', '$http','$localStorage','$window','jwtHelper','CONFIG',
-        function($rootScope,$scope,$location,$http,$localStorage,$window,jwtHelper,CONFIG) {
+    ['$rootScope','$scope','Upload','$location', '$http','$localStorage','$window','jwtHelper','CONFIG',
+        function($rootScope,$scope,Upload,$location,$http,$localStorage,$window,jwtHelper,CONFIG) {
 
             $scope.editSave = function(label){
                 if (label=='cancel') {
@@ -76,8 +76,7 @@
                     
                 }
             };
-
-            $scope.thisCriminalImgfileSave = function(label){
+            $scope.thisCriminalImgfileSave = function(label,image){
                 var id;
                 var type;
                 var file;
