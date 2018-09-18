@@ -19,13 +19,18 @@
 	 </head>
 
 	 <body ng-app = "myApp">
-			<!-- <div class="headerMainCont" ng-include="'/views/header.html'" ></div> -->
-			<div class="container-fluid">
-				<div ng-view class="mainContainer" autoscroll="true" ng-click="openDropHeader=true">
-
+	 	
+	 	
+	 	<section class="adminPanelCont">
+			<div class="headerMainCont" ng-include="'/views/searchbar.html'" ></div>
+			<div class="adminPanel clearfix">
+				<div class="pull-left" ng-include="'/views/sidebar.html'" ></div>
+				<div ng-view class="mainContainer container-fluid pull-right" autoscroll="true">
+					
 				</div>
 			</div>
-			<!-- <div class="footerMainCont" ng-include="'views/footer.html'"></div> -->
+		</section>
+			
 			
 		
 			<script src="./bower_components/jquery/dist/jquery.js"></script>

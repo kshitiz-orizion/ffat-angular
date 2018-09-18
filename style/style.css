@@ -4568,6 +4568,7 @@ section.adminPanelCont{
     flex-grow: 1;
     overflow: scroll;
     width: calc(100vw - 80px);
+    padding-top: 80px;
 }
 .adminPanelCont .logo,.adminPanelCont .filter{
     width: 80px;
