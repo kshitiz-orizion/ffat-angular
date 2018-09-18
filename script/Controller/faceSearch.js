@@ -45,24 +45,29 @@
             };
 
             $scope.enableSearch = function(resE){
-                $http({
-                    method: 'GET',
-                    url: $scope.base_url+'/records/facial-search-results/?search_id='+resE.id,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'authorization': 'Bearer '+$localStorage['user']['token']
-                    }
-                }).then(function successCallback(response) {
-                    $scope.enableSearchDisp=true;
-                    if (response) {
-                        $scope.faceSearchRecordData = response.data.results;
-                        $scope.faceSearchRecordDataComp = resE;
-                        console.log($scope.faceSearchRecordData);
-                    }
-                }, function errorCallback(response) {
-                        //console.log('ERROR'+JSON.stringify(response));
-                        $scope.errorMsgs=response.data.non_field_errors;
-                });
+                if (resE) {
+                    $http({
+                        method: 'GET',
+                        url: $scope.base_url+'/records/facial-search-results/?search_id='+resE.id,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': 'Bearer '+$localStorage['user']['token']
+                        }
+                    }).then(function successCallback(response) {
+                        $scope.enableSearchDisp=true;
+                        if (response) {
+                            $scope.faceSearchRecordData = response.data.results;
+                            $scope.faceSearchRecordDataComp = resE;
+                            console.log($scope.faceSearchRecordData);
+                        }
+                    }, function errorCallback(response) {
+                            //console.log('ERROR'+JSON.stringify(response));
+                            $scope.errorMsgs=response.data.non_field_errors;
+                    });    
+                }else{
+                    $scope.enableSearchDisp=false;
+                }
+                
             }
             
             $scope.getFSRes = function(){

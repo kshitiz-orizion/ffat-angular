@@ -46,9 +46,10 @@
 		</div>
 		<div class="pull-right">
 			<div class="paginationCont flexCont">
-				<!-- <div ng-click="enable('records')">records</div>
-				<div ng-click="enable('counts')">counts</div>
+				<div ng-if="enableSearchDisp" ng-click="enableSearch()">back</div>
+				<!-- <div ng-click="enable('counts')">counts</div>
 				<div ng-click="enable('search')">searches</div> -->
+
 			</div>
 			<div class="dataCont">
 				<div class="clearfix">
@@ -74,9 +75,11 @@
 					</div>
 				</div>
 				<div class="criminalList searchList" ng-if="enableSearchDisp">
-					<div ng-repeat="eachRec in faceSearchRecordData" class="col-md-12">
+
+					<div ng-repeat="eachRec in faceSearchRecordData" class="col-md-12 eachRec">
 						<div class="col-md-4 eachRecRow">
 							<div class="imgCont"><img src="{{faceSearchRecordDataComp.image}}" alt=""></div>
+							<span class="inter"><img src="/images/layer_514.png" alt=""></span>
 						</div>
 						<div class="col-md-4 eachRecRow">
 							<div class="imgCont"><img ng-repeat="img in eachRec.record.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
