@@ -1,0 +1,189 @@
+<div class="detailMainContainer">
+    <section class="homeDetSection homeDetSectionTop">
+        <img src="{{activityData.images[0].image}}" alt="" class="topContImgBg" ng-if="activityData">
+        <div class="detailsTopText" ng-if="activityData">
+            <h1>{{activityData.name}}</h1>
+            <h4><a href="/listActivity?city={{cityinfo.id}}">{{cityinfo.name}}</a></h4>
+        </div>
+        <div class="bottomSearchBar text-left">
+            <div class="container">
+                <div class="elet">
+                    <div>Location</div>
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="elet">
+                    <div>Start date</div>
+                    <div class="input-group datePickerCont">
+                        <input type="text" class="form-control" uib-datepicker-popup ng-model="startDt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-addon" ng-click="openSD()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                <div class="elet">
+                    <div>End date</div>
+                    <div class="input-group datePickerCont">
+                        <input type="text" class="form-control" uib-datepicker-popup ng-model="endDt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-addon" ng-click="openED()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                <div class="elet">
+                    <div>Person</div>
+                    <div class="form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="elet">
+                    <div class="form-group">
+                        <input type="submit" class="form-control btn btn-main btn-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="homeDetSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12">
+                    <slick ng-if="activityData">
+                        <div class="ImgSlider" ng-repeat="image in activityData.images">
+                            <img src="{{image.image}}" alt="">
+                        </div>
+                    </slick>
+                </div>
+                <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12 sctivityInfoCont">
+                    <div class="NameSection"><h3>{{activityData.name}}</h3></div>
+                    <div class="actReserve">
+                        <table class="table tableDetails">
+                            <tbody>
+                            <tr>
+                                <td>Duration :</td>
+                                <td >{{activityData.duration/60|number:1}}hrs</td>
+                            </tr>
+                            <tr>
+                                <td>City :</td>
+                                <td>{{cityinfo.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Rating :</td>
+                                <td>{{activityData.rating|number:1}}</td>
+                            </tr>
+                            <tr ng-if="activityData.pricing_unit=='item'">
+                                <td>Max Person :</td>
+                                <td>{{activityData.max_pax}}</td>
+                            </tr>
+                            <tr ng-if="activityData.pricing_unit=='item'">
+                                <td>Min Person :</td>
+                                <td>{{activityData.min_pax}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <span class="money" ng-if="activityData.pricing_unit=='pax'">Rs. {{(activityData.adult_price *person + activityData.child_price * child)|number}}</span>
+                        <span class="money" ng-if="activityData.pricing_unit=='item'">Rs. {{activityData.item_price|number}}</span>
+
+                        <table  ng-if="activityData.pricing_unit=='pax'">
+                            <tbody>
+                            <div class="CounterPersonSec" ng-hide="activityData.pricing_unit=='item'">
+                                <div class="CounterLeft">
+                                    <p class="PersonAge">Adults:</p>
+                                    <span class="CounterUI ActivityPageCounter">
+                                        <span class="MinusIc" ng-click="updatePeeps('adult','neg')">-</span>{{person}}
+                                        <span class="PlusIc" ng-click="updatePeeps('adult','pos')">+</span>
+                                    </span>
+                                    <div class="CounterRight"></div>
+                                </div>
+                                <div class="CounterRight">
+                                    <p class="PersonAge">Children:</p>
+                                    <span class="CounterUI ActivityPageCounter">
+                                        <span class="MinusIc" ng-click="updatePeeps('child','neg')">-</span>{{child}}
+                                        <span class="PlusIc" ng-click="updatePeeps('child','pos')">+</span>
+                                    </span>
+                                    <div class="CounterRight"></div>
+                                </div>
+                            </div>
+                            </tbody>
+                        </table>
+
+                        <div class="SlotSection">
+                            <form>
+                                <select id="activity-slot" ng-if="activityData.slots.length>0" ng-model="activityData.slot" >
+                                    <option style="display:none" value>Select a Slot</option>
+                                    <option ng-repeat="slots in activityData.slots">{{slots}}</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div>
+                            <button class="AddButtonMain" ng-click="addRemoveCart()">{{ addButtonText }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ContentBox">
+        <div class="container">
+            <h3 class="DetailHeading">{{activityData.name}}
+                <span id="distance">
+                    <i class="fa fa-map-marker"></i>{{activityData.dfc|number:2}}km from city
+                </span>
+            </h3>
+            <p class="PlacesDetail">{{activityData.description |limitTo:limit}}
+                <span id="expand_content" ng-show="activityData.description.length > limit" ng-click="limit=activityData.description.length">
+                    Show More
+                </span>
+            </p>
+
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 IncExc" ng-if="activityData.inclusion.length>0">
+                <h4>Inclusion</h4>
+                <ul ng-repeat="incItem in activityData.inclusion track by $index">
+                    <li>{{incItem}}</li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 IncExc PaddingLeft" ng-if="activityData.exclusion.length>0">
+                <h4>Exclusion</h4>
+                <ul ng-repeat="excItem in activityData.exclusion track by $index">
+                    <li>{{excItem}}</li>
+                </ul>
+            </div>
+            <div class="PlaceMap">
+                <ng-map center='{{activityData.coordinate.coordinates}}' zoom="15" height="400">
+                    <marker position='{{activityData.coordinate.coordinates}}'></marker>
+                </ng-map>
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113855.93302825281!2d70.82468989483606!3d26.90356152550636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3947bc28aa1b396b%3A0xf5ef9bd660d66ee3!2sJaisalmer%2C+Rajasthan+345001!5e0!3m2!1sen!2sin!4v1526560044008" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen>
+
+                </iframe> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Packages here-->
+    <section class="AdditionalPackages">
+        <div class="container" ng-if="activityData.children.length>0">
+            <h1 class="MainHeading " id="heading_margin">Related Packages</h1>
+            <div class="col-md-10 col-lg-10 col-sm-10 col-xs-12 PackageSection"
+                 ng-repeat="activityChild in activityData.children">
+                <div class="PackageHeading">
+                    <h4>{{activityChild.name}}</h4>
+                </div>
+                <div class="PackageDetails">
+                    <span>{{activityChild.adult_price}}</span>
+                    <a href="/activity?id={{activityChild.id}}"><button>Details</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related activity slider -->
+    <section class="RelatedSection">
+        <div class="container">
+            <h1 class="MainHeading">Related Activities</h1>
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 RelatedImgSec" ng-repeat="eachActivity 		in relatedActivity track by $index | limitTo:3">
+                <a href="/activity?id={{eachActivity.id}}"><img src="{{eachActivity.images[0].image}}" alt=""><h4>{{eachActivity.name}}</h4></a>
+            </div>
+        </div>
+    </section>
+</div>
+

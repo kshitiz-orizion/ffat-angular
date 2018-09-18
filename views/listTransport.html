@@ -1,0 +1,201 @@
+add<div class="homeContainer row">
+	<section  class="homePanel homeMainTop homePlDetTop hidden-sm hidden-xs">
+		<!-- <div class="homeInsideTeext flexInner" style="background: url('{{cityinfo.image}}') center no-repeat;background-size: cover;height: 40vh;">
+			<div style="">
+				<h1>{{cityinfo.name}}</h1>
+				<h4>{{cityinfo.description}}</h4>
+			</div>
+		</div> -->
+		<div class="bottomSearchBar text-left">
+			<div class="container">
+				<div class="elet">
+					<div>Location</div>
+					<div class="form-group">
+						<input type="text" class="form-control">
+					</div>
+			</div>
+			<div class="elet">
+				<div>Start date</div>
+				<div class="input-group">
+					<input type="text" class="form-control" uib-datepicker-popup ng-model="startDt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+					<span class="input-group-addon" ng-click="openSD()" id=""><i class="fa fa-calendar" aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="elet">
+				<div>End date</div>
+				<div class="input-group">
+					<input type="text" class="form-control" uib-datepicker-popup ng-model="endDt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+					<span class="input-group-addon" ng-click="openED()" id=""><i class="fa fa-calendar" aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<div class="elet">
+				<div>Person</div>
+				<div class="form-group">
+					<input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="elet">
+				<div class="form-group">
+					<input type="submit" class="form-control btn btn-main btn-lg">
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+	<section du-parallax opacity="fadeIn" class="homePanel homeListingMain">
+			<div class="container">
+				<p class="placeDet">Place: <span id="itin_place">{{cityinfo.name}}</span></p>
+				<div class="ItineraryBuild">
+					<div class="listBtnCont">
+						<a ng-if="!url" href="/listPlaces" ><img src="/images/places.png" alt=""><span>Places</span></a>
+						<a ng-if="url" href="/listPlaces?{{url}}" ><img src="/images/places.png" alt=""><span>Places</span></a>
+						<a ng-if="!url" href="/listActivity"><img src="/images/activitiy-icon.png" alt=""><span>Activities</span></a>
+						<a ng-if="url" href="/listActivity?{{url}}"><img src="/images/activitiy-icon.png" alt=""><span>Activities</span></a>
+						<a ng-if="!url" href="/listItinerary"><img src="/images/itinerary.png" alt=""><span>Itinerary</span></a>
+						<a ng-if="url" href="/listItinerary?{{url}}"><img src="/images/itinerary.png" alt=""><span>Itinerary</span></a>
+						<a href="#" class="active"><img src="/images/cab-icon.png" alt=""><span>Cab/Bike</span></a>
+						
+					</div>
+					<div class="placesListContainer">
+						<div class="col-md-2 col-lg-2 hidden-sm hidden-xs FilterSection">
+							<h4 class="text-left"><span>Quick Filters</span></h4>
+							<div class="filterBox text-left">
+								<h3>Type</h3>
+								<div class="form-group flexCont">
+									<label for="">Cab</label>
+									<input placeholder="Kms" type="radio" class="form-control" ng-model="transType" value="cab" ng-change="changeType('cab')">
+								</div>
+								<div class="form-group flexCont">
+									<label for="">Bike</label>
+									<input placeholder="Kms" type="radio" class="form-control" ng-model="transType" value="bike" ng-change="changeType('bike')">
+								</div>
+							</div>
+							<div class="filterBox text-left">
+								<h3>Distance</h3>
+								<div class="form-group flexCont">
+									<label for="">Less than</label>
+									<input placeholder="Kms" type="text" class="form-control" ng-model="lteKm">
+								</div>
+								<div class="form-group flexCont">
+									<label for="">Greater than</label>
+									<input placeholder="Kms" type="text" class="form-control" ng-model="gteKm">
+								</div>
+							</div>
+							<div class="filterBox text-left">
+								<h3>Rating</h3>
+								<div class="form-group flexCont">
+									<label for="">Less than</label>
+									<input  placeholder="0-5" type="text" class="form-control" ng-model="lteRat">
+								</div>
+								<div class="form-group flexCont">
+									<label for="">Greater than</label>
+									<input  placeholder="0-5" type="text" class="form-control" ng-model="gteRat">
+								</div>
+							</div>
+							<div class="filterBox text-left">
+								<h3>Price</h3>
+								<div class="form-group flexCont">
+									<label for="">Less than</label>
+									<input type="text" class="form-control" ng-model="ltePrc">
+								</div>
+								<div class="form-group flexCont">
+									<label for="">Greater than</label>
+									<input type="text" class="form-control" ng-model="gtePrc">
+								</div>
+							</div>
+							<div class="filterBox filterBoxReco text-left">
+								<div class="form-group flexCont">
+									<label for=""><b>Recommended</b></label>
+									<input type="checkbox" class="" ng-model="recoTrue">
+								</div>
+							</div>
+							<div class="filterBox filterBoxReco text-left">
+								<span class=""><button class="BtnFilter" ng-click="applyFilter()"><i class="fa fa-check"></i>&nbsp;&nbsp;Apply</button></span>
+							</div>
+						</div>
+						<div class="col-md-10 col-sm-12 col-xs-12 ">
+							<div class="listingPlace nobg text-center" ng-if="!cabList && !bikeList">
+								<div class="loader_div">
+									<img src="/images/Spinner.gif" alt="">
+								</div>
+							</div>
+
+							<div class="listingPlace" ng-if="transType=='cab' && cabList && cabList.length>0" ng-repeat="car in cabList">
+								<div class="listingPlaceInner">
+									<div class="placesListContainerImgCont">
+										<a href="#"><img src="{{car.car_type.image}}" alt=""></a>
+									</div>
+									<div class="contentListingMain contentActListingMain">
+										<div class="actListLft">
+
+											
+											<p class="name">{{car.car_type.title}}</p>
+											<p class="rating">
+												<span class="CarType">3.5 Rating </span>
+												<span class="CarType" class="">{{car.car_type.seat}} seater</span>
+												<span class="CarType">Night charge: {{car.night_charge}}</span>
+												<span class="CarType">Min Kms: {{car.os_min_km}}</span>
+												<span class="CarType">Rs.{{car.rateph}}/Km</span>
+
+											</p>
+											
+											<!-- <p class="desc">{{car.car_type.description}}</p> -->
+
+										</div>
+									</div>
+									<div class="actListBike TransportAdd">
+										
+										<p class="timeTrav"><i class="fa fa-clock-o"></i> 6 hours</p>
+										<p class="rateCharge">Rs 1000</p>
+										<p class="addCart">
+											<button ng-if="userLoggedIn" ng-disabled="disableBtn['{{car.id}}']" ng-click="addToCart('cab',car)" class="BtnItin" id="AddBtnItin"" >BOOK</button>
+											<button ng-if="!userLoggedIn" ng-disabled="disableBtn['{{car.id}}']" ng-click="openLoginModal('lg',[],base_url)" class="BtnItin" id="AddBtnItin"" >BOOK</button>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="listingPlace" ng-if="transType=='bike' && bikeList && bikeList.length>0" ng-repeat="bike in bikeList">
+								<div class="listingPlaceInner">
+									<div class="placesListContainerImgCont">
+										<a href="#"><img src="{{bike.bike.image}}" alt=""></a>
+									</div>
+									<div class="contentListingMain contentActListingMain">
+										<div class="actListLft">
+
+											
+											<p class="name">{{bike.bike.name}}</p>
+											<p class="rating">
+												<span class="CarType">{{bike.bike.manufacturer}}&nbsp;{{bike.bike.model}}</span>
+												<span class="CarType">3.5 Rating </span>
+												<span class="CarType" class="">{{bike.bike.cc}}cc</span>
+												<span class="CarType">Night charge: {{bike.night_charge}}</span>
+												<span class="CarType">{{bike.registration_number}}</span>
+												<span class="CarType">Rs.{{bike.rateph}}/Km</span>
+
+											</p>
+											
+											<p class="desc">{{bike.description}}</p>
+
+										</div>
+									</div>
+									<div class="actListBike TransportAdd">
+										
+										<p class="timeTrav"><i class="fa fa-clock-o"></i> 6 hours</p>
+										<p class="rateCharge">Rs {{bike.rate}}</p>
+										<p class="addCart">
+											<!-- <button ng-disabled="disableBtn['{{bike.id}}']" ng-click="addToCart('bike',bike)" class="BtnItin" id="AddBtnItin"">BOOK</button> -->
+											<button ng-if="userLoggedIn" ng-disabled="disableBtn['{{bike.id}}']" ng-click="addToCart('bike',bike)" class="BtnItin" id="AddBtnItin"" >BOOK</button>
+											<button ng-if="!userLoggedIn" ng-disabled="disableBtn['{{bike.id}}']" ng-click="openLoginModal('lg',[],base_url)" class="BtnItin" id="AddBtnItin"" >BOOK</button>
+										</p>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+</div>

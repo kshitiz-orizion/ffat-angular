@@ -1,0 +1,145 @@
+<section class="adminPanelCont">
+	<div class="searchbar flexCont">
+		<div class="logo"><img src="/images/f1.png" alt=""></div>
+		<div class="searchbarConnt addressbarConnt">
+			<h2>Admin / <span ng-if="userEnable">User</span> <span ng-if="!userEnable">Criminal</span></h2>
+		</div>
+		<div class="searchbarConnt">
+			<div class="input-control adminSearch">
+				<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="search" ng-required="true">
+				<button class="btn">Go</button>
+				<div ng-show="form.search.$dirty && form.search.$error.required">
+					<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
+				</div>	
+			</div>
+		</div>
+		<div class="filter">
+			<img src="/images/filter.svg" alt="">
+		</div>
+	</div>
+	<div class="adminPanel clearfix">
+		<div class="pull-left">
+			<div>
+				<a href="/faceSearch">
+					<i class="fa fa-line-chart"></i>
+					<p>face</p>
+				</a>
+			</div>
+			<div>
+				<a href="/analysis">
+					<i class="fa fa-line-chart"></i>
+					<p>Analysis</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=true">
+				<a href="/admin">
+					<img src="/images/user.png" alt="">
+					<p>User</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=false">
+				<a href="/admin">
+					<img src="/images/location_search.svg" alt="">
+					<p>Criminal</p>
+				</a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<div class="paginationCont flexCont">
+				<div class="prev"><img src="/images/arrow.png" alt=""></div>
+				<div class="page"></div>
+				<div class="next"><img src="/images/arrow.png" alt=""></div>
+			</div>
+			<div class="dataCont">
+				<div ng-if="userEnable" class="criminalList">
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalRec()">
+						<i class="fa fa-plus"></i>
+						<p>Create a record</p>
+					</div>
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalRec()">
+						<i class="fa fa-plus"></i>
+						<p>Create a user</p>
+					</div>
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalRec()">
+						<i class="fa fa-plus"></i>
+						<p>Create a case</p>
+					</div>
+					<div ng-repeat="user in users" class="clearfix flexCont eachCriminal eachCriminalAdd">
+						<div class="closeEach" ng-click="deleteCriminal(user)"><i class="fa fa-times"></i></div>
+						<div class="editEach" ng-click="editCriminal(user)"><i class="fa fa-pencil"></i></div>
+						
+						<div>{{user.email}}</div>
+						<div>{{user.mobile}}</div>
+						<div>{{user.name}}</div>
+						<div><label for="">Active : </label>{{user.is_active}}</div>
+						<div><label for="">Active : </label>{{user.is_staff}}</div>
+					</div>
+				</div>
+				<div ng-if="!userEnable" class="criminalList">
+					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalEn()">
+						<i class="fa fa-plus"></i>
+						<p>Add a record</p>
+					</div>
+					<div ng-repeat="criminal in criminals" class="clearfix flexCont eachCriminal">
+						<div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+						<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div>
+						<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+						<div>{{criminal.name}}</div>
+						<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+						<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+						<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+						<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+					</div>
+					<div ng-if="editCriminalEnable" class="editCriminalCont">
+						<div class="clearfix">
+							<div class="lftImg UserImg">
+								<form name="upload_formL" enctype="multipart/form-data">
+			                         <label for="ImgLfile">
+			                            <i class="fa fa-pencil imgEdit"></i>
+			                        </label>
+			                        <input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+			                    </form> 
+								<p>Left</p>
+								<img ng-if="thisCriminalImgL" src="{{thisCriminalImgL.image}}" alt="">
+								<div ng-if="!thisCriminalImgL"><i class="fa fa-plus"></i></div>
+								<button class="btn btn-sm btn-main" ng-if="thisCriminalImgLfile" ng-click="thisCriminalImgfileSave('L')">Save</button>
+							</div>
+							<div class="frtImg UserImg">
+								<form name="upload_formF" enctype="multipart/form-data">
+			                         <label for="ImgFfile">
+			                            <i class="fa fa-pencil imgEdit"></i>
+			                        </label>
+			                        <input type="file" id="ImgFfile" ngf-select ng-model="thisCriminalImgFfile" name="thisCriminalImgFfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+			                    </form> 
+								<p>Front</p>
+								<img ng-if="thisCriminalImgF" src="{{thisCriminalImgF.image}}" alt="">
+								<div ng-if="!thisCriminalImgF"><i class="fa fa-plus"></i></div>
+								<button class="btn btn-sm btn-main" ng-if="thisCriminalImgFfile" ng-click="thisCriminalImgfileSave('F')">Save</button>
+							</div>
+							<div class="rgtImg UserImg">
+								<form name="upload_formR" enctype="multipart/form-data">
+			                         <label for="ImgRfile">
+			                            <i class="fa fa-pencil imgEdit"></i>
+			                        </label>
+			                        <input type="file" id="ImgRfile" ngf-select ng-model="thisCriminalImgRfile" name="thisCriminalImgRfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+			                    </form> 
+								<p>Right</p>
+								<img ng-if="thisCriminalImgR" src="{{thisCriminalImgR.image}}" alt="">
+								<div ng-if="!thisCriminalImgR"><i class="fa fa-plus"></i></div>
+								<button class="btn btn-sm btn-main" ng-if="thisCriminalImgRfile" ng-click="thisCriminalImgfileSave('R')">Save</button>
+							</div>
+							
+						</div>
+						<div ng-repeat="(key, value) in thisCriminal" class="input-control" ng-if="key!=id || key!=images">
+							<label for="{{value}}">{{key}}</label> : <input type="text" class="" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+						<div class="input-control clearfix">
+							<button class=" saveBtn LoginBtn" ng-click="editSave('cancel')">Cancel</button>
+							<button class=" saveBtn LoginBtn" ng-click="editSave('save')">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,7 @@
+{
+	"port": 8080,
+    "files" : "./**/*.{js, html, css}",
+    "server" : { "baseDir" : "./" },
+    "notify": false,
+    "open":false
+}

@@ -1,0 +1,98 @@
+<section class="adminPanelCont">
+	<div class="searchbar flexCont">
+		<div class="logo"><img src="/images/f1.png" alt=""></div>
+		<div class="searchbarConnt addressbarConnt">
+			<h2>Admin / Analysis</h2>
+		</div>
+		<div class="searchbarConnt">
+			<div class="input-control adminSearch">
+				<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="search" ng-required="true">
+				<button class="btn">Go</button>
+				<div ng-show="form.search.$dirty && form.search.$error.required">
+					<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
+				</div>	
+			</div>
+		</div>
+		<div class="filter">
+			<img src="/images/filter.svg" alt="">
+		</div>
+	</div>
+	<div class="adminPanel clearfix">
+		<div class="pull-left">
+			<div>
+				<a href="/faceSearch">
+					<i class="fa fa-line-chart"></i>
+					<p>face</p>
+				</a>
+			</div>
+			<div>
+				<a href="/analysis">
+					<i class="fa fa-line-chart"></i>
+					<p>Analysis</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=true">
+				<a href="/admin">
+					<img src="/images/user.png" alt="">
+					<p>User</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=false">
+				<a href="/admin">
+					<img src="/images/location_search.svg" alt="">
+					<p>Criminal</p>
+				</a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<div class="paginationCont flexCont">
+				<!-- <div ng-click="enable('records')">records</div>
+				<div ng-click="enable('counts')">counts</div>
+				<div ng-click="enable('search')">searches</div> -->
+			</div>
+			<div class="dataCont">
+				<div class="clearfix">
+					<div class="UserImg" style="width: 500px;">
+					    <img src="{{user.profile_pic}}">
+					    <form name="upload_form" enctype="multipart/form-data">
+					         <label for="file-input">
+					            <i class="fa fa-pencil imgEdit"></i>
+					        </label>
+					        <input type="file" id="file-input" ngf-select ng-model="file" name="file" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+					    </form>
+					</div>
+				    <img ngf-thumbnail="file" style="max-height: 50px;max-width: 50px;">
+				    <button ng-if="file" type="submit" ng-click="submitimage()" class="ImgSubmit btn btn-success">Submit Image</button>
+				</div>
+				
+				<div class="criminalList searchList" ng-if="!enableSearchDisp">
+
+					<div ng-repeat="resE in faceSearchData" class="clearfix flexCont eachCriminal eachFaceSearch" ng-class="resE.is_finished?'success':'fail'">	
+						<div class="imgCont"><img src="{{resE.image}}" alt=""></div>
+						<div class="ifo success" ng-if="resE.is_finished">Finished <button class="pull-right btn btn-link" ng-click="enableSearch(resE)">view</button></div>
+						<div class="ifo fail" ng-if="!resE.is_finished">Processing <button class="pull-right btn btn-link" ng-click="enableSearch(resE)">view</button></div>
+					</div>
+				</div>
+				<div class="criminalList searchList" ng-if="enableSearchDisp">
+					<div ng-repeat="eachRec in faceSearchRecordData" class="col-md-12">
+						<div class="col-md-4 eachRecRow">
+							<div class="imgCont"><img src="{{faceSearchRecordDataComp.image}}" alt=""></div>
+						</div>
+						<div class="col-md-4 eachRecRow">
+							<div class="imgCont"><img ng-repeat="img in eachRec.record.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+						</div>
+						<div class="col-md-4 eachRecRow">
+							
+							<div>{{eachRec.record.name}}</div>
+							<div>{{eachRec.record.guardian_rel}} : {{eachRec.record.guardian_name}}</div>
+							<div class="smalldet">{{eachRec.record.dob}} | {{eachRec.record.community}} | {{eachRec.record.sex}}</div>
+							<div class="smalldet">{{eachRec.record.complexion}} complexion | {{eachRec.record.hair}} hair | {{eachRec.record.eyes}} eyes</div>
+							<div class="smalldet"><b>Address : </b>{{eachRec.record.address1}}</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

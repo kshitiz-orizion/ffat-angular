@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="ForgotPasswordDiv">
+     
+            <div uib-alert class="alert-danger clearfix" dismiss-on-timeout="2000" type="danger" close="closeAlert()" ng-if="errorMsgs">
+              Check your mail to continue.
+            </div>
+            <div class="PasswordForm">
+                <h4>Reset Password</h4>
+                <div class="input-control">
+                    
+                    <input type="text" class="form-control ForgotInputField" placeholder="Enter Email ID" aria-label="Username" aria-describedby="basic-addon1" ng-model="uname1">
+                </div>
+                <div class="input-control">
+                    <button class="ForgotSub" ng-click="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

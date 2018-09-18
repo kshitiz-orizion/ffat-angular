@@ -1,0 +1,71 @@
+<section class="adminPanelCont">
+	<div class="searchbar flexCont">
+		<div class="logo"><img src="/images/f1.png" alt=""></div>
+		<div class="searchbarConnt addressbarConnt">
+			<h2>Admin / Analysis</h2>
+		</div>
+		<div class="searchbarConnt">
+			<div class="input-control adminSearch">
+				<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="search" ng-required="true">
+				<button class="btn">Go</button>
+				<div ng-show="form.search.$dirty && form.search.$error.required">
+					<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
+				</div>	
+			</div>
+		</div>
+		<div class="filter">
+			<img src="/images/filter.svg" alt="">
+		</div>
+	</div>
+	<div class="adminPanel clearfix">
+		<div class="pull-left">
+			<div>
+				<a href="/faceSearch">
+					<i class="fa fa-line-chart"></i>
+					<p>face</p>
+				</a>
+			</div>
+			<div>
+				<a href="/analysis">
+					<i class="fa fa-line-chart"></i>
+					<p>Analysis</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=true">
+				<a href="/admin">
+					<img src="/images/user.png" alt="">
+					<p>User</p>
+				</a>
+			</div>
+			<div ng-click="userEnable=false">
+				<a href="/admin">
+					<img src="/images/location_search.svg" alt="">
+					<p>Criminal</p>
+				</a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<div class="paginationCont flexCont">
+				<div ng-click="enable('records')">records</div>
+				<div ng-click="enable('counts')">counts</div>
+				<div ng-click="enable('search')">searches</div>
+			</div>
+			<div class="dataCont">
+				<div ng-if="enableList=='records'" class="criminalList">
+					<div class="eachChart" id="records1" google-chart chart="records1"></div>
+					<div class="eachChart" id="records2" google-chart chart="records2"></div>
+					<div class="eachChart" id="records3" google-chart chart="records3"></div>
+					<div class="eachChart" id="records4" google-chart chart="records4"></div>
+					<div class="eachChart" id="records5" google-chart chart="records5"></div>
+				</div>
+				<div ng-if="enableList=='search'" class="criminalList">
+					<div class="eachChart eachChartFull" id="recordsr1" google-chart chart="recordsr1"></div>
+				</div>
+				<div ng-if="enableList=='counts'" class="criminalList">
+					<div class="eachChart eachChartFull" id="recordsc1" google-chart chart="recorddc1"></div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

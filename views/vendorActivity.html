@@ -1,0 +1,184 @@
+<div class="profileMainCont vendonActivityTop padTop150">
+    <div class="container">
+        <section class="clearfix">
+            <div class="container-fluid">
+                <h3 class="pull-left">My Activities</h3>
+                <span class="addActVen pull-right" tooltip-placement="right" uib-tooltip="Add an activity" ng-class="openAddForm?'cross':' '" ng-click="openAddForm=!openAddForm">+</span>
+            </div>
+            <div class="container-fluid addActForm" ng-class="openAddForm?'active':''">
+                <div class="input-control clearfix" ng-repeat="(key,value) in addAct" ng-if="key!='category' && key!='city' && key!='vendor' && key!='adult_price' && key!='child_price' && key!='item_price' && key!='max_pax' && key!='min_pax' && key!='child_age'">
+                    <label class="col-md-4 text-info" for="">Activity {{key}}</label>
+                    <input class="form-control col-md-8" type="text" placeholder="{{key}}" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct[key]">
+                </div>
+                <div class="input-control clearfix" >
+                    <label class="col-md-4 text-info" for="">Assign Category</label>
+                    <select class="form-control col-md-8" name="citySelect" ng-model="activity.category" ng-change="categoryUpdate()">
+                        <option value="{{category.id}}" ng-repeat="category in categorys" >{{category.name}}</option>
+                    </select>
+                </div>
+                <div class="input-control clearfix" >
+                    <label class="col-md-4 text-info" for="">Assign City</label>
+                    <select class="form-control col-md-8" name="citySelect" ng-model="activity.city" ng-change="cityUpdate()">
+                        <option value="{{city.id}}" ng-repeat="city in cities" >{{city.name}}</option>
+                    </select>
+                </div>
+                <div class="input-control clearfix" >
+                    <label class="col-md-4 text-info" for="">Select pricing type</label>
+                    <select class="form-control col-md-8" name="citySelect" ng-model="activity.priceType" ng-change="priceUpdate()">
+                        <option value="pax" >per person</option>
+                        <option value="item" >per item</option>
+                    </select>
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='pax'">
+                    <label class="col-md-4 text-info" for="">Adult Price</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['adult_price']">
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='pax'">
+                    <label class="col-md-4 text-info" for="">Child Price</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['child_price']">
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='pax'">
+                    <label class="col-md-4 text-info" for="">Max Child Age</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['child_age']">
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='item'">
+                    <label class="col-md-4 text-info" for="">Item Price</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['item_price']">
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='item'">
+                    <label class="col-md-4 text-info" for="">Max person</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['max_pax']">
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='item'">
+                    <label class="col-md-4 text-info" for="">Min person</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['min_pax']">
+                </div>
+                <div class="input-control clearfix" ng-if="activity.priceType=='item'">
+                    <label class="col-md-4 text-info" for="">Max Child Age</label>
+                    <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="addAct['child_age']">
+                </div>
+                <div class="input-control clearfix" >
+                    <label class="col-md-4 text-info" for="">Is a package</label>
+                    <input class="col-md-8" type="checkbox" ng-model="package">
+                </div>
+                <div class="input-control clearfix" ng-if="package">
+                    <label class="col-md-4 text-info" for="">Select parent</label>
+                    <select class="form-control col-md-8" name="parentSelect" ng-model="activity.parent" ng-change="parentUpdate()">
+                        <option value="{{actL.id}}" ng-repeat="actL in myActivityList">{{actL.name}}</option>
+                    </select>
+                </div>
+                <br>
+                <div class="input-control clearfix" >
+                    <button ng-click="createActivity()" class="btn btn-main ">Create Activity</button>
+                </div>
+            </div>
+        </section>
+        <div class="clearfix container-fluid">
+            
+                <div class="eachVenAct flexCont text-center" ng-repeat="activity in myActivityList" ng-if="myActivityList && myActivityList.length>0">
+                    <span class="delAct" tooltip-placement="left" uib-tooltip="Delete this activity" ng-click="activity.coverAll=true"><i class="fa fa-trash"></i></span>
+                    <span class="editAct" tooltip-placement="right" uib-tooltip="Edit this activity" ng-click="editThisAct(activity)"><i class="fa fa-edit"></i></span>
+                    <div class="inner">
+                        <h4 class="text-info">{{activity.name}}</h4>
+                        <p>{{activity.description|cutText:100}}</p>
+
+                    </div>
+                    <p class="coverAll" ng-if="activity.coverAll==true">
+                        <button class="btn btn-main" ng-click="deleteActivity(activity)">OK</button>
+                        <button class="btn btn-default" ng-click="activity.coverAll=false">Cancel</button>
+                    </p>
+                </div>
+                <div class="clearfix" ng-if="!myActivityList">
+                    <p class="text-warning">No activities created, create new activities.</p>
+                </div>
+            
+        </div>
+        
+    </div>
+</div>
+<div class="modal-demo">
+    <script type="text/ng-template" id="editActivity.html">
+        <div class="modal-edit">
+            <div class="modal-header">
+                <h1>Editing <i>{{activity.name}}</i></h1>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid addActForm activeModal">
+                    <div class="input-control clearfix" ng-repeat="(key,value) in addAct" ng-if="key!='category' && key!='city' && key!='vendor' && key!='adult_price' && key!='child_price' && key!='item_price' && key!='max_pax' && key!='min_pax' && key!='child_age'">
+                        <label class="col-md-4 text-info" for="">Activity {{key}}</label>
+                        <input class="form-control col-md-8" type="text" placeholder="{{key}}" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity[key]">
+                    </div>
+                    <div class="input-control clearfix" >
+                        <label class="col-md-4 text-info" for="">Activity latitude</label>
+                        <input class="form-control col-md-8" type="text" placeholder="latitude" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['coordinate']['coordinates'][0]">
+                    </div>
+                    <div class="input-control clearfix" >
+                        <label class="col-md-4 text-info" for="">Activity longitude</label>
+                        <input class="form-control col-md-8" type="text" placeholder="longitude" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['coordinate']['coordinates'][1]">
+                    </div>
+                    <div class="input-control clearfix" >
+                        <label class="col-md-4 text-info" for="">Assign Category</label>
+                        <select class="form-control col-md-8" name="citySelect" ng-model="activity.category" ng-change="categoryUpdate()">
+                            <option value="{{category.id}}" ng-repeat="category in categorys" >{{category.name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-control clearfix" >
+                        <label class="col-md-4 text-info" for="">Assign City</label>
+                        <select class="form-control col-md-8" name="citySelect" ng-model="activity.city" ng-change="cityUpdate()" disabled>
+                            <option value="{{city.id}}" ng-repeat="city in cities" >{{city.name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-control clearfix" >
+                        <label class="col-md-4 text-info" for="">Select pricing type</label>
+                        <select class="form-control col-md-8" name="citySelect" ng-model="activity.pricing_unit" disabled>
+                            <option value="pax" >per person</option>
+                            <option value="item" >per item</option>
+                        </select>
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='pax'">
+                        <label class="col-md-4 text-info" for="">Adult Price</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['adult_price']">
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='pax'">
+                        <label class="col-md-4 text-info" for="">Child Price</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['child_price']">
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='pax'">
+                        <label class="col-md-4 text-info" for="">Max Child Age</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['child_age']">
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='item'">
+                        <label class="col-md-4 text-info" for="">Item Price</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['item_price']">
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='item'">
+                        <label class="col-md-4 text-info" for="">Max person</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['max_pax']">
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='item'">
+                        <label class="col-md-4 text-info" for="">Min person</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['min_pax']">
+                    </div>
+                    <div class="input-control clearfix" ng-if="activity.pricing_unit=='item'">
+                        <label class="col-md-4 text-info" for="">Max Child Age</label>
+                        <input class="form-control col-md-8" type="text" placeholder="100" aria-label="Activityname" aria-describedby="basic-addon1" ng-model="activity['child_age']">
+                    </div>
+                    <div class="input-control clearfix" >
+                        <label class="col-md-4 text-info" for="">Is a package</label>
+                        <input class="col-md-8" type="checkbox" ng-model="package">
+                    </div>
+                    <div class="input-control clearfix" ng-if="package">
+                        <label class="col-md-4 text-info" for="">Select parent</label>
+                        <select class="form-control col-md-8" name="parentSelect" ng-model="activity.parent" ng-change="parentUpdate()">
+                            <option value="{{actL.id}}" ng-repeat="actL in myActivityList">{{actL.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">OK</button>
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </script>
+</div>

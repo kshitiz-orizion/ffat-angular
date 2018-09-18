@@ -1,0 +1,213 @@
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+    $('ul.OrderTab li:nth-child(1)').addClass('LiBg');
+    
+    $('.OrderTab li').click(function(){
+    $('.OrderTab li').removeClass('LiBg');
+    $(this).addClass('LiBg');
+    
+    
+    });
+    // edit form show
+    $('#EditButton').click(function(){
+        $('form.EditUser').fadeIn();
+        $(this).hide();
+    });
+    // form close
+    $('#closeform').click(function(){
+        $('form.EditUser').hide();
+        $('#EditButton').show();
+    });
+    // $('#C_booking').click(function(){
+    //     $('.CurrentBookingWraper').show();
+    //     $('.PreviousBookingWraper').hide();
+    // });
+    // $('#P_booking').click(function(){
+    //     $('.CurrentBookingWraper').hide();
+    //     $('.PreviousBookingWraper').show();
+    // });
+
+    });
+</script>
+<section  class="homeDetSection ProfilePage">
+    <div class="container">
+        <div class="ProfileSection">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ProfileLeft">
+                <div class="UserImg">
+                    <img src="{{user.profile_pic}}">
+                    <!-- Image change UI -->
+                    <form name="upload_form" enctype="multipart/form-data">
+                         <label for="file-input">
+                            <i class="fa fa-pencil imgEdit"></i>
+                        </label>
+                        <input type="file" id="file-input" ngf-select ng-model="file" name="file" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+                    </form> 
+                    <!--end-->
+                    <h4>{{user.name}}</h4>                                       
+                </div>
+                <div class="UserDetails">
+                    <ul>
+                        <li>{{user.email}}</li>
+                        <li>{{user.phone}}</li>
+                    </ul>
+                </div>
+               
+                    <img ngf-thumbnail="file" style="max-height: 50px;max-width: 50px;">
+                    <button ng-if="file" type="submit" ng-click="submitimage()" class="ImgSubmit btn btn-success">Submit Image</button>
+                <!-- Edit profile form -->
+                <form class="EditUser">
+                    <span id="closeform">Close</span>
+                    <input type="Text" class="UserInputfld" ng-model="userEdit.name" placeholder="{{user.name}}">
+                    <input type="mail" class="UserInputfld" disabled placeholder="{{user.email}}" ng-model="userEdit.email">
+                    <input type="text" class="UserInputfld" ng-model="userEdit.phone" placeholder="{{user.phone}}">
+                    <input type="password" placeholder="New password" class="UserInputfld" ng-model="passNew1">
+                    <input type="password" placeholder="Re-enter password" class="UserInputfld" ng-model="passNew2">
+                   
+                    <button ng-click="saveUser()">Save changes</button>
+                </form>
+                <div class="EditSec">
+                    <button id="EditButton">Edit Profile</button>
+                    <button id="log_out" ng-click="signOut()">Logout</button>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 nopadding">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 ProfileRight">
+                    <ul class="OrderTab">
+                        <li id="C_booking" ng-click="changeTab='current'">Upcoming Booking</li>
+                        <li id="P_booking" ng-click="changeTab='previous'">Previous Booking</li>
+                    </ul>
+                
+                    
+                    <div class="CurrentBookingWraper" ng-if="changeTab=='current'">
+                        <!-- list example 1 -->
+                        <div class="BookingList" ng-repeat="order in orderData" ng-if="order.isoTime>todayDate">
+                            <div class="BookingDetailLeft">
+                                <h3>{{order.order_name}}</h3>
+                                <p class="ContentPoint"><span>Order ID:</span>{{order.id}}</p>
+                                <p class="ContentPoint"><span>Date:</span>{{order.booked_date | date:'dd- MM-yyyy'}}</p>
+                            </div>
+                            <div class="BookingDetailRight">
+                                <p class="ContentPoint"><span>Payment Status:</span>{{order.payment_status}}</p>
+                                <button ng-click="getOrderDetail(order.id)">Detail</button>
+                            </div>
+                            <div class="CartItemRight ProfileBookingDetail col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-if="openMap.id == order.id">
+                                <div class="CartInnerRight">
+                                    <!-- <h5>Itinerary Summary</h5> -->
+                                     <h6>Places</h6>
+                                        <ul class="PlacesUl" >
+                                            <li ng-if="openMap.order_lines[0].place.length>0" ng-repeat="place in openMap.order_lines[0].place">
+                                                {{place.place_name}}
+                                            </li>
+                                            <li ng-if="!openMap.order_lines[0].place || openMap.order_lines[0].place.length<=0">No place added in the cart</li>
+                                            
+                                        </ul>
+                                    <h6>Activities</h6>
+                                        <ul class="ActivitiesUl" >
+                                            <li ng-if="openMap.order_lines[0].activity.length>0" ng-repeat="activity in openMap.order_lines[0].activity">
+                                                {{activity.activity_name}}
+                                            </li>
+                                            <li ng-if="!openMap.order_lines[0].activity || openMap.order_lines[0].activity.length<=0">No activity added in the cart</li>
+                                        </ul>
+                                    <h6>Transport</h6>
+                                    <ul class="TransportUl">
+                                        <li ng-if="openMap.order_lines[0].car.length>0" ng-repeat="car in openMap.order_lines[0].car">
+                                            {{car.car_type.title}} : {{car.car_type.seat}}seater
+                                        </li>
+
+                                        <li ng-if="openMap.order_lines[0].bike.length>0" ng-repeat="bikes in openMap.order_lines[0].bike">
+                                            {{bikes.bike.name}}
+                                        </li>
+
+                                        <li ng-if="openMap.order_lines[0].cab.length>0" ng-repeat="cab in openMap.order_lines[0].cab">
+                                            {{cab.bike.name}}
+                                        </li>
+                                        <li ng-if="openMap.order_lines[0].bike.length + openMap.order_lines[0].car.length + openMap.order_lines[0].cab.length==0">
+                                            No bike/car added in the cart
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- list example 2 -->
+                        
+                    </div>
+
+                    <div class="PreviousBookingWraper" ng-if="changeTab=='previous'">
+                        <!-- list example 1 -->
+
+                        {{XYZS}}
+
+                        <div class="BookingList" ng-repeat="order in orderData" ng-if="order.isoTime<=todayDate">
+                            <div class="BookingDetailLeft">
+                                <h3>{{order.order_name}}</h3>
+                                <p class="ContentPoint"><span>Order ID:</span>{{order.id}}</p>
+                                <p class="ContentPoint"><span>Date:</span>{{order.booked_date | date:'dd- MM-yyyy'}}</p>
+                            </div>
+                            <div class="BookingDetailRight">
+                                <p class="ContentPoint"><span>Payment Status:</span>
+                                    {{order.payment_status}}
+                                </p>
+                                <button ng-click="getOrderDetail(order.id)">Detail</button>
+                            </div>
+
+                            <div class="CartItemRight col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-if="openMap.id == order.id">
+                                <div class="CartInnerRight">
+                                    <h5>Itinerary Summary</h5>
+                                     <h6>Places</h6>
+                                        <ul class="PlacesUl" >
+                                            <li ng-if="openMap.order_lines[0].place.length>0" ng-repeat="place in openMap.order_lines[0].place">
+                                                {{place.place_name}}
+                                            </li>
+                                            <li ng-if="!openMap.order_lines[0].place || openMap.order_lines[0].place.length<=0">No place added in the cart</li>
+
+                                        </ul>
+                                    <h6>Activities</h6>
+                                        <ul class="ActivitiesUl" >
+                                            <li ng-if="openMap.order_lines[0].activity.length>0" ng-repeat="activity in openMap.order_lines[0].activity">
+                                                {{activity.activity_name}}
+                                            </li>
+                                            <li ng-if="!openMap.order_lines[0].activity || openMap.order_lines[0].activity.length<=0">No activity added in the cart</li>
+                                        </ul>
+                                    <h6>Transport</h6>
+                                    <ul class="TransportUl">
+                                        <li ng-if="openMap.order_lines[0].car.length>0" ng-repeat="car in openMap.order_lines[0].car">
+                                            {{car.car_type.title}} : {{car.car_type.seat}}seater
+                                        </li>
+
+                                        <li ng-if="openMap.order_lines[0].bike.length>0" ng-repeat="bikes in openMap.order_lines[0].bike">
+                                            {{bikes.bike.name}}
+                                        </li>
+
+                                        <li ng-if="openMap.order_lines[0].cab.length>0" ng-repeat="cab in openMap.order_lines[0].cab">
+                                            {{cab.bike.name}}
+                                        </li>
+                                        <li ng-if="openMap.order_lines[0].bike.length + openMap.order_lines[0].car.length + openMap.order_lines[0].cab.length==0">
+                                            No bike/car added in the cart
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- list example 2 -->
+                        <!-- <div class="BookingList">
+                            <div class="BookingDetailLeft">
+                                <h3>Udaipur Itinerary</h3>
+                                <p class="ContentPoint"><span>Order ID:</span>xdshsgd14256x</p>
+                                <p class="ContentPoint"><span>Date:</span>12 July, 2018</p>
+                            </div>
+                            <div class="BookingDetailRight">
+                                <p class="ContentPoint"><span>Payment Status:</span>Pending</p>
+                                <button>Detail</button>
+                            </div>
+                        </div> -->
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <div ng-repeat="order in orderData">{{todayDate-order.isoTime}}</div> -->
+</section>

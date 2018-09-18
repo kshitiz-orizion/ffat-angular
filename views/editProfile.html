@@ -1,0 +1,20 @@
+<div class="profileMainCont profileSectionTop padTop150">
+    <div class="clearfix profileBody container">
+        <div class="userCard" style="text-align: center"><img src="/images/male.png" alt=""></div>
+        <form class="form FormRegister" style="margin-bottom: 20px;">
+            <div class="input-control">
+                <label for=""><h4>Name<h4></label>
+                <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1" ng-model="user.name">
+            </div>
+            <div class="input-control">
+                <label for=""><h4>Email ID<h4></label>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" ng-model="user.email" disabled="true">
+            </div>
+            <div class="input-control">
+                <label for=""><h4>Phone Number</h4></label>
+                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" ng-model="user.phone">
+            </div>
+            <button class="btn btn-main" ng-click="saveuser()">Save</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{
+  "name": "BMR-Frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://systementropy@bitbucket.org/bmraahi/bmr-front-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/bmraahi/bmr-front-end#readme",
+  "dependencies": {
+    "lite-server": "^2.3.0"
+  }
+}

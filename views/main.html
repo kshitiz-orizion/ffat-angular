@@ -1,0 +1,63 @@
+
+<section du-parallax  class="homePanel">
+	
+	<div class="loginModalMain">
+		<div class="PopupLeft">
+			<div class="modal-header">
+				<a class="btn btn-link" ng-class="!signBool?'signActive':' '" ng-click="signBool=!signBool">Login</a>
+				<a class="btn btn-link" ng-class="signBool?'signActive':' '" ng-click="signBool=!signBool">Login with OTP</a>
+			</div>
+			<div class="modal-body form loginForm" id="modal-body" ng-show="!signBool">
+				<form name="form">		
+					<div class="input-control btmMargin">
+						<input type="text" class="InputField" placeholder="Mobile number" name="userName" aria-label="Username" aria-describedby="basic-addon1" ng-model="userName" ng-required="true">
+						<div ng-show="form.userName.$dirty && form.userName.$error.required">
+							<span class="errorMessage TopRightSignIn help-block">Mobile number is required!</span>
+						</div>	
+					</div>
+					<div class="input-control btmMargin">
+					 	<input type="password" class="InputField" placeholder="Password" name="password" aria-label="Username" aria-describedby="basic-addon1" ng-model="password" ng-required="true">
+					 	<div  ng-show="form.password.$dirty && form.password.$error.required">
+					 		<span class="errorMessage TopRightSignIn help-block">Password is required!</span>
+					 	</div>
+					</div>
+					<div uib-alert class="alert-danger clearfix" dismiss-on-timeout="2000" type="danger" close="closeAlert()" ng-repeat="alert in errorMsgs" ng-if="errorMsgs.length>0">
+						{{alert}}
+					</div>
+					<div class="input-control text-right">
+						<!-- <a href="/forgot" ng-click="forgot()" class="btn btn-link ForgotPassword">Forgot Password?</a> -->
+						<button href="" class="btn btn-main LoginBtn" ng-click="loginPwd()">Login<span ng-if="loading"><img src="images/loader.gif" class="ButtonLoader"></span></button>
+					</div>
+				</form>	
+			</div>
+			<div class="modal-body form loginForm" id="modal-body" ng-show="signBool">
+				<form name="form">		
+					<div class="input-control btmMargin">
+						<input type="text" class="InputField" placeholder="Mobile number" name="userNameOTP" aria-label="UsernameOTP" aria-describedby="basic-addon1" ng-model="userNameOTP" ng-required="true">
+						<div ng-show="form.userNameOTP.$dirty && form.userNameOTP.$error.required">
+							<span class="errorMessage TopRightSignIn help-block">Mobile number is required!</span>
+						</div>	
+					</div>
+					<div class="input-control btmMargin" ng-if="getOtpBool">
+					 	<input type="password" class="InputField" placeholder="OTP" name="OTP" aria-label="Username" aria-describedby="basic-addon1" ng-model="otp.val" ng-required="true">
+					 	<div  ng-show="form.password.$dirty && form.password.$error.required">
+					 		<span class="errorMessage TopRightSignIn help-block">OTP is required!</span>
+					 	</div>
+					</div>
+					<div uib-alert class="alert-danger clearfix" dismiss-on-timeout="2000" type="danger" close="closeAlert()" ng-repeat="alert in errorMsgs" ng-if="errorMsgs.length>0">
+						{{alert}}
+					</div>
+					<div class="input-control text-right">
+						<!-- <a href="/forgot" ng-click="forgot()" class="btn btn-link ForgotPassword">Forgot Password?</a> -->
+						<button href="" class="btn btn-main LoginBtn" ng-click="loginOtp()">Login<span ng-if="loading"><img src="images/loader.gif" class="ButtonLoader"></span></button>
+						<button ng-if="!getOtpBool" href="" class="btn btn-link" ng-click="getOtp()">Get OTP</button>
+						<button ng-if="getOtpBool" href="" class="btn btn-link" ng-click="getOtp()">Resend OTP</button>
+					</div>
+				</form>	
+				
+			</div>
+		</div>
+	</div>
+		
+	
+</section>
