@@ -8,4 +8,7 @@ pipelines:
           - curl -O https://bootstrap.pypa.io/get-pip.py
           - python get-pip.py
           - pip install awscli
+          - npm install-
+          - npm install -g bower
+          - bower install --allow-root -
           - aws s3 sync --delete . s3://fat-web
