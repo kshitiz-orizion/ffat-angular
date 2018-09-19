@@ -12,5 +12,5 @@ pipelines:
           - pip install awscli
           - npm install 
           - npm install -g bower
-          - bower install --allow-root option
+          - bower install --allow-root
           - aws s3 sync --delete . s3://fat-web
