@@ -2,7 +2,9 @@
 			<div class="paginationCont flexCont">
 			</div>
 			<div class="dataCont">
-				<form style="width:90vw; margin: 40px auto;">				
+				<form style="width:90vw; margin: 40px auto;">	
+				<fieldset>
+				<legend>Basic Information</legend>			
 				  <div class="form-row">
 				    <div class="form-group col-md-6">
 				      <label >Name</label>
@@ -27,13 +29,15 @@
 				    </div>
 				    <div class="form-group col-md-6">
 				      <label >Yob</label>
-				      <input type="text" class="form-control"  ng-model="record.yob" placeholder="Yob">
+				      <input type="number" class="form-control"  ng-model="record.yob" placeholder="Yob">
 				    </div>
 				  </div>
 				  <div class="form-row">
 				    <div class="form-group col-md-6">
 				      <label >DOB</label>
-				      <input type="text" class="form-control"  ng-model="record.dob" placeholder="DOB">
+				      <datepicker date-format="yyyy-MM-dd">
+									<input   class="form-control" ng-model="record.dob" type="text" placeholder="Choose a date"/>
+					  </datepicker>
 				    </div>
 				    <div class="form-group col-md-6">
 				      <label for="">Community</label>
@@ -63,6 +67,9 @@
 					      </select>
 				    </div>
 				  </div>
+				  </fieldset>
+				  <fieldset>
+				  <legend>Physical Appearance</legend>
 				  <div class="form-row">
 				    <div class="form-group col-md-6">
 				      <label for="">Height(cm)</label>
@@ -119,6 +126,9 @@
 					   </select>
 				    </div>
 				  </div>
+				  </fieldset>
+				  <fieldset>
+				  <legend>Geographical Information</legend>
 				  <div class="form-row">
 				    <div class="form-group col-md-12">
 				      <label for="">Address1</label>
@@ -148,7 +158,10 @@
 				      <label for="">Police Station</label>
 				      <input type="text" class="form-control" ng-model="record.police_station" placeholder="Police Station">
 				    </div>
-				 </div> 
+				 </div>
+				 </fieldset> 
+				 <fieldset>
+				 	<legend>Previous Record</legend>
 				    <div class="form-row">
 					    <div class="form-group col-md-6">
 					      <label for="">District</label>
@@ -166,8 +179,8 @@
 					    </div>
 					    <div class="form-group col-md-6">
 					      <label for="">DD date</label>
-					      <datepicker>
-									<input  class="form-control" ng-model="record.dd_date" type="text"/>
+					      <datepicker date-format="yyyy-MM-dd">
+									<input   class="form-control" ng-model="record.dd_date" type="text" placeholder="Choose a date"/>
 						</datepicker>
 					    </div>
 					 </div>
@@ -218,6 +231,9 @@
 						        <option value="Indian people convicted of manslaughter‎ (2 P)">Indian people convicted of manslaughter‎ (2 P)</option>
 						   	</select>
 					  	</div>
+					</div>
+					</fieldset>
+					<legend>Facial Images</legend>
 				  	<div class="row container-fluid">
 					    <div class="form-group col-md-4">
 					      <label for="">Image Left</label>
@@ -235,6 +251,8 @@
 					      <img ngf-thumbnail="record.image.image_right" style="width:50px;height:50px;">
 					    </div>
 				  	</div>
+				  	<fieldset>
+				  	<legend>Identities</legend>
 				  	<div class="row container-fluid">
 					    <div class="form-group col-md-4">
 					      <label for="">Aadhar Id </label>
@@ -331,6 +349,7 @@
 					      <img ngf-thumbnail="record.identities.pan.image_back" style="width:50px;height:50px;">
 					    </div>
 				  	</div>
+				  	</fieldset>
 				  	<div class="row container-fluid">
 					  	<button type="submit" class="btn btn-primary" ng-click="submitRecord(record)">Submit</button>
 					  </div>

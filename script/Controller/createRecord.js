@@ -15,6 +15,7 @@
     ['$rootScope','$scope', '$location', '$http','$localStorage','CONFIG',
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
             $scope.submitRecord=async function(record){
+                
                 $scope.creating=true;
                 var recordfor=record;
                 var recordId;
