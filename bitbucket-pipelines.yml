@@ -8,4 +8,4 @@ pipelines:
           - curl -O https://bootstrap.pypa.io/get-pip.py
           - python get-pip.py
           - pip install awscli
-          - aws s3 sync --delete . s3://fat-web.s3.ap-south-1.amazonaws.com
+          - aws s3 sync --delete . s3://fat-web
