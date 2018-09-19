@@ -28,7 +28,7 @@
                         $scope.users = response.data.results;
                     }
                 }, function errorCallback(response) {
-                        //console.log('ERROR'+JSON.stringify(response));
+                        ////console.log('ERROR'+JSON.stringify(response));
                         $scope.errorMsgs=response.data.non_field_errors;
                 });
             };

@@ -43,7 +43,7 @@
 					<p>Front</p>
 					<img ng-if="thisCriminalImgF" src="{{thisCriminalImgF.image}}" alt="">
 					<div ng-if="!thisCriminalImgF"><i class="fa fa-plus"></i></div>
-					<button class="btn btn-sm btn-main" ng-if="thisCriminalImgFfile" ng-click="thisCriminalImgfileSave('F')">Save</button>
+					<button class="btn btn-sm btn-main" ng-if="thisCriminalImgFfile" ng-click="thisCriminalImgfileSave('F',thisCriminalImgFfile)">Save</button>
 				</div>
 				<div class="rgtImg UserImg">
 					<form name="upload_formR" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
 					<p>Right</p>
 					<img ng-if="thisCriminalImgR" src="{{thisCriminalImgR.image}}" alt="">
 					<div ng-if="!thisCriminalImgR"><i class="fa fa-plus"></i></div>
-					<button class="btn btn-sm btn-main" ng-if="thisCriminalImgRfile" ng-click="thisCriminalImgfileSave('R')">Save</button>
+					<button class="btn btn-sm btn-main" ng-if="thisCriminalImgRfile" ng-click="thisCriminalImgfileSave('R',thisCriminalImgRfile)">Save</button>
 				</div>
 				
 			</div>

@@ -17,6 +17,7 @@ var app = angular.module("myApp",
         "myApp.faceSearch",
         "myApp.record",
         "myApp.createRecord",
+        "myApp.createUser",
         "ngFileUpload",
         "720kb.datepicker"
         

@@ -82,25 +82,21 @@
                 var file;
                 if (label=='L') {
                     type = 'left';
-                    id = $scope.thisCriminalImgL.id;
-                    file = $scope.thisCriminalImgLfile;
+                    file = image;
                 }else if (label=='R') {
                     type = 'right';
-                    id = $scope.thisCriminalImgR.id;
-                    file = $scope.thisCriminalImgRfile;
+                    file = image;
                 }else {
                     type = 'front';
-                    id = $scope.thisCriminalImgF.id;
-                    file = $scope.thisCriminalImgFfile;
+                    file = image;
                 }
-                console.log(file);
                 var fd=new FormData();
                 fd.append("image",file);
-                
-                console.log(JSON.stringify(fd));
+                fd.append("image_type",type);
+                fd.append("record",$scope.thisCriminalId);
                 $http({
-                    method:'PATCH',
-                    url: $scope.base_url+'/records/images/'+id,
+                    method:'POST',
+                    url: $scope.base_url+'/records/images/',
                     headers: {
                         'Content-Type': undefined,
                         'authorization': 'Bearer '+$localStorage['user']['token']
@@ -108,13 +104,7 @@
                     data:fd
                 })
                 .then(function successCallback(response) {
-                    $scope.editCriminalEnable=false;
-                    delete $scope.thisCriminal;
-                    delete $scope.thisCriminalImg
-                    delete $scope.thisCriminalId
-                    delete $scope.thisCriminalImgL;
-                    delete $scope.thisCriminalImgR;
-                    delete $scope.thisCriminalImgF;
+                    console.log(response);
                 }, function errorCallback(response) {
                     console.log(response);
                 });

@@ -37,6 +37,7 @@
                 })
                 .then(function successCallback(response) {
                     console.log(response);
+                    $scope.getFSRes();
                 }, function errorCallback(response) {
                     console.log(response);
                 });

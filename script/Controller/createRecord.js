@@ -21,7 +21,7 @@
                 var recordId;
                 await $http({
                             method:'POST',
-                            url: 'https://ssl.ffat.kindkonnect.in/records/records/',
+                            url: $scope.base_url+'/records/records/',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'authorization': 'Bearer '+$localStorage['user']['token']
@@ -42,7 +42,7 @@
                                     fd_left.append('record',recordId);
                                     await $http({
                                     method:'POST',
-                                    url:'https://ssl.ffat.kindkonnect.in/records/images/',
+                                    url:$scope.base_url+'/records/images/',
                                     headers: {
                                                     'Content-Type': undefined,
                                                     'authorization': 'Bearer '+$localStorage['user']['token']
@@ -62,7 +62,7 @@
                                     fd_right.append('record',recordId);
                                     await $http({
                                     method:'POST',
-                                    url:'https://ssl.ffat.kindkonnect.in/records/images/',
+                                    url:$scope.base_url+'/records/images/',
                                     headers: {
                                                     'Content-Type': undefined,
                                                     'authorization': 'Bearer '+$localStorage['user']['token']
@@ -82,7 +82,7 @@
                                     fd_front.append('record',recordId);
                                     await $http({
                                     method:'POST',
-                                    url:'https://ssl.ffat.kindkonnect.in/records/images/',
+                                    url:$scope.base_url+'/records/images/',
                                     headers: {
                                                     'Content-Type': undefined,
                                                     'authorization': 'Bearer '+$localStorage['user']['token']
@@ -106,7 +106,7 @@
                 fd_aadhar.append('record',recordId);
                 await $http({
                     method:'POST',
-                    url:'https://ssl.ffat.kindkonnect.in/records/idproofs/',
+                    url:$scope.base_url+'/records/idproofs/',
                     headers: {
                                 'Content-Type': undefined,
                                  'authorization': 'Bearer '+$localStorage['user']['token']
@@ -128,7 +128,7 @@
                 fd_driving.append('record',recordId);
                 await $http({
                     method:'POST',
-                    url:'https://ssl.ffat.kindkonnect.in/records/idproofs/',
+                    url:$scope.base_url+'/records/idproofs/',
                     headers: {
                                 'Content-Type': undefined,
                                  'authorization': 'Bearer '+$localStorage['user']['token']
@@ -150,7 +150,7 @@
                 fd_ration.append('record',recordId);
                 await $http({
                     method:'POST',
-                    url:'https://ssl.ffat.kindkonnect.in/records/idproofs/',
+                    url:$scope.base_url+'/records/idproofs/',
                     headers: {
                                 'Content-Type': undefined,
                                  'authorization': 'Bearer '+$localStorage['user']['token']
@@ -172,7 +172,7 @@
                 fd_passport.append('record',recordId);
                 await $http({
                     method:'POST',
-                    url:'https://ssl.ffat.kindkonnect.in/records/idproofs/',
+                    url:$scope.base_url+'/records/idproofs/',
                     headers: {
                                 'Content-Type': undefined,
                                  'authorization': 'Bearer '+$localStorage['user']['token']
@@ -194,7 +194,7 @@
                 fd_voter.append('record',recordId);
                 await $http({
                     method:'POST',
-                    url:'https://ssl.ffat.kindkonnect.in/records/idproofs/',
+                    url:$scope.base_url+'/records/idproofs/',
                     headers: {
                                 'Content-Type': undefined,
                                  'authorization': 'Bearer '+$localStorage['user']['token']
@@ -216,7 +216,7 @@
                 fd_pan.append('record',recordId);
                 await $http({
                     method:'POST',
-                    url:'https://ssl.ffat.kindkonnect.in/records/idproofs/',
+                    url:$scope.base_url+'/records/idproofs/',
                     headers: {
                                 'Content-Type': undefined,
                                  'authorization': 'Bearer '+$localStorage['user']['token']
@@ -234,6 +234,7 @@
             }
             function init(){
                     $scope.creating=false;
+                    $scope.base_url = CONFIG.base_url;
                 };
             init();
         }

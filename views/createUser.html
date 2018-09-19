@@ -1,0 +1,31 @@
+
+
+			<div class="paginationCont flexCont">
+			</div>
+			<div class="container">
+				<form name="UserForm">
+				    <div class="form-group col-md-12">
+				      <label >Mobile</label>
+				      <input type="number" name="mobile" ng-pattern="/^[789]\d{9}$/" ng-minlength="10" ng-maxlength="10" class="form-control"  ng-model="user.mobile" placeholder="Mobile">
+				      
+				    </div>
+				    <div class="col-md-12">
+				    	<span style="color:red" ng-show="UserForm.mobile.$invalid">Enter Correct Mobile Number</span>
+				    </div>
+				    <div class="form-group col-md-12">
+				      <label >Name</label>
+				      <input type="text" class="form-control"  ng-model="user.name" placeholder="Name">
+				    </div>
+				    <div class="form-group col-md-12">
+				      <label >Email</label>
+				      <input type="email" class="form-control"  ng-model="user.email" placeholder="Email">
+				    </div>
+				    <div class="form-group col-md-6">
+				      <label><input type="checkbox"  ng-model="user.is_active">Active</label>
+				    </div>
+				    <div class="form-group col-md-6">
+				      <label><input type="checkbox"  ng-model="user.is_staff">Staff</label>
+				    </div>
+				</form>
+				    <button type="submit" class="btn btn-primary" ng-click="submitUser(user)">Submit</button>
+			</div>
