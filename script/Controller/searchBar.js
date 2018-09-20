@@ -20,7 +20,7 @@
             };
 
             $scope.search = function(){
-                if ($scope.mainSearchText.length>3) {
+                if ($scope.mainSearchText!==undefined && $scope.mainSearchText.length>3) {
                     $http({
                         method: 'GET',
                         url: $scope.base_url+'/records/records/?search='+$scope.mainSearchText,
