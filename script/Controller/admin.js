@@ -160,12 +160,18 @@
                                 $scope.thisCriminalImgF=$scope.thisCriminalImg[i];
                             }
                         }
-                    }else {
+                    }else if(id.images.length==0){
+                        $scope.thisCriminalImgL='';
+                        $scope.thisCriminalImgR='';
+                        $scope.thisCriminalImgF='';
+                        $scope.thisCriminal[key]=id[key];
+                    }
+                    else {
                         $scope.thisCriminal[key]=id[key];
                     }
                     
                 }
-                console.log($scope.thisCriminal);
+                 console.log($scope.thisCriminal);
             };
 
             $scope.submit = function(label){

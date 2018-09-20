@@ -1,7 +1,7 @@
 
 
 <div class="paginationCont flexCont">
-	<div class="prev"><img src="/images/arrow.png" alt=""></div>
+	<div class="prev" ng-click="editCriminalEnable=false"><img src="/images/arrow.png" alt=""></div>
 	<div class="page"></div>
 	<div class="next"><img src="/images/arrow.png" alt=""></div>
 </div>
@@ -26,7 +26,7 @@
                          <label for="ImgLfile">
                             <i class="fa fa-pencil imgEdit"></i>
                         </label>
-                        <input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none" >
+                        <input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile" ngf-pattern=".jpeg,.png,.jpg" accept=".png/image*" ngf-max-size="20MB" style="display: none" >
                     </form> 
 					<p>Left</p>
 					<img ng-if="thisCriminalImgL" src="{{thisCriminalImgL.image}}" alt="">
@@ -38,7 +38,7 @@
                          <label for="ImgFfile">
                             <i class="fa fa-pencil imgEdit"></i>
                         </label>
-                        <input type="file" id="ImgFfile" ngf-select ng-model="thisCriminalImgFfile" name="thisCriminalImgFfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+                        <input type="file" id="ImgFfile" ngf-select ng-model="thisCriminalImgFfile" name="thisCriminalImgFfile" ngf-pattern=".jpg,.png,.jpeg" accept="'/image*" ngf-max-size="20MB" style="display: none">
                     </form> 
 					<p>Front</p>
 					<img ng-if="thisCriminalImgF" src="{{thisCriminalImgF.image}}" alt="">
@@ -50,7 +50,7 @@
                          <label for="ImgRfile">
                             <i class="fa fa-pencil imgEdit"></i>
                         </label>
-                        <input type="file" id="ImgRfile" ngf-select ng-model="thisCriminalImgRfile" name="thisCriminalImgRfile" ngf-pattern="'.jpg'" accept="'/image*" ngf-max-size="20MB" style="display: none">
+                        <input type="file" id="ImgRfile" ngf-select ng-model="thisCriminalImgRfile" name="thisCriminalImgRfile" ngf-pattern=".png,.jpg,.jpeg" accept="'/image*" ngf-max-size="20MB" style="display: none">
                     </form> 
 					<p>Right</p>
 					<img ng-if="thisCriminalImgR" src="{{thisCriminalImgR.image}}" alt="">
