@@ -39,6 +39,6 @@
     "angularjs-datepicker": "^2.1.23"
   },
   "resolutions": {
-    "angular": "1.7.0"
+    "angular": "~1.7.0"
   }
 }
