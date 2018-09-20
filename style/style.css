@@ -4639,7 +4639,7 @@ section.adminPanelCont{
 .searchbarConnt.addressbarConnt h2{
     line-height: 40px;
     margin: 0;
-    text-transform: capitalize;
+    
     font-weight: 100;
 }
 .criminalList {
@@ -4910,10 +4910,13 @@ span.inter {
     flex-grow: 1;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(252, 128, 25, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: none;
     outline: none;
     border-radius: 0;
+}
+.form-group.col-md-4 input:focus,.form-group.col-md-6 input:focus,.form-group.col-md-12 input:focus,.form-control:focus{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 .form-group.col-md-4 input[type=file],.form-group.col-md-6 input[type=file],.form-group.col-md-12 input[type=file]{
     border-bottom: none;
@@ -5044,6 +5047,23 @@ span.inter {
 }
 .gangParam .form-control:focus{
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.dataCont fieldset{
+    margin: 0 15px 100px;
+}
+.dataCont fieldset legend{
+    color: rgba(252, 128, 25, 0.7);
+    font-weight: 300;
+    margin-left: 5px;
+    padding-left: 10px;
+
+}
+.labelHide label{
+    display: none;
+}
+.form-group.col-md-4 label.btn.btn-img{
+    background: rgba(252,128,25,0.02);
+    box-shadow: 0 0 6px 0px rgba(0,0,0,0.01);
 }
 
 
