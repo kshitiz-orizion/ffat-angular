@@ -1,0 +1,111 @@
+<section class="gangParam" ng-if="!allGRecords.length>0">
+	<div class="box">
+		<h1>Search for...</h1>
+		<input type="text" placeholder="Name" ng-model='searchScope.name' class="form-control">
+		<input type="text" placeholder="Similar name" ng-model='searchScope.name_similar' class="form-control">
+		<input type="text" placeholder="Search keyword" ng-model='searchScope.search' class="form-control">
+		<input type="text" placeholder="Criminal category" ng-model='searchScope.criminal_category' class="form-control">
+		<input type="text" placeholder="Offence type" ng-model='searchScope.offence_type' class="form-control">
+		<div class="bottomRow text-right">
+			<button class="btn btn-main loginBtn" ng-click="searchGangs()">Search</button>
+		</div>
+	</div>
+</section>
+<section ng-if="allGRecords.length>0 && !showAnalysis">
+	<div class="paginationCont flexCont">
+		<div class="prev" ng-click="editCriminalEnable=false"><img src="/images/arrow.png" alt=""></div>
+		<div class="page"></div>
+		<div class="next"><img src="/images/arrow.png" alt=""></div>
+	</div>
+	<div class="dataCont">
+		<div class="gangParam criminalList" >
+			<div ng-repeat="criminal in allGRecords" class="clearfix flexCont eachCriminal eachItem">
+				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div>{{criminal.name}}</div>
+				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+				<div class="onHvr flexCont">
+					<h3 class="btn btn-link" ng-click="checkForGang(criminal.id)">Check for gang affiliation</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section ng-if="showAnalysis">
+	<section ng-if="analysisData['address'] && analysisData['address'].length>0" class=" criminalListSec">
+		<h1>Possible affiliations based on address</h1>
+		<div class="criminalList">
+			<div ng-repeat="criminal in analysisData['address']" class="clearfix flexCont eachCriminal eachItem">
+				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div>{{criminal.name}}</div>
+				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+				<div class="onHvr flexCont">
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section ng-if="analysisData['fir_num'] && analysisData['fir_num'].length>0" class=" criminalListSec">
+		<h1>Possible affiliations based on FIR</h1>
+		<div class="criminalList">
+			<div ng-repeat="criminal in analysisData['fir_num']" class="clearfix flexCont eachCriminal eachItem">
+				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div>{{criminal.name}}</div>
+				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+				<div class="onHvr flexCont">
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section ng-if="analysisData['guardian_name'] && analysisData['guardian_name'].length>0" class=" criminalListSec">
+		<h1>Possible affiliations based on relationship</h1>
+		<div class="criminalList">
+			<div ng-repeat="criminal in analysisData['guardian_name']" class="clearfix flexCont eachCriminal eachItem">
+				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div>{{criminal.name}}</div>
+				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+				<div class="onHvr flexCont">
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section ng-if="analysisData['identities'] && analysisData['identities'].length>0" class=" criminalListSec">
+		<h1>Possible affiliations based on identities</h1>
+		<div class="criminalList">
+			<div ng-repeat="criminal in analysisData['identities']" class="clearfix flexCont eachCriminal eachItem">
+				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div>{{criminal.name}}</div>
+				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+				<div class="onHvr flexCont">
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>

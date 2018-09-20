@@ -1,7 +1,7 @@
 <div class="searchbar flexCont" ng-controller="searchBarCtrl">
 	<div class="logo"><img src="/images/f1.png" alt=""></div>
 	<div class="searchbarConnt addressbarConnt">
-		<h2>Admin / <span ng-if="userEnable">User</span> <span ng-if="!userEnable">Criminal</span></h2>
+		<h2>Admin / {{locationCrumb}}</h2>
 	</div>
 	<div class="searchbarConnt">
 		<div class="input-control adminSearch">

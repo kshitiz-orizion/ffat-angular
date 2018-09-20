@@ -223,6 +223,7 @@
 
             var init = function (){
                 $scope.base_url = CONFIG.base_url;
+                $rootScope.locationCrumb = 'Criminals-analysis';
                 $scope.enableList = 'records';
                 $scope.getRecordata();
                 $scope.getSearchata();

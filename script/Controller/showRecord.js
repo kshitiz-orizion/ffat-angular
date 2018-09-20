@@ -16,7 +16,6 @@
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
             
             $scope.getRecordDetails  = function(id){
-                console.log('here');
                 
                 $http({
                     method: 'GET',
@@ -37,6 +36,7 @@
 
             };
             function init(){
+                $rootScope.locationCrumb = 'Show-record';
                 $scope.base_url = CONFIG.base_url;
                 $scope.url = $location.absUrl().split('?')[1];
                 if ($scope.url!=undefined) {

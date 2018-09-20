@@ -89,6 +89,7 @@
             };
 
             var init = function (){
+                $rootScope.locationCrumb = 'Face-search';
                 $scope.base_url = CONFIG.base_url;
                 $scope.getFSRes();
                 

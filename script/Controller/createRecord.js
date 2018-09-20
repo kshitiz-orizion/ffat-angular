@@ -236,6 +236,7 @@
             $scope.$apply();
             }
             function init(){
+                $rootScope.locationCrumb = 'Create-record';
                 angular.element('.creating').css('display','none');
                 $scope.base_url=CONFIG.base_url;
                 };

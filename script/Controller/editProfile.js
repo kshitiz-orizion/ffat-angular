@@ -14,10 +14,7 @@
     angular.module('myApp.editProfile').controller('editProfileCtrl',
     ['$rootScope','$scope', '$location', '$http','$localStorage','CONFIG' ,
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
-            function init(){
-                $scope.base_url=CONFIG.base_url;
-                $scope.user = $localStorage['user'];
-            };
+            
             $scope.saveuser=function(){
                 var data1={};
                 data1['id']=$scope.user.user_id;
@@ -37,6 +34,10 @@
                 console.log(response);
             });
             }
+            function init(){
+                $scope.base_url=CONFIG.base_url;
+                $scope.user = $localStorage['user'];
+            };
             init();
         }
     ]);

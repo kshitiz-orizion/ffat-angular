@@ -41,6 +41,7 @@
 
 
             function init(){
+                $rootScope.locationCrumb = 'Create-user';
                 $scope.base_url = CONFIG.base_url;
             }
             init();

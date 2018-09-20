@@ -33,6 +33,7 @@
                 });
             };
             function init(){
+                $rootScope.locationCrumb = 'Manage-record';
                 $scope.base_url = CONFIG.base_url;
                 $scope.getUserData();
             }

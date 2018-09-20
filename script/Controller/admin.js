@@ -259,6 +259,7 @@
 
             function init(){
                 $scope.base_url=CONFIG.base_url;
+                $rootScope.locationCrumb = 'Criminals-record';
                 var expToken = $localStorage['user']['token'];
                 var tokenPayload = jwtHelper.decodeToken(expToken);
                 var user = $localStorage['user'];
