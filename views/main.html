@@ -1,4 +1,9 @@
-
+<div ng-show="loginPwdValidate" class="alert alert-danger">
+  		<strong>Mobile Number and Password do not Match</strong>
+</div>
+<div ng-show="loginOtpValidate" class="alert alert-danger">
+  		<strong>Mobile Number and Otp do not Match</strong>
+</div>
 <section du-parallax  class="homePanel">
 	
 	<div class="loginModalMain">
@@ -8,16 +13,19 @@
 				<a class="btn btn-link" ng-class="signBool?'signActive':' '" ng-click="signBool=!signBool">Login with OTP</a>
 			</div>
 			<div class="modal-body form loginForm" id="modal-body" ng-show="!signBool">
-				<form name="form">		
+				<form name="formLoginPwd">		
 					<div class="input-control btmMargin">
-						<input type="text" class="InputField" placeholder="Mobile number" name="userName" aria-label="Username" aria-describedby="basic-addon1" ng-model="userName" ng-required="true">
-						<div ng-show="form.userName.$dirty && form.userName.$error.required">
+						<input type="text" class="InputField" placeholder="Mobile number" name="userName" aria-label="Username" aria-describedby="basic-addon1" ng-model="userName" ng-required="true" ng-maxlength="10" ng-minlength="10" ng-pattern="/^[789]\d{9}$/">
+						<div ng-show="formLoginPwd.userName.$dirty && formLoginPwd.userName.$error.required">
 							<span class="errorMessage TopRightSignIn help-block">Mobile number is required!</span>
-						</div>	
+						</div>
+						<div ng-show="formLoginPwd.userName.$dirty && formLoginPwd.userName.$invalid && !formLoginPwd.userName.$error.required">
+							<span class="errorMessage TopRightSignIn help-block">Enter Correct Mobile Number!</span>
+						</div>		
 					</div>
 					<div class="input-control btmMargin">
 					 	<input type="password" class="InputField" placeholder="Password" name="password" aria-label="Username" aria-describedby="basic-addon1" ng-model="password" ng-required="true">
-					 	<div  ng-show="form.password.$dirty && form.password.$error.required">
+					 	<div  ng-show="formLoginPwd.password.$dirty && formLoginPwd.password.$error.required">
 					 		<span class="errorMessage TopRightSignIn help-block">Password is required!</span>
 					 	</div>
 					</div>
@@ -31,16 +39,19 @@
 				</form>	
 			</div>
 			<div class="modal-body form loginForm" id="modal-body" ng-show="signBool">
-				<form name="form">		
+				<form name="formLoginOtp">		
 					<div class="input-control btmMargin">
-						<input type="text" class="InputField" placeholder="Mobile number" name="userNameOTP" aria-label="UsernameOTP" aria-describedby="basic-addon1" ng-model="userNameOTP" ng-required="true">
-						<div ng-show="form.userNameOTP.$dirty && form.userNameOTP.$error.required">
+						<input type="text" class="InputField" placeholder="Mobile number" name="userNameOTP" aria-label="UsernameOTP" aria-describedby="basic-addon1" ng-model="userNameOTP" ng-required="true" ng-pattern="/^[789]\d{9}$/" ng-maxlength="10" ng-minlength="10">
+						<div ng-show="formLoginOtp.userNameOTP.$dirty && formLoginOtp.userNameOTP.$error.required">
 							<span class="errorMessage TopRightSignIn help-block">Mobile number is required!</span>
+						</div>
+						<div ng-show="formLoginOtp.userNameOTP.$dirty && formLoginOtp.userNameOTP.$invalid && !formLoginOtp.userNameOTP.$error.required">
+							<span class="errorMessage TopRightSignIn help-block">Enter Correct Mobile Number!</span>
 						</div>	
 					</div>
 					<div class="input-control btmMargin" ng-if="getOtpBool">
 					 	<input type="password" class="InputField" placeholder="OTP" name="OTP" aria-label="Username" aria-describedby="basic-addon1" ng-model="otp.val" ng-required="true">
-					 	<div  ng-show="form.password.$dirty && form.password.$error.required">
+					 	<div  ng-show="formLoginOtp.password.$dirty && formLoginOtp.password.$error.required">
 					 		<span class="errorMessage TopRightSignIn help-block">OTP is required!</span>
 					 	</div>
 					</div>

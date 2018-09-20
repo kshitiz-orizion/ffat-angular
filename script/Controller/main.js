@@ -67,6 +67,7 @@ angular.module('myApp.main').controller('MainCtrl', ['$rootScope','$scope','para
 				}
 			}, function errorCallback(response) {
 					//console.log('ERROR'+JSON.stringify(response));
+					$scope.loginOtpValidate="true"
 					$scope.errorMsgs=response.data.non_field_errors;
 			});
 		}
@@ -102,6 +103,7 @@ angular.module('myApp.main').controller('MainCtrl', ['$rootScope','$scope','para
 						$window.location.href = '/analysis';
 					}
 			}, function errorCallback(response) {
+					$scope.loginPwdValidate=true;
 					//console.log('ERROR'+JSON.stringify(response));
 					$scope.errorMsgs=response.data.non_field_errors;
 			});

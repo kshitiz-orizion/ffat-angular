@@ -12,11 +12,11 @@
         }
     ])
   angular.module('myApp.createRecord').controller('createRecordCtrl',
-    ['$rootScope','$scope', '$location', '$http','$localStorage','CONFIG',
-        function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
+    ['$rootScope','$scope', '$location', '$http','$localStorage','CONFIG','$window',
+        function($rootScope,$scope,$location,$http,$localStorage,CONFIG,$window) {
             $scope.submitRecord=async function(record){
-                
-                $scope.creating=true;
+                angular.element('.creating').css('display','block');
+                angular.element('.dataCont').css('display','none');
                 var recordfor=record;
                 var recordId;
                 await $http({
@@ -95,146 +95,149 @@
                                                 console.log(response);
                                             });
                                     }
-            }
-            if(recordfor.identities){
-            if(recordfor.identities.aadhar){
-                var fd_aadhar=new FormData();
-                fd_aadhar.append('identity_type','aadhar');
-                fd_aadhar.append('image_front',recordfor.identities.aadhar.image_front);
-                fd_aadhar.append('image_back',recordfor.identities.aadhar.image_back);
-                fd_aadhar.append('identity_number',recordfor.identities.aadhar.identity_number);
-                fd_aadhar.append('record',recordId);
-                await $http({
-                    method:'POST',
-                    url:$scope.base_url+'/records/idproofs/',
-                    headers: {
-                                'Content-Type': undefined,
-                                 'authorization': 'Bearer '+$localStorage['user']['token']
-                             },
-                    data:fd_aadhar
-                })
-                .then(function successCallback(response) {
-                         console.log(response);
-                         }, function errorCallback(response) {
-                            console.log(response);
-                        });
-            }
-            if(recordfor.identities.driving){
-                var fd_driving=new FormData();
-                fd_driving.append('identity_type','driving');
-                fd_driving.append('image_front',recordfor.identities.driving.image_front);
-                fd_driving.append('image_back',recordfor.identities.driving.image_back);
-                fd_driving.append('identity_number',recordfor.identities.driving.identity_number);
-                fd_driving.append('record',recordId);
-                await $http({
-                    method:'POST',
-                    url:$scope.base_url+'/records/idproofs/',
-                    headers: {
-                                'Content-Type': undefined,
-                                 'authorization': 'Bearer '+$localStorage['user']['token']
-                             },
-                    data:fd_driving
-                })
-                .then(function successCallback(response) {
-                         console.log(response);
-                         }, function errorCallback(response) {
-                            console.log(response);
-                        });
-            }
-            if(recordfor.identities.ration){
-                var fd_ration=new FormData();
-                fd_ration.append('identity_type','ration');
-                fd_ration.append('image_front',recordfor.identities.ration.image_front);
-                fd_ration.append('image_back',recordfor.identities.ration.image_back);
-                fd_ration.append('identity_number',recordfor.identities.ration.identity_number);
-                fd_ration.append('record',recordId);
-                await $http({
-                    method:'POST',
-                    url:$scope.base_url+'/records/idproofs/',
-                    headers: {
-                                'Content-Type': undefined,
-                                 'authorization': 'Bearer '+$localStorage['user']['token']
-                             },
-                    data:fd_ration
-                })
-                .then(function successCallback(response) {
-                         console.log(response);
-                         }, function errorCallback(response) {
-                            console.log(response);
-                        });
-            }
-            if(recordfor.identities.passport){
-                var fd_passport=new FormData();
-                fd_passport.append('identity_type','passport');
-                fd_passport.append('image_front',recordfor.identities.passport.image_front);
-                fd_passport.append('image_back',recordfor.identities.passport.image_back);
-                fd_passport.append('identity_number',recordfor.identities.passport.identity_number);
-                fd_passport.append('record',recordId);
-                await $http({
-                    method:'POST',
-                    url:$scope.base_url+'/records/idproofs/',
-                    headers: {
-                                'Content-Type': undefined,
-                                 'authorization': 'Bearer '+$localStorage['user']['token']
-                             },
-                    data:fd_passport
-                })
-                .then(function successCallback(response) {
-                         console.log(response);
-                         }, function errorCallback(response) {
-                            console.log(response);
-                        });
-            }
-            if(recordfor.identities.voter){
-                var fd_voter=new FormData();
-                fd_voter.append('identity_type','voter');
-                fd_voter.append('image_front',recordfor.identities.voter.image_front);
-                fd_voter.append('image_back',recordfor.identities.voter.image_back);
-                fd_voter.append('identity_number',recordfor.identities.voter.identity_number);
-                fd_voter.append('record',recordId);
-                await $http({
-                    method:'POST',
-                    url:$scope.base_url+'/records/idproofs/',
-                    headers: {
-                                'Content-Type': undefined,
-                                 'authorization': 'Bearer '+$localStorage['user']['token']
-                             },
-                    data:fd_voter
-                })
-                .then(function successCallback(response) {
-                         console.log(response);
-                         }, function errorCallback(response) {
-                            console.log(response);
-                        });
-            }
-            if(recordfor.identities.pan){
-                var fd_pan=new FormData();
-                fd_pan.append('identity_type','pan');
-                fd_pan.append('image_front',recordfor.identities.pan.image_front);
-                fd_pan.append('image_back',recordfor.identities.pan.image_back);
-                fd_pan.append('identity_number',recordfor.identities.pan.identity_number);
-                fd_pan.append('record',recordId);
-                await $http({
-                    method:'POST',
-                    url:$scope.base_url+'/records/idproofs/',
-                    headers: {
-                                'Content-Type': undefined,
-                                 'authorization': 'Bearer '+$localStorage['user']['token']
-                             },
-                    data:fd_pan
-                })
-                .then(function successCallback(response) {
-                         console.log(response);
-                         }, function errorCallback(response) {
-                            console.log(response);
-                        });
-            }
+                        }
+                if(recordfor.identities){
+                        if(recordfor.identities.aadhar){
+                            var fd_aadhar=new FormData();
+                            fd_aadhar.append('identity_type','aadhar');
+                            fd_aadhar.append('image_front',recordfor.identities.aadhar.image_front);
+                            fd_aadhar.append('image_back',recordfor.identities.aadhar.image_back);
+                            fd_aadhar.append('identity_number',recordfor.identities.aadhar.identity_number);
+                            fd_aadhar.append('record',recordId);
+                            await $http({
+                                method:'POST',
+                                url:$scope.base_url+'/records/idproofs/',
+                                headers: {
+                                            'Content-Type': undefined,
+                                             'authorization': 'Bearer '+$localStorage['user']['token']
+                                         },
+                                data:fd_aadhar
+                            })
+                            .then(function successCallback(response) {
+                                     console.log(response);
+                                     }, function errorCallback(response) {
+                                        console.log(response);
+                                    });
+                        }
+                        if(recordfor.identities.driving){
+                            var fd_driving=new FormData();
+                            fd_driving.append('identity_type','driving');
+                            fd_driving.append('image_front',recordfor.identities.driving.image_front);
+                            fd_driving.append('image_back',recordfor.identities.driving.image_back);
+                            fd_driving.append('identity_number',recordfor.identities.driving.identity_number);
+                            fd_driving.append('record',recordId);
+                            await $http({
+                                method:'POST',
+                                url:$scope.base_url+'/records/idproofs/',
+                                headers: {
+                                            'Content-Type': undefined,
+                                             'authorization': 'Bearer '+$localStorage['user']['token']
+                                         },
+                                data:fd_driving
+                            })
+                            .then(function successCallback(response) {
+                                     console.log(response);
+                                     }, function errorCallback(response) {
+                                        console.log(response);
+                                    });
+                        }
+                        if(recordfor.identities.ration){
+                            var fd_ration=new FormData();
+                            fd_ration.append('identity_type','ration');
+                            fd_ration.append('image_front',recordfor.identities.ration.image_front);
+                            fd_ration.append('image_back',recordfor.identities.ration.image_back);
+                            fd_ration.append('identity_number',recordfor.identities.ration.identity_number);
+                            fd_ration.append('record',recordId);
+                            await $http({
+                                method:'POST',
+                                url:$scope.base_url+'/records/idproofs/',
+                                headers: {
+                                            'Content-Type': undefined,
+                                             'authorization': 'Bearer '+$localStorage['user']['token']
+                                         },
+                                data:fd_ration
+                            })
+                            .then(function successCallback(response) {
+                                     console.log(response);
+                                     }, function errorCallback(response) {
+                                        console.log(response);
+                                    });
+                        }
+                        if(recordfor.identities.passport){
+                            var fd_passport=new FormData();
+                            fd_passport.append('identity_type','passport');
+                            fd_passport.append('image_front',recordfor.identities.passport.image_front);
+                            fd_passport.append('image_back',recordfor.identities.passport.image_back);
+                            fd_passport.append('identity_number',recordfor.identities.passport.identity_number);
+                            fd_passport.append('record',recordId);
+                            await $http({
+                                method:'POST',
+                                url:$scope.base_url+'/records/idproofs/',
+                                headers: {
+                                            'Content-Type': undefined,
+                                             'authorization': 'Bearer '+$localStorage['user']['token']
+                                         },
+                                data:fd_passport
+                            })
+                            .then(function successCallback(response) {
+                                     console.log(response);
+                                     }, function errorCallback(response) {
+                                        console.log(response);
+                                    });
+                        }
+                        if(recordfor.identities.voter){
+                            var fd_voter=new FormData();
+                            fd_voter.append('identity_type','voter');
+                            fd_voter.append('image_front',recordfor.identities.voter.image_front);
+                            fd_voter.append('image_back',recordfor.identities.voter.image_back);
+                            fd_voter.append('identity_number',recordfor.identities.voter.identity_number);
+                            fd_voter.append('record',recordId);
+                            await $http({
+                                method:'POST',
+                                url:$scope.base_url+'/records/idproofs/',
+                                headers: {
+                                            'Content-Type': undefined,
+                                             'authorization': 'Bearer '+$localStorage['user']['token']
+                                         },
+                                data:fd_voter
+                            })
+                            .then(function successCallback(response) {
+                                     console.log(response);
+                                     }, function errorCallback(response) {
+                                        console.log(response);
+                                    });
+                        }
+                        if(recordfor.identities.pan){
+                            var fd_pan=new FormData();
+                            fd_pan.append('identity_type','pan');
+                            fd_pan.append('image_front',recordfor.identities.pan.image_front);
+                            fd_pan.append('image_back',recordfor.identities.pan.image_back);
+                            fd_pan.append('identity_number',recordfor.identities.pan.identity_number);
+                            fd_pan.append('record',recordId);
+                            await $http({
+                                method:'POST',
+                                url:$scope.base_url+'/records/idproofs/',
+                                headers: {
+                                            'Content-Type': undefined,
+                                             'authorization': 'Bearer '+$localStorage['user']['token']
+                                         },
+                                data:fd_pan
+                            })
+                            .then(function successCallback(response) {
+                                     console.log(response);
+                                     }, function errorCallback(response) {
+                                        console.log(response);
+                                    });
+                        }
 
-        }
+               }   
+            angular.element('.creating').css('display','none');
+            $location.path('/admin');
+            $scope.$apply();
             }
             function init(){
-                    $scope.creating=false;
-                    $scope.base_url = CONFIG.base_url;
+                angular.element('.creating').css('display','none');
+                $scope.base_url=CONFIG.base_url;
                 };
             init();
         }
