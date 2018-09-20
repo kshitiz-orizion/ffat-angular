@@ -103,6 +103,7 @@ angular.module('myApp.main').controller('MainCtrl', ['$rootScope','$scope','para
 						$window.location.href = '/analysis';
 					}
 			}, function errorCallback(response) {
+					$rootScope.mainOP = true;
 					$scope.loginPwdValidate=true;
 					//console.log('ERROR'+JSON.stringify(response));
 					$scope.errorMsgs=response.data.non_field_errors;
@@ -110,6 +111,7 @@ angular.module('myApp.main').controller('MainCtrl', ['$rootScope','$scope','para
 		}
 
 		var init = function(){
+			$rootScope.mainOP = true;
 			$scope.otp={};
 			$scope.base_url = CONFIG.base_url;
 		};

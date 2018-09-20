@@ -23,11 +23,13 @@
 	 	
 	 	
 	 	<section class="adminPanelCont">
-			<div class="headerMainCont" ng-include="'/views/searchbar.html'" ></div>
+			<div class="headerMainCont" ng-include="'/views/searchbar.html'" ng-if="!mainOP">
+			</div>
+
 			<div class="adminPanel clearfix">
-				<div class="pull-left" ng-include="'/views/sidebar.html'" ></div>
+				<div class="pull-left" ng-include="'/views/sidebar.html'"ng-if="!mainOP" >
+				</div>
 				<div ng-view class="mainContainer container-fluid pull-right" autoscroll="true">
-					
 				</div>
 			</div>
 		</section>
@@ -55,6 +57,7 @@
 			<script type="text/javascript" src="script/app.js"></script>
 			<script type="text/javascript" src="script/config.js"></script>
 			<script type="text/javascript" src="script/Controller/main.js"></script>
+			<script type="text/javascript" src="script/Controller/gangAnalysis.js"></script>
 			<script type="text/javascript" src="script/Controller/searchBar.js"></script>
 			<script type="text/javascript" src="script/Controller/showRecord.js"></script>
 			<script type="text/javascript" src="script/Controller/analysis.js"></script>

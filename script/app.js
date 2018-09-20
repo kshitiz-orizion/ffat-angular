@@ -6,7 +6,7 @@ var app = angular.module("myApp",
         'ngAnimate',
         'satellizer',
         'ui.bootstrap',
-        
+        "myApp.gangAnalysis",
         'ngStorage',
         'googlechart',
         "myApp.main",
@@ -18,6 +18,7 @@ var app = angular.module("myApp",
         "myApp.record",
         "myApp.createRecord",
         "myApp.createUser",
+        
         "ngFileUpload",
         "720kb.datepicker"
         
