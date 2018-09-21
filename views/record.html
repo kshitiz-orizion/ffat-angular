@@ -1,10 +1,10 @@
 
 			<div class="paginationCont flexCont">
-				<!-- <div ng-click="enable('records')">records</div>
-				<div ng-click="enable('counts')">counts</div>
-				<div ng-click="enable('search')">searches</div> -->
+				<div ng-click="enable('create')" class="btn btn-small" style="width:30vw;">Create</div>
+				<div ng-click="enable('user')" class="btn btn-small" style="width:30vw;">Users</div>
+				<div ng-click="enable('case')" class="btn btn-small" style="width:30vw;">Cases</div>
 			</div>
-			<div class="criminalList">
+			<div class="criminalList" ng-show="create">
 					<div class="clearfix flexCont eachCriminal eachCriminalAdd" >
 						<a href="/createrecord">
 							<i class="fa fa-plus"></i>
@@ -18,12 +18,14 @@
 						</a>
 					</div>
 					<div class="clearfix flexCont eachCriminal eachCriminalAdd" ng-click="addCriminalRec()">
-						<i class="fa fa-plus"></i>
-						<p>Create a case</p>
+						<a href="/createcase">
+							<i class="fa fa-plus"></i>
+							<p>Create a case</p>
+						</a>
 					</div>
 					
 			</div>
-			<div class="container">
+			<div class="container" ng-show="user">
 				<legend>Users</legend>
 				<table class="table table-striped table-bordered">
 				    <thead>
@@ -42,6 +44,25 @@
 				        <td>{{user.email}}</td>
 				        <td>{{user.is_active}}</td>
 				        <td>{{user.is_staff}}</td>
+				      </tr> 
+				    </tbody>
+	  			</table>
+  			</div>
+  			<div class="container" ng-show="case">
+				<legend>Cases</legend>
+				<table class="table table-striped table-bordered">
+				    <thead>
+				      <tr>
+				        <th>Title</th>
+				        <th>Number</th>
+				        <th>Assignee</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr ng-repeat="case in cases">
+				        <td>{{case.title}}</td>
+				        <td>{{case.number}}</td>
+				        <td>{{case.assignee}}</td>
 				      </tr> 
 				    </tbody>
 	  			</table>

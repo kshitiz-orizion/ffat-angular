@@ -18,7 +18,7 @@ var app = angular.module("myApp",
         "myApp.record",
         "myApp.createRecord",
         "myApp.createUser",
-        
+        "myApp.createCase",
         "ngFileUpload",
         "720kb.datepicker"
         
