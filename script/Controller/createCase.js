@@ -87,7 +87,7 @@
         	$scope.getRecords=function(){
         		$http({
         			method:'GET',
-        			url:$scope.base_url+'/records/records',
+        			url:$scope.base_url+'/records/records/',
         			headers:{
         				'Content-type':'application/json',
         				'authorization':'Bearer '+$localStorage['user']['token']
@@ -95,6 +95,7 @@
         		}).then(function successCallback(response) {
                     if (response) {
                         $scope.recordsCase = response.data.results;
+                        console.log($scope.recordsCase);
                     }
                 }, function errorCallback(response) {
                         ////console.log('ERROR'+JSON.stringify(response));
@@ -104,7 +105,7 @@
         	$scope.getUsers=function(){
         		$http({
         			method:'GET',
-        			url:$scope.base_url+'/users/users',
+        			url:$scope.base_url+'/users/users/',
         			headers:{
         				'Content-type':'application/json',
         				'authorization':'Bearer '+$localStorage['user']['token']
