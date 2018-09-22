@@ -1,8 +1,8 @@
 
 			<div class="paginationCont flexCont">
-				<div ng-click="enable('create')" class="btn btn-small" style="width:30vw;">Create</div>
-				<div ng-click="enable('user')" class="btn btn-small" style="width:30vw;">Users</div>
-				<div ng-click="enable('case')" class="btn btn-small" style="width:30vw;">Cases</div>
+				<div ng-click="enable('create')" class="btn btn-small createDiv" style="width:30vw;">Create</div>
+				<div ng-click="enable('user')" class="btn btn-smal usersDiv" style="width:30vw;">Users</div>
+				<div ng-click="enable('case')" class="btn btn-small casesDiv" style="width:30vw;">Cases</div>
 			</div>
 			<div class="criminalList" ng-show="create">
 					<div class="clearfix flexCont eachCriminal eachCriminalAdd" >
@@ -62,7 +62,7 @@
 				      <tr ng-repeat="case in cases">
 				        <td>{{case.title}}</td>
 				        <td>{{case.number}}</td>
-				        <td>{{case.assignee}}</td>
+				        <td><strong>Name:</strong>{{case.assigneeName}},<strong>Mobile:</strong>{{case.assigneeMobile}}</td>
 				      </tr> 
 				    </tbody>
 	  			</table>

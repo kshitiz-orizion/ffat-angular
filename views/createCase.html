@@ -1,42 +1,39 @@
-
-
-
-			<div class="paginationCont flexCont">
+		<div class="paginationCont flexCont">
 			</div>
 			<div class="CaseCreate" style="position: fixed;left:45vw">
 				<img src="../images/Spinner.gif">
 			</div>
 			<div class="box CaseForm">
 				<h1>Create Case</h1>
-				<form name="UserForm">
-				    <div class="form-group col-md-12">
-				      <input type="text" name="title" class="form-control"  ng-model="case.title" placeholder="Title">				      
-				    </div>
-				    <div class="form-group col-md-12">
-				      <input type="text" class="form-control"  ng-model="case.number" placeholder="Case Number">
-				    </div>
-				    <div class="form-group col-md-12">
-				      <!-- <input type="text" class="form-control"  ng-model="case.assignee" placeholder="Case Assignee"> -->
-				      <select ng-model="case.assignee" class="form-control">
-				      	<option value>Select A Assignee</option>
-				      	<option ng-repeat="assign in assignee" value={{assign.id}}>{{assign.name}} {{assign.mobile}}<option>
-				      </select>
-				    </div>
-				    <div class="form-group col-md-12" ng-repeat="rec in records">
-				      <select class="form-control" ng-model="rec.id" ng-change="submitRecordId(rec.id)">
-				      		<option value>Select A Criminal</option>
-				      		<option ng-repeat="reco in recordsCase" value={{reco.id}}>{{reco.name}} {{reco.guardian_rel}} {{reco.guardian_name}}<option>
-				      </select>
-				    </div>
-				    <div class="form-group col-md-12">
-				    	<i class="fa fa-plus btn btn-small" ng-click="addRecord()">Criminal</i>
+				<form name="UserForm" ng-if="recordsCase">
+					<div class="form-group col-md-12">
+						<input type="text" name="title" class="form-control"  ng-model="case.title" placeholder="Title">
 					</div>
-				    <div class="form-group col-md-12" ng-repeat="comm in comments track by $index">
-				      <input type="text" class="form-control"  ng-model="case.comment[$index]"  placeholder="Comments"><span class="btn">
-				    </div>
-				    <div class="form-group col-md-12">
-				    	<i class="fa fa-plus btn btn-small" ng-click="addComment()">Comment</i>
+					<div class="form-group col-md-12">
+						<input type="text" class="form-control"  ng-model="case.number" placeholder="Case Number">
+					</div>
+					<div class="form-group col-md-12">
+						<!-- <input type="text" class="form-control"  ng-model="case.assignee" placeholder="Case Assignee"> -->
+						<select ng-model="case.assignee" class="form-control">
+							<option value>Select A Assignee</option>
+							<option ng-repeat="assign in assignee" value={{assign.id}}>{{assign.name}} {{assign.mobile}}<option>
+						</select>
+					</div>
+					<div class="form-group col-md-12" ng-repeat="rec in records">
+						<select class="form-control" ng-model="rec.id" ng-change="submitRecordId(rec.id)">
+							<option value>Select A Criminal</option>
+							<option ng-repeat="reco in recordsCase" value={{reco.id}}>{{reco.name}} {{reco.guardian_rel}} {{reco.guardian_name}}<option>
+						</select>
+					</div>
+					<div class="form-group col-md-12">
+						<i class="fa fa-plus btn btn-small" ng-click="addRecord()">Criminal</i>
+					</div>
+					<div class="form-group col-md-12" ng-repeat="comm in comments track by $index">
+						<input type="text" class="form-control"  ng-model="case.comment[$index]"  placeholder="Comments"><span class="btn">
+					</div>
+					<div class="form-group col-md-12">
+						<i class="fa fa-plus btn btn-small" ng-click="addComment()">Comment</i>
 					</div>
 				</form>
-				    <button type="submit" class="btn btn-primary" ng-click="submitCase(case)">Submit</button>
+				<button type="submit" class="btn btn-primary" ng-click="submitCase(case)">Submit</button>
 			</div>

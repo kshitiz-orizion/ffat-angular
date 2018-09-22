@@ -84,8 +84,9 @@
         	$scope.submitComment=function(comm){
         		$scope.commForCase.push(comm);
         	}
-        	$scope.getRecords=function(){
-        		$http({
+        	$scope.getRecords=async function(){
+        		angular.element('.CaseCreate').css('display','block');
+        		await $http({
         			method:'GET',
         			url:$scope.base_url+'/records/records/',
         			headers:{
@@ -93,17 +94,17 @@
         				'authorization':'Bearer '+$localStorage['user']['token']
         			}
         		}).then(function successCallback(response) {
-                    if (response) {
                         $scope.recordsCase = response.data.results;
-                        console.log($scope.recordsCase);
-                    }
+                        angular.element('.CaseCreate').css('display','none');
                 }, function errorCallback(response) {
                         ////console.log('ERROR'+JSON.stringify(response));
                         $scope.errorMsgs=response.data.non_field_errors;
                 });
+
         	}
-        	$scope.getUsers=function(){
-        		$http({
+        	$scope.getUsers=async function(){
+        		angular.element('.CaseCreate').css('display','block');
+        		await $http({
         			method:'GET',
         			url:$scope.base_url+'/users/users/',
         			headers:{
@@ -111,22 +112,23 @@
         				'authorization':'Bearer '+$localStorage['user']['token']
         			}
         		}).then(function successCallback(response) {
-                    if (response) {
                         $scope.assignee = response.data.results;
-                    }
+                        angular.element('.CaseCreate').css('display','none');
                 }, function errorCallback(response) {
                         ////console.log('ERROR'+JSON.stringify(response));
                         $scope.errorMsgs=response.data.non_field_errors;
                 });
+                
         	}
             function init(){
-            	angular.element('.CaseCreate').css('display','none');
+            	
                 $rootScope.locationCrumb = 'Create-case';
                 $scope.base_url = CONFIG.base_url;
                 $scope.getRecords();
                 $scope.getUsers();
                 $scope.case={};
                 $scope.case.comment={};
+                
             }
             init();
         }
