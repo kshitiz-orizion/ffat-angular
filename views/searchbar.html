@@ -3,13 +3,14 @@
 	<div class="searchbarConnt addressbarConnt">
 		<h2>Admin / {{locationCrumb}}</h2>
 	</div>
-	<div class="searchbarConnt">
+	<div class="searchbarConnt" ng-show="showSearchBar">
 		<div class="input-control adminSearch">
-			<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1" ng-model="mainSearchText" ng-required="true" ng-change="search()">
+			<input type="text" class="InputField" placeholder="search" name="search" aria-label="search" aria-describedby="basic-addon1"
+			 ng-model="mainSearchText" ng-required="true" ng-change="search()">
 			<button class="btn">Go</button>
 			<div ng-show="form.search.$dirty && form.search.$error.required">
 				<span class="errorMessage TopRightSignIn help-block">User name is required!</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 	<div class="searchResultCont" ng-show="mainSearchText.length>3">
@@ -21,11 +22,12 @@
 					<p>{{eachRec.record.name}}</p>
 					<p>{{eachRec.record.guardian_rel}} : {{eachRec.record.guardian_name}}</p>
 					<p class="smalldet">{{eachRec.record.dob}} | {{eachRec.record.community}} | {{eachRec.record.sex}}</p>
-					<p class="smalldet">{{eachRec.record.complexion}} complexion | {{eachRec.record.hair}} hair | {{eachRec.record.eyes}} eyes</p>
+					<p class="smalldet">{{eachRec.record.complexion}} complexion | {{eachRec.record.hair}} hair |
+						{{eachRec.record.eyes}} eyes</p>
 					<p class="smalldet"><b>Address : </b>{{eachRec.record.address1}}</p>
-				</div>	
+				</div>
 			</a>
-			
+
 		</div>
 	</div>
 	<div class="filter">

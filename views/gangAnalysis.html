@@ -4,10 +4,16 @@
 		<input type="text" placeholder="Name" ng-model='searchScope.name' class="form-control">
 		<input type="text" placeholder="Similar name" ng-model='searchScope.name_similar' class="form-control">
 		<input type="text" placeholder="Search keyword" ng-model='searchScope.search' class="form-control">
-		<input type="text" placeholder="Criminal category" ng-model='searchScope.criminal_category' class="form-control">
-		<input type="text" placeholder="Offence type" ng-model='searchScope.offence_type' class="form-control">
+		<select class="form-control" ng-model="searchScope.offence_type" ng-options="offenceType for offenceType in offenceTypes">
+			<option value="" class="display-none">Select Offense Type</option>
+		</select>
+		<select class="form-control" ng-model="searchScope.criminal_category" ng-options="criminalType for criminalType in criminalTypes">
+			<option value="" class="display-none">Select Criminal Type</option>
+		</select>
+		<!-- <input type="text" placeholder="Criminal category" ng-model='searchScope.criminal_category' class="form-control">
+		<input type="text" placeholder="Offence type" ng-model='searchScope.offence_type' class="form-control"> -->
 		<div class="bottomRow text-right">
-			<button class="btn btn-main loginBtn" ng-click="searchGangs()">Search</button>
+			<button class="btn btn-main loginBtn" ng-click="searchGangs(searchScope)">Search</button>
 		</div>
 	</div>
 </section>
@@ -18,11 +24,12 @@
 		<div class="next"><img src="/images/arrow.png" alt=""></div>
 	</div>
 	<div class="dataCont">
-		<div class="gangParam criminalList" >
+		<div class="gangParam criminalList">
 			<div ng-repeat="criminal in allGRecords" class="clearfix flexCont eachCriminal eachItem">
 				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
-				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+					 alt=""></div>
 				<div>{{criminal.name}}</div>
 				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
@@ -42,14 +49,15 @@
 			<div ng-repeat="criminal in analysisData['address']" class="clearfix flexCont eachCriminal eachItem">
 				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
-				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+					 alt=""></div>
 				<div>{{criminal.name}}</div>
 				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 				<div class="onHvr flexCont">
-					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link">View record</a>
 				</div>
 			</div>
 		</div>
@@ -60,14 +68,15 @@
 			<div ng-repeat="criminal in analysisData['fir_num']" class="clearfix flexCont eachCriminal eachItem">
 				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
-				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+					 alt=""></div>
 				<div>{{criminal.name}}</div>
 				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 				<div class="onHvr flexCont">
-					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link">View record</a>
 				</div>
 			</div>
 		</div>
@@ -78,14 +87,15 @@
 			<div ng-repeat="criminal in analysisData['guardian_name']" class="clearfix flexCont eachCriminal eachItem">
 				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
-				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+					 alt=""></div>
 				<div>{{criminal.name}}</div>
 				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 				<div class="onHvr flexCont">
-					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link">View record</a>
 				</div>
 			</div>
 		</div>
@@ -96,14 +106,15 @@
 			<div ng-repeat="criminal in analysisData['identities']" class="clearfix flexCont eachCriminal eachItem">
 				<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 				<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
-				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+				<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+					 alt=""></div>
 				<div>{{criminal.name}}</div>
 				<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 				<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 				<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 				<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 				<div class="onHvr flexCont">
-					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link" >View record</a>
+					<a href="/showRecord?id={{criminal.id}}" class="btn btn-link">View record</a>
 				</div>
 			</div>
 		</div>

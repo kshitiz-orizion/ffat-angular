@@ -1,0 +1,29 @@
+<div class="container user-list-container">
+  <div>
+    <label>Case</label>
+    <a class="btn btn-primary create-user-btn" href="/case/create"><i class="fa fa-plus"></i> Create Case</a>
+  </div>
+  <table class="table table-responsive table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Number</th>
+        <th>Assignee</th>
+        <th>Records</th>
+        <th>Comments</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="case in cases track by $index">
+        <td>{{case.title}}</td>
+        <td>{{case.number}}</td>
+        <td>{{userHash[case.assignee].name || 'N/A'}} - {{userHash[case.assignee].mobile || 'N/A'}} -
+          {{userHash[case.assignee].email || 'N/A'}}</td>
+        <td>{{case.number}}</td>
+
+        <td><strong>Name:</strong>{{case.assigneeName}},<strong>Mobile:</strong>{{case.assigneeMobile}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <section class="user-create">
+    <div class="create-user-box">
+      <h1>Create User</h1>
+      <form name="UserForm">
+        <div class="form-group col-md-12">
+          <input type="number" name="mobile" ng-pattern="/^[789]\d{9}$/" ng-minlength="10" ng-maxlength="10" class="form-control"
+            ng-model="user.mobile" placeholder="Mobile Number">
+        </div>
+        <div class="col-md-12">
+          <span style="color:red" ng-show="UserForm.mobile.$invalid">Enter Correct Mobile Number</span>
+        </div>
+        <div class="form-group col-md-12">
+          <input type="text" class="form-control" ng-model="user.name" placeholder="Name">
+        </div>
+        <div class="form-group col-md-12">
+          <input type="email" class="form-control" ng-model="user.email" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+          <label><input type="checkbox" ng-model="user.is_active">Active</label>
+        </div>
+        <div class="form-group col-md-6">
+          <label><input type="checkbox" ng-model="user.is_staff">Admin</label>
+        </div>
+        <div class="form-group col-md-12">
+
+          <button type="submit" class="btn btn-primary" ng-click="submitUser(user)">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</div>

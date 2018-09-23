@@ -1,20 +1,41 @@
-<div class="recordHolder ">
+<div class="recordHolder">
 	<h1 class="text-center">{{record.name}}</h1>
-	<div class=" container-fluid flexCont">
+	<div class="container-fluid flexCont">
 		<div class="col-md-4">
-			<img ng-repeat="img in record.images" ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+			<img class="criminal-image" ng-repeat="img in record.images" ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
 		</div>
 		<div class="col-md-4">
-			<img ng-repeat="img in record.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+			<img class="criminal-image" ng-repeat="img in record.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
 		</div>
 		<div class="col-md-4">
-			<img ng-repeat="img in record.images" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+			<img class="criminal-image" ng-repeat="img in record.images" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
 		</div>
 	</div>
 	<div class="text-center container-fluid">
 		<label for="">{{record.guardian_rel}} : </label>{{record.guardian_name}}
 	</div>
-	<div class="text-center container-fluid" ng-repeat="(key, value) in record" ng-if="key!='id' && key!='images'">
-		<label for="">{{key}} : </label> {{value}}
+	<div class="text-center container-fluid" ng-repeat="(key, value) in record" ng-if="key!='id' && key!='images' && key != 'identities'">
+		<label>{{key}} : </label> {{value}}
+	</div>
+	<div class="container-fluid record-identities">
+		<h3>Identity</h3>
+		<table class="table table-bordered well">
+			<tr>
+				<th>Proof Type</th>
+				<th>Identity Number</th>
+				<th>Front Image</th>
+				<th>Back Image</th>
+			</tr>
+			<tr ng-repeat="identity in record.identities track by $index">
+				<td>{{identity.identity_type}}</td>
+				<td>{{identity.identity_number}}</td>
+				<td>
+					<img ng-src="{{identity.image_front}}" alt="identity front image">
+				</td>
+				<td>
+					<img ng-src="{{identity.image_back}}" alt="identity back image">
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

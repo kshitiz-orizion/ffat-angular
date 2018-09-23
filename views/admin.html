@@ -1,14 +1,39 @@
-
-
 <div class="paginationCont flexCont">
 	<div class="prev" ng-click="editCriminalEnable=false"><img src="/images/arrow.png" alt=""></div>
 	<div class="page"></div>
 	<div class="next"><img src="/images/arrow.png" alt=""></div>
 </div>
+<div class="advance-search">
+	<h3 class="search-field search-type">
+		AdVance Search
+	</h3>
+	<div class="search-field">
+		<select class="form-control" ng-model="advSearch.offence_type" ng-options="offenceType for offenceType in offenceTypes">
+			<option value="" class="display-none">Select Offense Type</option>
+		</select>
+	</div>
+	<div class="search-field">
+		<select class="form-control" ng-model="advSearch.criminal_category" ng-options="criminalType for criminalType in criminalTypes">
+			<option value="" class="display-none">Select Criminal Type</option>
+		</select>
+	</div>
+	<div class="search-field">
+		<input type="text" class="form-control" ng-model="advSearch.offence_area" placeholder="Offence Area">
+	</div>
+	<div class="search-field">
+		<input type="text" class="form-control" ng-model="advSearch.police_station" placeholder="Police Station">
+	</div>
+	<div class="search-field action-btn">
+		<button class="btn btn-info" ng-click="criminalAdvSearch(advSearch)">Search</button>
+		<button class="btn btn-warning" ng-click="criminalAdvSearch()">Clear</button>
+		<a class="btn btn-primary" href="/createrecord"> <i class="fa fa-plus"></i> Add Criminal</a>
+
+	</div>
+</div>
 <div class="dataCont">
-	
+
 	<div class="criminalList">
-		
+
 		<div ng-repeat="criminal in criminals" class="clearfix flexCont eachCriminal">
 			<div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 			<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div>
@@ -23,11 +48,12 @@
 			<div class="clearfix">
 				<div class="lftImg UserImg">
 					<form name="upload_formL" enctype="multipart/form-data">
-                         <label for="ImgLfile">
-                            <i class="fa fa-pencil imgEdit"></i>
-                        </label>
-                        <input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile" ngf-pattern=".jpeg,.png,.jpg" accept=".png/image*" ngf-max-size="20MB" style="display: none" >
-                    </form> 
+						<label for="ImgLfile">
+							<i class="fa fa-pencil imgEdit"></i>
+						</label>
+						<input type="file" id="ImgLfile" ngf-select ng-model="thisCriminalImgLfile" name="thisCriminalImgLfile"
+						 ngf-pattern=".jpg,.png,.jpeg" accept=".png/image*" ngf-max-size="20MB" style="display: none">
+					</form>
 					<p>Left</p>
 					<img ng-if="thisCriminalImgL" src="{{thisCriminalImgL.image}}" alt="">
 					<div ng-if="!thisCriminalImgL"><i class="fa fa-plus"></i></div>
@@ -35,11 +61,12 @@
 				</div>
 				<div class="frtImg UserImg">
 					<form name="upload_formF" enctype="multipart/form-data">
-                         <label for="ImgFfile">
-                            <i class="fa fa-pencil imgEdit"></i>
-                        </label>
-                        <input type="file" id="ImgFfile" ngf-select ng-model="thisCriminalImgFfile" name="thisCriminalImgFfile" ngf-pattern=".jpg,.png,.jpeg" accept="'/image*" ngf-max-size="20MB" style="display: none">
-                    </form> 
+						<label for="ImgFfile">
+							<i class="fa fa-pencil imgEdit"></i>
+						</label>
+						<input type="file" id="ImgFfile" ngf-select ng-model="thisCriminalImgFfile" name="thisCriminalImgFfile"
+						 ngf-pattern=".jpg,.png,.jpeg" accept="'/image*" ngf-max-size="20MB" style="display: none">
+					</form>
 					<p>Front</p>
 					<img ng-if="thisCriminalImgF" src="{{thisCriminalImgF.image}}" alt="">
 					<div ng-if="!thisCriminalImgF"><i class="fa fa-plus"></i></div>
@@ -47,20 +74,66 @@
 				</div>
 				<div class="rgtImg UserImg">
 					<form name="upload_formR" enctype="multipart/form-data">
-                         <label for="ImgRfile">
-                            <i class="fa fa-pencil imgEdit"></i>
-                        </label>
-                        <input type="file" id="ImgRfile" ngf-select ng-model="thisCriminalImgRfile" name="thisCriminalImgRfile" ngf-pattern=".png,.jpg,.jpeg" accept="'/image*" ngf-max-size="20MB" style="display: none">
-                    </form> 
+						<label for="ImgRfile">
+							<i class="fa fa-pencil imgEdit"></i>
+						</label>
+						<input type="file" id="ImgRfile" ngf-select ng-model="thisCriminalImgRfile" name="thisCriminalImgRfile"
+						 ngf-pattern=".png,.jpg,.jpeg" accept="'/image*" ngf-max-size="20MB" style="display: none">
+					</form>
 					<p>Right</p>
 					<img ng-if="thisCriminalImgR" src="{{thisCriminalImgR.image}}" alt="">
 					<div ng-if="!thisCriminalImgR"><i class="fa fa-plus"></i></div>
 					<button class="btn btn-sm btn-main" ng-if="thisCriminalImgRfile" ng-click="thisCriminalImgfileSave('R',thisCriminalImgRfile)">Save</button>
 				</div>
-				
+
 			</div>
 			<div ng-repeat="(key, value) in thisCriminal" class="input-control" ng-if="key!=id || key!=images">
-				<label for="{{value}}">{{key}}</label> : <input type="text" class="" ng-model="thisCriminal[key]" name="{{value}}">
+				<div ng-if="fieldsShouldNotShow.indexOf(key) === -1 && key !== 'identities'" class="row edit-field">
+					<div class="col-sm-2">
+						<label for="{{value}}">{{key}}</label>
+					</div>
+					<div class="col-sm-9">
+						<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+					</div>
+				</div>
+				<div class="row identity-container" ng-if="key === 'identities'">
+					<div class="col-sm-2">
+						<label for="{{value}}">{{key}}</label>
+					</div>
+					<div class="col-sm-9">
+						<div class="row" ng-repeat="(key, identity) in thisCriminal.identities">
+							<div class="form-group col-md-3">
+								<label for="">Identity Type </label>
+								<select class="form-control" ng-model="identity.identity_type" ng-options="identityType for identityType in identityTypes">
+									<option value="" class="display-none"></option>
+								</select>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="">{{identity.identity_type}} Id </label>
+								<input type="text" class="form-control" ng-model="identity.identity_number" placeholder="aadhar identity_number">
+							</div>
+							<div class="form-group col-md-3">
+								<!-- <label for="">AAdhar Image Front</label> -->
+								<label for="imageFront">{{identity.identity_type}} Image Front</label>
+								<!-- <input type="file" id="AadharFfile" ngf-select ng-model="identity.aadhar.image_front" name="Image Front Aadhar"
+								 ngf-pattern="'.png,.jpeg,.jpg'" accept="'/image*" ngf-max-size="20MB" style="display:none"> -->
+								<img ngf-thumbnail="identity[identity.identity_type].image_front || identity.image_front" style="width:50px;height:50px;">
+								<div class="button" ngf-select ng-model="identity[identity.identity_type].image_front" name="Image Front {{identity.identity_type}}"
+								 ngf-pattern="'.png,.jpeg,.jpg'" accept="'/image*" ngf-max-size="20MB"><i class="fa fa-pencil imgEdit"></i></div>
+							</div>
+							<div class="form-group col-md-3">
+								<!-- <label for="">AAdhar Image Back</label> -->
+								<label for="imageBack">{{identity.identity_type}} Image Back</label>
+								<img ngf-thumbnail="identity[identity.identity_type].image_back || identity.image_back" style="width:50px;height:50px;">
+								<div class="button" ngf-select ng-model="identity[identity.identity_type].image_back" name="Image Back {{identity.identity_type}}"
+								 ngf-pattern="'.png,.jpeg,.jpg'" accept="'/image*" ngf-max-size="20MB"><i class="fa fa-pencil imgEdit"></i></div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-default" ng-click="addIdentity(thisCriminal.identities)">Add Identity</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="input-control clearfix">
 				<button class=" saveBtn LoginBtn" ng-click="editSave('cancel')">Cancel</button>
@@ -69,4 +142,3 @@
 		</div>
 	</div>
 </div>
-

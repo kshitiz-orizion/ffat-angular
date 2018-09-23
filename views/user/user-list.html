@@ -1,0 +1,35 @@
+<div class="container user-list-container">
+  <div>
+    <label>Users</label>
+    <a class="btn btn-primary create-user-btn" href="/user/create"><i class="fa fa-plus"></i> Create User</a>
+  </div>
+  <table class="table table-responsive table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Mobile</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Active</th>
+        <th>Admin</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users">
+        <td>{{user.mobile}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.is_active}}</td>
+        <td>{{user.is_staff}}</td>
+        <td>
+          <a class="btn btn-default" ng-href="/user/{{user.id}}">
+            <i class="fa fa-edit"></i>
+            Edit
+          </a>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
