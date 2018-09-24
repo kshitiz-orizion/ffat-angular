@@ -63,7 +63,7 @@ angular.module('myApp.main').controller('MainCtrl', ['$rootScope','$scope','para
 					
 					$rootScope.user=$localStorage['user'];
 					$rootScope.userLoggedIn=true;
-					$window.location.href = '/admin';
+					$window.location.href = '/analysis';
 				}
 			}, function errorCallback(response) {
 					//console.log('ERROR'+JSON.stringify(response));
