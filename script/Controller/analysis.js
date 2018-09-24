@@ -222,6 +222,10 @@
             };
 
             var init = function (){
+                $location.$$path = '/#!/analysis';
+                $location.$$url = '/#!/analysis';
+                console.log($location.path);
+                console.log($location);
                 $scope.base_url = CONFIG.base_url;
                 $rootScope.locationCrumb = 'Criminals-analysis';
                 $scope.enableList = 'records';
