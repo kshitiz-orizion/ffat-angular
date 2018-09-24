@@ -48,10 +48,11 @@ var app = angular
       blockUIConfig.autoBlock = false;
       $animateProvider.classNameFilter(/^((?!(fa-spinner)).)*$/);
       growlProvider.globalTimeToLive(5000);
-      $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: true,
-      });
+      // $locationProvider.html5Mode({
+      //   enabled: true,
+      //   requireBase: true,
+      // });
+      $locationProvider.html5Mode(true);
       $authProvider.facebook({
         clientId: '174143832961027',
         responseType: 'token',
