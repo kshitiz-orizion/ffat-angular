@@ -1,23 +1,12 @@
 {
   "name": "bmr-frontend",
   "homepage": "https://github.com/systementropy",
-  "authors": [
-    "systementropy <vatsa.saket@gmail.com>"
-  ],
+  "authors": ["systementropy <vatsa.saket@gmail.com>"],
   "description": "",
   "main": "index.html",
-  "keywords": [
-    "BMR",
-    "Website"
-  ],
+  "keywords": ["BMR", "Website"],
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "angular": "~1.6.9",
     "angular-bootstrap": "^2.5.0",
@@ -36,7 +25,10 @@
     "angular-jwt": "^0.1.9",
     "moment": "^2.22.0",
     "angular-google-chart": "1.0.0-beta.1",
-    "angularjs-datepicker": "^2.1.23"
+    "angularjs-datepicker": "^2.1.23",
+    "angular-growl-v2": "^0.7.9",
+    "angular-block-ui": "^0.2.2",
+    "font-awesome": "4.7.0"
   },
   "resolutions": {
     "angular": "~1.7.0"

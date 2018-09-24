@@ -1,75 +1,95 @@
 <!doctype html>
-<html>
+<html ng-app="myApp">
 
-	 <head>
-		<title>FFAT : Face Forensic Analysis Tool</title>
-		<meta charset="UTF-8">
-		<link rel="icon" href="images/icon.png" type="image/gif" sizes="16x16">
-		<script src="https://use.fontawesome.com/b88dde9015.js"></script>
-		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick.css">
-		<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick-theme.css">
-		<link href="./bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
-		<link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="./bower_components/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet">
-		<link href="/style/style.css" rel="stylesheet">
-		<link href="/style/normalize.css" rel="stylesheet">
-		<link href="/style/animate.css" rel="stylesheet">
-		<base href="/">
-	 </head>
+<head>
+	<title>FFAT : Face Forensic Analysis Tool</title>
+	<meta charset="UTF-8">
+	<link rel="icon" href="images/icon.png" type="image/gif" sizes="16x16">
+	<!-- <script src="https://use.fontawesome.com/b88dde9015.js"></script> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css">
+	<link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick-theme.css">
+	<link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css">
+	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/bower_components/angularjs-datepicker/src/css/angular-datepicker.css">
+	<link rel="stylesheet" href="/bower_components/angular-growl-v2/build/angular-growl.min.css" />
+	<link rel="stylesheet" href="/bower_components/angular-block-ui/dist/angular-block-ui.min.css" />
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
 
-	 <body ng-app = "myApp">
-	 	
-	 	
-	 	<section class="adminPanelCont">
-			<div class="headerMainCont" ng-include="'/views/searchbar.html'" ng-if="!mainOP">
+
+	<link rel="stylesheet" href="/style/style.css">
+	<link rel="stylesheet" href="/style/normalize.css">
+	<link rel="stylesheet" href="/style/animate.css">
+	<base href="/">
+</head>
+
+<body ng-controller="rootCtrl">
+	<div growl></div>
+
+	<section class="adminPanelCont">
+		<div class="headerMainCont" ng-include="'/views/searchbar.html'" ng-if="user">
+		</div>
+
+		<div class="adminPanel clearfix">
+			<div class="pull-left" ng-include="'/views/sidebar.html'" ng-if="user">
 			</div>
-
-			<div class="adminPanel clearfix">
-				<div class="pull-left" ng-include="'/views/sidebar.html'"ng-if="!mainOP" >
-				</div>
-				<div ng-view class="mainContainer container-fluid pull-right" autoscroll="true">
-				</div>
+			<div ng-view class="mainContainer container-fluid pull-right" autoscroll="true">
 			</div>
-		</section>
-			
-			
-		
-			<script src="./bower_components/jquery/dist/jquery.js"></script>
-			<script src="./bower_components/angular/angular.min.js"></script>
-			<script src="./bower_components/angular-route/angular-route.js"></script>
-			<script src="./bower_components/ngstorage/ngStorage.min.js"></script>
-			<script src="./bower_components/satellizer/dist/satellizer.min.js"></script>
-			<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
-			<script src="./bower_components/angular-scroll/angular-scroll.min.js"></script>
-			<script src="./bower_components/ng-parallax/angular-parallax.min.js"></script>
-			<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-			<script src="./bower_components/slick-carousel/slick/slick.min.js"></script>
-			<script src="./bower_components/slick-carousel/slick/slick.js"></script>
-    		<script src="./bower_components/angular-slick-carousel/dist/angular-slick.min.js"></script>
-			<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-			<script src="./bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-			<script src="./bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
-			<script src="./bower_components/moment/moment.js"></script>
-			<script src="./bower_components/angular-google-chart/ng-google-chart.min.js"></script>
-			<script src="./bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
-			<script type="text/javascript" src="script/app.js"></script>
-			<script type="text/javascript" src="script/config.js"></script>
-			<script type="text/javascript" src="script/Controller/main.js"></script>
-			<script type="text/javascript" src="script/Controller/gangAnalysis.js"></script>
-			<script type="text/javascript" src="script/Controller/searchBar.js"></script>
-			<script type="text/javascript" src="script/Controller/showRecord.js"></script>
-			<script type="text/javascript" src="script/Controller/analysis.js"></script>
-			<script type="text/javascript" src="script/Controller/faceSearch.js"></script>
-			<script type="text/javascript" src="script/Controller/admin.js"></script>
-			<script type="text/javascript" src="script/Controller/record.js"></script>
-			<script type="text/javascript" src="script/Controller/createRecord.js"></script>
-			<script type="text/javascript" src="script/Controller/createUser.js"></script>
-			<script type="text/javascript" src="script/Controller/createCase.js"></script>
-			<script type="text/javascript" src="script/file-upload.js"></script>
+		</div>
+	</section>
 
 
-			
-	 </body>
+
+	<script src="./bower_components/jquery/dist/jquery.js"></script>
+	<script src="./bower_components/angular/angular.min.js"></script>
+	<script src="./bower_components/angular-route/angular-route.js"></script>
+	<script src="./bower_components/ngstorage/ngStorage.min.js"></script>
+	<script src="./bower_components/satellizer/dist/satellizer.min.js"></script>
+	<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="./bower_components/angular-scroll/angular-scroll.min.js"></script>
+	<script src="./bower_components/ng-parallax/angular-parallax.min.js"></script>
+	<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="./bower_components/slick-carousel/slick/slick.min.js"></script>
+	<script src="./bower_components/slick-carousel/slick/slick.js"></script>
+	<script src="./bower_components/angular-slick-carousel/dist/angular-slick.min.js"></script>
+	<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="./bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+	<script src="./bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+	<script src="./bower_components/moment/moment.js"></script>
+	<script src="./bower_components/angular-google-chart/ng-google-chart.min.js"></script>
+	<script src="./bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+	<script src="./bower_components/angular-growl-v2/build/angular-growl.min.js"></script>
+	<script src="./bower_components/angular-block-ui/dist/angular-block-ui.min.js"></script>
+
+
+	<script type="text/javascript" src="script/app.js"></script>
+	<script type="text/javascript" src="script/config.js"></script>
+	<script type="text/javascript" src="script/services/common.service.js"></script>
+	<script type="text/javascript" src="script/Controller/rootCtrl.js"></script>
+	<script type="text/javascript" src="script/Controller/main.js"></script>
+	<script type="text/javascript" src="script/Controller/user/user-config.js"></script>
+	<script type="text/javascript" src="script/Controller/user/user-list.js"></script>
+	<script type="text/javascript" src="script/Controller/user/user-create.js"></script>
+	<script type="text/javascript" src="script/Controller/user/user-edit.js"></script>
+	<script type="text/javascript" src="script/Controller/case/case-config.js"></script>
+	<script type="text/javascript" src="script/Controller/case/case-list.js"></script>
+	<script type="text/javascript" src="script/Controller/case/case-create.js"></script>
+	<script type="text/javascript" src="script/Controller/case/case-edit.js"></script>
+
+	<script type="text/javascript" src="script/Controller/gangAnalysis.js"></script>
+	<script type="text/javascript" src="script/Controller/searchBar.js"></script>
+	<script type="text/javascript" src="script/Controller/showRecord.js"></script>
+	<script type="text/javascript" src="script/Controller/analysis.js"></script>
+	<script type="text/javascript" src="script/Controller/faceSearch.js"></script>
+	<script type="text/javascript" src="script/Controller/admin.js"></script>
+	<script type="text/javascript" src="script/Controller/record.js"></script>
+	<script type="text/javascript" src="script/Controller/createRecord.js"></script>
+	<script type="text/javascript" src="script/Controller/createUser.js"></script>
+	<script type="text/javascript" src="script/Controller/createCase.js"></script>
+	<script type="text/javascript" src="script/file-upload.js"></script>
+
+
+
+</body>
+
 </html>

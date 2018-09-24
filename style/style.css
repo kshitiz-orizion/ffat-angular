@@ -4747,21 +4747,22 @@ section.adminPanelCont{
     max-height: 100%;
 }
 .dataCont{
-    height: calc(100vh - 120px);
+    height: calc(100vh - 164px);
     overflow: scroll;
 }
 .editCriminalCont {
     position: fixed;
     height: calc(100vh - 120px);
     overflow: scroll;
-    background: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,0.98);
     width: 100%;
     z-index: 100;
+    padding-bottom: 50px;
 }
 .editCriminalCont>div{
     margin: 15px auto;
     max-width: 60%;
-    display: flex;
+    /* display: flex; */
     text-align: center;
 }
 .editCriminalCont>div.clearfix{
@@ -4784,7 +4785,7 @@ section.adminPanelCont{
 .editCriminalCont>div.cleafix p{
     margin: auto auto 0;
 }
-.editCriminalCont>div>label{
+.editCriminalCont .edit-field label, .editCriminalCont>div>label{
     width: 200px;
     text-align: left;
 }
@@ -4802,15 +4803,25 @@ section.adminPanelCont{
     font-size: 12px;
     color: rgba(0,0,0,0.5);
 }
-.editCriminalCont>div>input{
+.editCriminalCont .edit-field input, .editCriminalCont>div>input{
     width: 100%;
     background: transparent;
     outline: none;
     border: none;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding: 0 15px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     color: #555;
+}
+.editCriminalCont .edit-field {
+    width: 100%;
+}
+.identity-container {
+    text-align: left;
+    margin-top: 5px;
+}
+.identity-container img {
+    border: 3px solid #e6e6e6;
 }
 .eachChart {
     flex-basis: 31%;
@@ -5000,6 +5011,18 @@ span.inter {
     margin: 0;
     color: rgba(252, 128, 25, 0.6);
 }
+.recordHolder .criminal-image {
+    width: 300px;
+    max-height: 300px;
+}
+.recordHolder .record-identities {
+    clear: both;
+    padding: 40px;
+}
+.recordHolder .record-identities img {
+    width: 100px;
+    height: 100px;
+}
 .gangParam {
     width: 100%;
     height: 100%;
@@ -5065,17 +5088,70 @@ span.inter {
     background: rgba(252,128,25,0.02);
     box-shadow: 0 0 6px 0px rgba(0,0,0,0.01);
 }
+.fa-refresh {
+    animation-duration: 0.8s;
+    color: #b9d2bc;
+}
+.display-none {
+    display: none;
+}
+.advance-search {
+    display: flex;
+}
+.advance-search .search-field {
+    flex: 0.65 1;
+    margin: 5px;
+}
+.advance-search .search-type {
+    flex: 0.55 1;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin: 12px 0 5px 0;
+}
+.advance-search .action-btn {
+    flex: 1;
+    text-align: center;
+}
+.user-list-container {
+    margin-top: 40px;
+}
+.create-user-btn {
+    float: right;
+    margin-bottom: 15px;
+}
+.user-create {
+    display: flex;
+    justify-content: center;
+}
 
+.user-create .create-user-box {
+    margin-left: 15px;
+    background-color: #fbfbfb;
+    padding: 20px;
+    width: 450px;
+    border: 1px dotted #ece;
+    margin-top: 50px;
+}
 
+.create-case-box h1, .create-user-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.create-user-box .user-checkbox {
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
 
-
-
-
-
-
-
-
-
+.create-case-box {
+    margin-left: 15px;
+    background-color: #fbfbfb;
+    padding: 20px;
+    width: 50%;
+    min-width: 550px;
+    border: 1px dotted #ece;
+    margin-top: 50px;
+}
 
 
 
