@@ -39,6 +39,36 @@
       blockUI,
       CommonData,
     ) {
+      $scope.showMainPage=function(){
+        console.log('hi');
+        $scope.editCriminalEnable=false;
+        $scope.detailsCriminal=false;
+        angular.element('.eachCriminal').css('display','block');
+      }
+      $scope.openDetails=function(details){
+        angular.element('.eachCriminal').css('display','none');
+        $scope.detailsCriminal=true;
+        $http({
+          method:'GET',
+          url:$scope.base_url+'/records/records/'+details.id,
+          headers: {
+                'Content-Type': 'application/json',
+                authorization: 'Bearer ' + $localStorage['user']['token'],
+              },
+        }).then(function successCallback(response){
+          $scope.criminalDetail=response.data;
+          $scope.editCriminalEnable = false;
+          delete $scope.thisCriminal;
+          delete $scope.thisCriminalImg;
+          delete $scope.thisCriminalId;
+          delete $scope.thisCriminalImgL;
+          delete $scope.thisCriminalImgR;
+          delete $scope.thisCriminalImgF;
+        },
+        function errorCallback(response){
+
+        });
+      }
       $scope.identityTypes = CommonData.identityTypes;
       $scope.criminalTypes = CommonData.criminalTypes;
       $scope.offenceTypes = CommonData.offenceTypes;
@@ -46,6 +76,7 @@
       $scope.editSave = function(label) {
         if (label == 'cancel') {
           $scope.editCriminalEnable = false;
+          $scope.detailsCriminal=false;
           delete $scope.thisCriminal;
           delete $scope.thisCriminalImg;
           delete $scope.thisCriminalId;
@@ -71,6 +102,7 @@
                 console.log(response);
                 $scope.uploadIdentityProof(data1, $scope.thisCriminalId);
                 $scope.editCriminalEnable = false;
+                $scope.detailsCriminal=false;
                 delete $scope.thisCriminal;
                 delete $scope.thisCriminalImg;
                 delete $scope.thisCriminalId;
@@ -94,6 +126,7 @@
             }).then(
               function successCallback(response) {
                 console.log(response);
+                $scope.detailsCriminal=false;
                 $scope.editCriminalEnable = false;
                 delete $scope.thisCriminal;
                 delete $scope.thisCriminalImg;

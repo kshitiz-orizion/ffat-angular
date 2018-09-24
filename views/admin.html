@@ -1,5 +1,5 @@
 <div class="paginationCont flexCont">
-	<div class="prev" ng-click="editCriminalEnable=false"><img src="/images/arrow.png" alt=""></div>
+	<div class="prev" ng-click="showMainPage()"><img src="/images/arrow.png" alt=""></div>
 	<div class="page"></div>
 	<div class="next"><img src="/images/arrow.png" alt=""></div>
 </div>
@@ -37,14 +37,171 @@
 		<div ng-repeat="criminal in criminals" class="clearfix flexCont eachCriminal">
 			<div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 			<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div>
-			<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>
+			<div ng-click="openDetails(criminal)">
+			<div class="imgCont"><img ng-repeat="img in criminal.images"  ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>			
 			<div>{{criminal.name}}</div>
 			<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 			<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 			<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 			<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+			</div>
 		</div>
-		<div ng-if="editCriminalEnable" class="editCriminalCont">
+		<div ng-if="detailsCriminal">
+			<div class="recordHolder">
+				<h1 class="text-center">{{criminalDetail.name}}</h1><button style="float:right" class="btn btn-primary" ng-click="editCriminal(criminalDetail)"><i class="fa fa-pencil" style="float:right">Edit</i></button>
+				<div class="container-fluid flexCont">
+					<div class="col-md-4">
+						<img class="criminal-image" ng-repeat="img in criminalDetail.images" ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+					</div>
+					<div class="col-md-4">
+						<img class="criminal-image" ng-repeat="img in criminalDetail.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+					</div>
+					<div class="col-md-4">
+						<img class="criminal-image" ng-repeat="img in criminalDetail.images" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+					</div>
+				</div>
+				<!-- <div class="text-center container-fluid">
+					<label for="">{{criminalDetail.guardian_rel}} : </label>{{criminalDetail.guardian_name}}
+				</div> -->
+				<div class="text-center" >
+					<fieldset>
+					<legend>Basic Information</legend>
+						<div class="row">
+							<div class="col-md-4">
+								<label>Name : </label> {{criminalDetail.name}}
+							</div>
+							<div class="col-md-4">
+								<label>Guardian Name : </label> {{criminalDetail.guardian_name}}
+							</div>
+							<div class="col-md-4">
+								<label>Guardian Relation : </label> {{criminalDetail.guardian_rel}}
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<label>Date Of Birth : </label> {{criminalDetail.dob}}
+							</div>
+							<div class="col-md-4">
+								<label>Community : </label> {{criminalDetail.community}}
+							</div>
+							<div class="col-md-4">
+								<label>Religion : </label> {{criminalDetail.religion}}
+							</div>	
+						</div>
+					<div class="row">
+						<div class="col-md-4">
+							<label>Gender : </label> {{criminalDetail.sex}}
+						</div>
+					</div>
+					</fieldset>
+					<fieldset>
+						<legend>Physical Information</legend>
+					<div class="row">
+						<div class="col-md-4">
+							<label>Height : </label> {{criminalDetail.height}}
+						</div>
+						<div class="col-md-4">
+							<label>Build : </label> {{criminalDetail.build}}
+						</div>	
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<label>Complexion : </label> {{criminalDetail.complexion}}
+						</div>
+						<div class="col-md-4">
+							<label>Fair : </label> {{criminalDetail.fair}}
+						</div>
+						<div class="col-md-4">
+							<label>Hair : </label> {{criminalDetail.hair}}
+						</div>	
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<label>Eyes : </label> {{criminalDetail.eyes}}
+						</div>
+					</div>
+						</fieldset>
+					<fieldset>
+						<legend>Location Information</legend>
+					<div class="row">
+						<div class="col-md-4">
+							<label>Address 1 : </label> {{criminalDetail.address1}}
+						</div>
+						<div class="col-md-4">
+							<label>Address 2 : </label> {{criminalDetail.address2}}
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<label>City : </label> {{criminalDetail.city}}
+						</div>
+						<div class="col-md-4">
+							<label>State : </label> {{criminalDetail.state}}
+						</div>
+						<div class="col-md-4">
+							<label>Police Post : </label> {{criminalDetail.police_post}}
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<label>Police Station : </label> {{criminalDetail.police_station}}
+						</div>
+						<div class="col-md-3">
+							<label>District : </label> {{criminalDetail.district}}
+						</div>
+					</div>
+					</fieldset>
+					<fieldset>
+						<legend>Criminal Record</legend>
+					<div class="row">
+						<div class="col-md-3">
+							<label>DD Num : </label> {{criminalDetail.dd_num}}
+						</div>	
+						<div class="col-md-3">
+							<label>DD Date: </label> {{criminalDetail.dd_date}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<label>Criminal Category: </label> {{criminalDetail.criminal_category}}
+						</div>	
+						<div class="col-md-3">
+							<label>Offence Area: </label> {{criminalDetail.offence_area}}
+						</div>
+						<div class="col-md-3">
+							<label>Offence Type: </label> {{criminalDetail.offence_type}}
+						</div>
+					</div>
+					</fieldset>
+					<fieldset>
+						<legend>Identities</legend>
+					<div class="col-sm-12">
+						<div class="row" ng-repeat="(key, identity) in criminalDetail.identities">
+							<div class="form-group col-md-3">
+								<label for="">Identity Type </label>{{identity.identity_type}}
+							</div>
+							<div class="form-group col-md-3">
+								<label for="">{{identity.identity_type}} Id </label>{{identity.identity_number}}
+							</div>
+							<div class="form-group col-md-3">
+								<!-- <label for="">AAdhar Image Front</label> -->
+								<label for="imageFront">{{identity.identity_type}} Image Front</label>
+								<img ngf-thumbnail="identity[identity.identity_type].image_front || identity.image_front" style="width:50px;height:50px;">
+							</div>
+							<div class="form-group col-md-3">
+								<!-- <label for="">AAdhar Image Back</label> -->
+								<label for="imageBack">{{identity.identity_type}} Image Back</label>
+								<img ngf-thumbnail="identity[identity.identity_type].image_back || identity.image_back" style="width:50px;height:50px;">
+							</div>
+						</div>
+					</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<div ng-show="editCriminalEnable" class="editCriminalCont">
 			<div class="clearfix">
 				<div class="lftImg UserImg">
 					<form name="upload_formL" enctype="multipart/form-data">
@@ -88,13 +245,93 @@
 
 			</div>
 			<div ng-repeat="(key, value) in thisCriminal" class="input-control" ng-if="key!=id || key!=images">
-				<div ng-if="fieldsShouldNotShow.indexOf(key) === -1 && key !== 'identities'" class="row edit-field">
+				<div ng-if="fieldsShouldNotShow.indexOf(key) === -1 && key !== 'identities' && key!=='guardian_name'  && key!=='guardian_rel' && key!=='police_post' && key!=='police_station' && key!=='fir_num' && key!=='dd_num' && key!=='dd_date' && key!=='criminal_category' && key!=='offence_area' &&  key!=='offence_type'" class="row edit-field">
 					<div class="col-sm-2">
 						<label for="{{value}}">{{key}}</label>
 					</div>
 					<div class="col-sm-9">
 						<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
 					</div>
+				</div>
+				<div ng-if="key=='guardian_name'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Guardian Name</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='guardian_rel'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Guardian Relation</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='police_post'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Police Post</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='police_station'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Police Station</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='fir_num'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">FIR NUM</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='dd_num'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">DD NUM</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='dd_date'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">DD Date</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='criminal_category'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Criminal Category</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='offence_area'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Offence Area</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
+				</div>
+				<div ng-if="key=='offence_type'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Offence Area</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+						</div>
 				</div>
 				<div class="row identity-container" ng-if="key === 'identities'">
 					<div class="col-sm-2">
