@@ -14,9 +14,6 @@
   angular.module('myApp.analysis').controller('analysisCtrl',
     ['$rootScope','$scope', '$location', '$http','$localStorage', 'CONFIG','$window',
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG,$window) {
-            $window.onbeforeunload = function() {
-            return "Dude, are you sure you want to refresh? Think of the kittens!";
-            }
             $scope.enable = function(label){
                 $scope.enableList = label;
             }
