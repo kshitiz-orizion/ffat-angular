@@ -52,7 +52,7 @@ var app = angular
       //   enabled: true,
       //   requireBase: true,
       // });
-      $locationProvider.html5Mode(true);
+       // $locationProvider.html5Mode(true);
       $authProvider.facebook({
         clientId: '174143832961027',
         responseType: 'token',

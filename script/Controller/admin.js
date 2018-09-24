@@ -381,10 +381,6 @@
       };
 
       function init() {
-        $location.$$path = '/#!/admin';
-        $location.$$url = '/#!/admin';
-        console.log($location.path);
-        console.log($location);
         $scope.base_url = CONFIG.base_url;
         $rootScope.locationCrumb = 'Criminals-record';
         var expToken = $localStorage['user']['token'];

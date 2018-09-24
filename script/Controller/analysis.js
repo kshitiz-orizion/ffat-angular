@@ -12,9 +12,11 @@
         }
     ])
   angular.module('myApp.analysis').controller('analysisCtrl',
-    ['$rootScope','$scope', '$location', '$http','$localStorage', 'CONFIG',
-        function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
-            
+    ['$rootScope','$scope', '$location', '$http','$localStorage', 'CONFIG','$window',
+        function($rootScope,$scope,$location,$http,$localStorage,CONFIG,$window) {
+            $window.onbeforeunload = function() {
+            return "Dude, are you sure you want to refresh? Think of the kittens!";
+            }
             $scope.enable = function(label){
                 $scope.enableList = label;
             }
@@ -222,10 +224,6 @@
             };
 
             var init = function (){
-                $location.$$path = '/#!/analysis';
-                $location.$$url = '/#!/analysis';
-                console.log($location.path);
-                console.log($location);
                 $scope.base_url = CONFIG.base_url;
                 $rootScope.locationCrumb = 'Criminals-analysis';
                 $scope.enableList = 'records';
