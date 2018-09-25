@@ -20,8 +20,14 @@
         <td>{{user.mobile}}</td>
         <td>{{user.name}}</td>
         <td>{{user.email}}</td>
-        <td>{{user.is_active}}</td>
-        <td>{{user.is_staff}}</td>
+        <td style="text-align: center;">
+            <i ng-if="user.is_active" class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+            <i ng-if="!user.is_active" class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+        </td>
+        <td style="text-align: center;">
+            <i ng-if="user.is_staff" class="fa fa-check" style="color:green;" aria-hidden="true"></i>
+            <i ng-if="!user.is_staff" class="fa fa-times" style="color:red;" aria-hidden="true"></i>
+        </td>
         <td>
           <a class="btn btn-default" ng-href="/#!/user/{{user.id}}">
             <i class="fa fa-edit"></i>

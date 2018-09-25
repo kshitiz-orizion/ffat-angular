@@ -5,7 +5,7 @@
 </div>
 <div class="advance-search">
 	<h3 class="search-field search-type">
-		AdVance Search
+		Advance Search
 	</h3>
 	<div class="search-field">
 		<select class="form-control" ng-model="advSearch.offence_type" ng-options="offenceType for offenceType in offenceTypes">
@@ -27,7 +27,6 @@
 		<button class="btn btn-info" ng-click="criminalAdvSearch(advSearch)">Search</button>
 		<button class="btn btn-warning" ng-click="criminalAdvSearch()">Clear</button>
 		<a class="btn btn-primary" href="/#!/createrecord"> <i class="fa fa-plus"></i> Add Criminal</a>
-
 	</div>
 </div>
 <div class="dataCont">
@@ -250,14 +249,119 @@
 				</div>
 
 			</div>
-			<div ng-repeat="(key, value) in thisCriminal" class="input-control" ng-if="key!=id || key!=images">
-				<div ng-if="fieldsShouldNotShow.indexOf(key) === -1 && key !== 'identities' && key!=='guardian_name'  && key!=='guardian_rel' && key!=='police_post' && key!=='police_station' && key!=='fir_num' && key!=='dd_num' && key!=='dd_date' && key!=='criminal_category' && key!=='offence_area' &&  key!=='offence_type'" class="row edit-field">
+			
+			<div ng-repeat="(key, value) in thisCriminal" ng-if="key!=id || key!=images">
+				<div ng-if="fieldsShouldNotShow.indexOf(key) === -1 && key !== 'identities' && key!=='guardian_name'  && key!=='guardian_rel' && key!=='police_post' && key!=='police_station' && key!=='fir_num' && key!=='dd_num' && key!=='dd_date' && key!=='criminal_category' && key!=='offence_area' &&  key!=='offence_type' && key!=='dob' && key!=='religion' && key!='sex' && key!=='build' && key!=='complexion' && key!=='face' && key!=='hair' && key!=='eyes'" class="row edit-field">
 					<div class="col-sm-2">
 						<label for="{{value}}">{{key}}</label>
 					</div>
 					<div class="col-sm-9">
 						<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
 					</div>
+				</div>
+				<div ng-if="key=='eyes'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Face</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Eyes Type</option>
+								<option value="Black">Black</option>
+								<option value="Brown">Brown</option>
+								<option value="Blue">Blue</option>
+							</select>
+						</div>
+				</div>
+				<div ng-if="key=='hair'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Face</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Face Type</option>
+								<option value="Black">Black</option>
+								<option value="Brown">Brown</option>
+								<option value="Red">Red</option>
+							</select>
+						</div>
+				</div>
+				<div ng-if="key=='face'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Face</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Religion</option>
+								<option value="Round">Round</option>
+								<option value="Long">Long</option>
+								<option value="Oval">Oval</option>
+							</select>
+						</div>
+				</div>
+				<div ng-if="key=='complexion'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Complexion</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Religion</option>
+								<option value="Fair">Fair</option>
+								<option value="Dark">Dark</option>
+								<option value="Wheatish">Wheatish</option>
+							</select>
+						</div>
+				</div>
+				<div ng-if="key=='dob'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Date Of Birth</label>
+						</div>
+						<div class="col-sm-9">
+							<datepicker date-format="yyyy-MM-dd">
+									<input class="form-control" ng-model="thisCriminal[key]" type="text" placeholder="DD Date" />
+							</datepicker>
+						</div>
+				</div>
+				<div ng-if="key=='sex'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Gender</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Religion</option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+								<option value="others">Others</option>
+							</select>
+						</div>
+				</div>
+				<div ng-if="key=='religion'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Religion</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Religion</option>
+								<option value="hindu">Hindu</option>
+								<option value="muslim">Muslim</option>
+								<option value="christian">Christian</option>
+								<option value="jain">Jain</option>
+								<option value="jew">Jew</option>
+								<option value="sikh">Sikh</option>
+							</select>
+						</div>
+				</div>
+				<div ng-if="key=='build'" class="row edit-field">
+						<div class="col-md-2">
+							<label for="{{value}}">Build</label>
+						</div>
+						<div class="col-sm-9">
+							<select ng-model="thisCriminal.build" class="form-control">
+								<option value>Select a Religion</option>
+								<option value="Fat">Fat</option>
+								<option value="Slim">Slim</option>
+								<option value="Muscular">Muscular</option>
+							</select>
+						</div>
 				</div>
 				<div ng-if="key=='guardian_name'" class="row edit-field">
 						<div class="col-md-2">
@@ -272,7 +376,14 @@
 							<label for="{{value}}">Guardian Relation</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+							<!-- <input type="text" ng-model="thisCriminal[key]" name="{{value}}"> -->
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Relation</option>
+								<option value="h/o">H/O</option>
+								<option value="s/o">S/O</option>
+								<option value="d/o">D/O</option>
+								<option value="w/o">W/O</option>
+							</select>
 						</div>
 				</div>
 				<div ng-if="key=='police_post'" class="row edit-field">
@@ -312,7 +423,10 @@
 							<label for="{{value}}">DD Date</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+							<!-- <input type="text" ng-model="thisCriminal[key]" name="{{value}}"> -->
+							<datepicker date-format="yyyy-MM-dd">
+									<input class="form-control" ng-model="thisCriminal[key]" type="text" placeholder="DD Date" />
+							</datepicker>
 						</div>
 				</div>
 				<div ng-if="key=='criminal_category'" class="row edit-field">
@@ -320,7 +434,22 @@
 							<label for="{{value}}">Criminal Category</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Criminal Category</option>
+								<option value="Indian fraudsters‎ (1 C, 10 P)">Indian fraudsters‎ (1 C, 10 P)</option>
+								<option value="Indian counterfeiters‎ (2 P)">Indian counterfeiters‎ (2 P)</option>
+								<option value="Indian drug traffickers‎ (4 P)">Indian drug traffickers‎ (4 P)</option>
+								<option value="Indian extortionists‎ (8 P)">Indian extortionists‎ (8 P)</option>
+								<option value="Indian kidnappers‎ (3 P)">Indian kidnappers‎ (3 P)</option>
+								<option value="Indian mobsters‎ (4 C, 23 P)">Indian mobsters‎ (4 C, 23 P)</option>
+								<option value="Indian money launderers‎ (6 P)">Indian money launderers‎ (6 P)</option>
+								<option value="Indian murderers‎ (4 C, 6 P)">Indian murderers‎ (4 C, 6 P)</option>
+								<option value="Indian poachers‎ (1 P)">Indian poachers‎ (1 P)</option>
+								<option value="Indian rapists‎ (1 C, 11 P)">Indian rapists‎ (1 C, 11 P)</option>
+								<option value="Indian robbers‎ (13 P)">Indian robbers‎ (13 P)</option>
+								<option value="Indian smugglers‎ (11 P)">Indian smugglers‎ (11 P)</option>
+								<option value="Indian people convicted of manslaughter‎ (2 P)">Indian people convicted of manslaughter‎ (2 P)</option>
+							</select>
 						</div>
 				</div>
 				<div ng-if="key=='offence_area'" class="row edit-field">
@@ -333,10 +462,28 @@
 				</div>
 				<div ng-if="key=='offence_type'" class="row edit-field">
 						<div class="col-md-2">
-							<label for="{{value}}">Offence Area</label>
+							<label for="{{value}}">Offence Type</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" ng-model="thisCriminal[key]" name="{{value}}">
+							<select ng-model="thisCriminal[key]" class="form-control">
+								<option value>Select a Offence Type</option>
+								<option value="Rape">Rape</option>
+								<option value="Dowry">Dowry</option>
+								<option value="Domestic violences">Domestic violences</option>
+								<option value="Female infanticides">Female infanticides</option>
+								<option value="Illegal drug trade">Illegal drug trade</option>
+								<option value="Human Trafficking">Human Trafficking</option>
+								<option value="Cyber crime">Cyber crime</option>
+								<option value="Corruption and police misconduct">Corruption and police misconduct</option>
+								<option value="Petty crimes">Petty crimes</option>
+								<option value="Poaching and wildlife trafficking">Poaching and wildlife trafficking</option>
+								<option value="Murder">Murder</option>
+								<option value="Terrorism">Terrorism</option>
+								<option value="Arms Trafficking">Arms Trafficking</option>
+								<option value="Child abuse">Child abuse</option>
+								<option value="Kidnapping">Kidnapping</option>
+								<option value="Tax Evasion">Tax Evasion</option>
+							</select>
 						</div>
 				</div>
 				<div class="row identity-container" ng-if="key === 'identities'">

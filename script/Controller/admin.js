@@ -40,13 +40,14 @@
       CommonData,
     ) {
       $scope.showMainPage=function(){
-        console.log('hi');
         $scope.editCriminalEnable=false;
         $scope.detailsCriminal=false;
         angular.element('.eachCriminal').css('display','block');
+        angular.element('.advance-search').css('display','flex');
       }
       $scope.openDetails=function(details){
         angular.element('.eachCriminal').css('display','none');
+        angular.element('.advance-search').css('display','none');
         $scope.detailsCriminal=true;
         $http({
           method:'GET',
@@ -270,6 +271,7 @@
       };
 
       $scope.editCriminal = function(criminal) {
+        angular.element('.advance-search').css('display','none');
         $scope.editCriminalEnable = true;
         $scope.thisCriminal = {};
         $scope.thisCriminalId = criminal.id;
