@@ -2,13 +2,22 @@
 	<h1 class="text-center">{{record.name}}</h1>
 	<div class="container-fluid flexCont">
 		<div class="col-md-4">
-			<img class="criminal-image" ng-repeat="img in record.images" ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+			<div ng-repeat="img in record.images">
+				<img class="criminal-image"  ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+				<h4 ng-if="img.image_type=='left'">Left</h4>
+			</div>
 		</div>
 		<div class="col-md-4">
-			<img class="criminal-image" ng-repeat="img in record.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+			<div  ng-repeat="img in record.images">
+				<img class="criminal-image" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+				<h4 ng-if="img.image_type=='front'" >Front</h4>
+			</div>
 		</div>
 		<div class="col-md-4">
-			<img class="criminal-image" ng-repeat="img in record.images" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+			<div  ng-repeat="img in record.images">
+				<img class="criminal-image" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+				<h4 ng-if="img.image_type=='right'">Right</h4>
+			</div>
 		</div>
 	</div>
 <!-- 	<div class="text-center container-fluid">

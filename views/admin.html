@@ -51,13 +51,22 @@
 				<h1 class="text-center">{{criminalDetail.name}}</h1><button style="float:right" class="btn btn-primary" ng-click="editCriminal(criminalDetail)"><i class="fa fa-pencil" style="float:right">Edit</i></button>
 				<div class="container-fluid flexCont">
 					<div class="col-md-4">
-						<img class="criminal-image" ng-repeat="img in criminalDetail.images" ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+						<div ng-repeat="img in criminalDetail.images">
+							<img class="criminal-image"  ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+							<h3 ng-if="img.image_type=='left'">Left</h3>
+						</div>
 					</div>
 					<div class="col-md-4">
-						<img class="criminal-image" ng-repeat="img in criminalDetail.images" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+						<div ng-repeat="img in criminalDetail.images">
+							<img class="criminal-image"  ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+							<h3 ng-if="img.image_type=='front'">Front</h3>
+						</div>
 					</div>
 					<div class="col-md-4">
-						<img class="criminal-image" ng-repeat="img in criminalDetail.images" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+						<div ng-repeat="img in criminalDetail.images" >
+							<img class="criminal-image" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+							<h3 ng-if="img.image_type=='right'">Right</h3>
+						</div>
 					</div>
 				</div>
 				<div class="text-center">
