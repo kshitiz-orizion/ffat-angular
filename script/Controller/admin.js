@@ -407,6 +407,7 @@
       };
 
       $scope.criminalAdvSearch = function(advSearch) {
+        $scope.detailsCriminal=false;
         if (!advSearch) {
           $scope.advSearch = {};
         }

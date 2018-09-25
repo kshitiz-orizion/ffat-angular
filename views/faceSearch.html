@@ -1,34 +1,46 @@
 <div class="paginationCont flexCont">
-	<div ng-if="enableSearchDisp" ng-click="enableSearch()">back</div>
+	<div ng-if="enableSearchDisp" ng-click="enableSearch()"><button class="btn btn-primary">BACK</button></div>
 	<div class="clearfix pull-right" style="padding: 0;overflow: hidden;">
-		<div class="UserImg UserImgRecP" style="width: 100px;padding: 0;">
-			<img src="{{user.profile_pic}}">
-			<form name="upload_form" enctype="multipart/form-data">
-				<label for="file-input">
-					<i class="fa fa-plus imgEdit"></i>
-				</label>
-				<input type="file" id="file-input" ngf-select ng-model="file" name="file" accept="'/image*" ngf-max-size="20MB"
-				 style="display: none">
-			</form>
-		</div>
-		<img ngf-thumbnail="file" style="max-height: 40px;max-width: 40px;">
-		<button ng-if="file" type="submit" ng-click="submitimage()" class="ImgSubmit btn btn-success" ng-disabled="isStartingFaceSearch">Submit
-			Image
-			<i class="fa fa-spinner fa-spin" ng-show="isStartingFaceSearch"></i>
-		</button>
 	</div>
 	<!-- <div ng-click="enable('counts')">counts</div>
 				<div ng-click="enable('search')">searches</div> -->
 
 </div>
 <div class="dataCont">
-
-
-	<div class="criminalList searchList" ng-if="!enableSearchDisp">
-
+			<div style="height:20px;">
+			</div>
+			<form ng-if="!showSearch && !enableSearchDisp" name="upload_form" enctype="multipart/form-data" style="width:45vw; position: relative;left:25vw;">
+				<label for="file-input" class="btn btn-primary" style="margin-left:15vw;">Upload Image For Facial Search</label>
+				<input type="file" id="file-input" ngf-select ng-model="file" name="file" accept="'/image*" ngf-max-size="20MB"
+				 style="display:none;">
+				 <div class="row">
+					<label class="col-md-3" style="text-align: right;position: relative;top:10px;">Confidence</label>
+					<input class="form-control" style="width:66%;" type="range" ng-model="confidence" [min=0]
+       				[max=100]>
+				</div>
+				<div class="col-md-12" style="height: 20px;" >
+					<h3>Confidence Value  :{{confidence}}</h3>
+				</div>
+				<div class="col-md-12" style="height:30px;">
+				</div>
+				<div style="width:30vw" class="row">
+					<div class="col-md-10">
+						<img ngf-thumbnail="file" style="max-height: 200px;max-width: 150px">
+					</div>
+					<div class="col-md-12" style="height: 20px">
+					</div>
+					<div class="col-md-12">
+						<button  type="submit" style="margin-left:15vw;" ng-click="submitimage(file,confidence)" class="btn btn-danger">Run Facial Search</button>
+					</div>
+				</div>
+			</form>
+	<div style="position: relative;color:blue;border-top:1px solid #DCDCDD;padding-left:40vw;" ng-if="!enableSearchDisp">	
+			<h1>Previous Searches</h1>
+	</div>
+	<div class="criminalList searchList" ng-if="!enableSearchDisp">		
 		<div ng-repeat="resE in faceSearchData" class="clearfix flexCont eachCriminal eachFaceSearch" ng-class="resE.is_finished?'success':'fail'">
 			<div class="imgCont"><img src="{{resE.image}}" alt=""></div>
-			<div class="ifo success" ng-if="resE.is_finished">Finished
+			<div class="ifo success" ng-if="resE.is_finished" style="color:white">Finished
 				<button class="pull-right btn btn-link" ng-click="enableSearch(resE)">view</button>
 			</div>
 			<div class="ifo fail" ng-if="!resE.is_finished">Processing

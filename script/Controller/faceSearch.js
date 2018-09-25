@@ -22,17 +22,19 @@
     'growl',
     'blockUI',
     function($rootScope, $scope, $location, $http, $localStorage, CONFIG, growl, blockUI) {
-      $scope.submitimage = function() {
-        $scope.isStartingFaceSearch = true;
-        if ($scope.upload_form.file.$valid && $scope.file) {
-          $scope.upload('file');
+      $scope.submitimage = function(file,confidence) {
+        if(!file){
+           growl.info('Please Upload Image');
         }
+        $scope.isStartingFaceSearch = true;
+
+        $scope.upload(file,confidence);
       };
 
-      $scope.upload = function(file) {
+      $scope.upload = function(file,confidence) {
         var fd = new FormData();
-        fd.append('image', $scope.file);
-        fd.append('confidence', 50);
+        fd.append('image', file);
+        fd.append('confidence',confidence);
         $http({
           method: 'POST',
           url: $scope.base_url + '/records/facial-searches/',
@@ -45,6 +47,7 @@
         }).then(
           function successCallback(response) {
             $scope.getFSRes('search');
+            $scope.showSearch=true;
           },
           function errorCallback(response) {
             console.log(response);
@@ -94,6 +97,7 @@
             if (response) {
               $scope.faceSearchData = response.data.results;
               console.log($scope.faceSearchData);
+              $scope.showSearch=false;
             }
             $scope.isStartingFaceSearch = false;
             if (source === 'search') {
@@ -132,6 +136,7 @@
         $rootScope.locationCrumb = 'Face-search';
         $scope.base_url = CONFIG.base_url;
         $scope.getFSRes();
+        $scope.confidence=60;
       };
       init();
     },
