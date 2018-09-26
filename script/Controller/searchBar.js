@@ -14,6 +14,11 @@
   angular.module('myApp.searchBar').controller('searchBarCtrl',
     ['$rootScope','$scope', '$location', '$http','$localStorage','CONFIG',
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG) {
+            $scope.logout=function(){
+                delete $localStorage['user'];
+                $location.path('/');
+                $scope.$apply();
+            }
             $scope.hideRes = function(){
                 delete $scope.searchData;
                 $scope.mainSearchText = "";

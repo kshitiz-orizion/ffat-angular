@@ -4558,7 +4558,7 @@ section.adminPanelCont{
     background: linear-gradient(#444,#666);
     /* flex-grow: 1; */
 }
-.adminPanel>.pull-left>div{
+.adminPanel>.pull-left>div>div{
     margin: auto;
     padding: 25px 15px;
     line-height: 1;
@@ -4567,7 +4567,7 @@ section.adminPanelCont{
     justify-content: center;
     position: relative;
 }
-.adminPanel>.pull-left>div:after{
+.adminPanel>.pull-left>div>div:after{
     content: " ";
     height: 1px;
     width: 100%;

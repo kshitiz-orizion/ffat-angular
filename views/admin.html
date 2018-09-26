@@ -36,14 +36,13 @@
 		<div ng-repeat="criminal in criminals" class="clearfix flexCont eachCriminal">
 			<div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
 			<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div>
-			<div ng-click="openDetails(criminal)">
 			<div class="imgCont"><img ng-repeat="img in criminal.images"  ng-if="img.image_type=='front'" src="{{img.image}}" alt=""></div>			
 			<div>{{criminal.name}}</div>
 			<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
 			<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 			<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 			<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
-			</div>
+			<div class="smalldet"><button ng-click="openDetails(criminal)" class="btn btn-success">Details</button></div>
 		</div>
 		<div ng-if="detailsCriminal" style="width:100vw;">
 			<div class="recordHolder" >
