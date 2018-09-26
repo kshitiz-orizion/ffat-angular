@@ -42,7 +42,10 @@
 			<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
 			<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 			<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
-			<div class="smalldet"><button ng-click="openDetails(criminal)" class="btn btn-success">Details</button></div>
+			<div class="smalldet">
+				<button ng-click="openDetails(criminal)" class="btn btn-success">Details</button>
+				<button ng-click="checkForGang(criminal.id)" class="btn btn-success">Gang Analysis</button>
+			</div>
 		</div>
 		<div ng-if="detailsCriminal" style="width:100vw;">
 			<div class="recordHolder" >
@@ -529,5 +532,90 @@
 				<button class=" saveBtn LoginBtn" ng-click="editSave('save')">Save</button>
 			</div>
 		</div>
+		<section ng-if="showAnalysis">
+				<section ng-if="analysisData['address'].length==0 && analysisData['fir_num'].length==0 && analysisData['guardian_name'].length==0 && analysisData['identities'].length==0">
+					<div class="criminalList clearfix flexCont eachCriminal eachItem" style="text-align: center;color:red">
+						<div style="margin-top:45%;">
+						No Data To Show
+						</div>
+					</div>
+				</section>
+				<section ng-if="analysisData['address'] && analysisData['address'].length>0" class=" criminalListSec">
+					<h1>Possible affiliations based on address</h1>
+					<div class="criminalList">
+						<div ng-repeat="criminal in analysisData['address']" class="clearfix flexCont eachCriminal eachItem">
+							<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+							<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+							<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+								 alt=""></div>
+							<div>{{criminal.name}}</div>
+							<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+							<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+							<div class="onHvr flexCont">
+								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section ng-if="analysisData['fir_num'] && analysisData['fir_num'].length>0" class=" criminalListSec">
+					<h1>Possible affiliations based on FIR</h1>
+					<div class="criminalList">
+						<div ng-repeat="criminal in analysisData['fir_num']" class="clearfix flexCont eachCriminal eachItem">
+							<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+							<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+							<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+								 alt=""></div>
+							<div>{{criminal.name}}</div>
+							<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+							<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+							<div class="onHvr flexCont">
+								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section ng-if="analysisData['guardian_name'] && analysisData['guardian_name'].length>0" class=" criminalListSec">
+					<h1>Possible affiliations based on relationship</h1>
+					<div class="criminalList">
+						<div ng-repeat="criminal in analysisData['guardian_name']" class="clearfix flexCont eachCriminal eachItem">
+							<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+							<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+							<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+								 alt=""></div>
+							<div>{{criminal.name}}</div>
+							<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+							<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+							<div class="onHvr flexCont">
+								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section ng-if="analysisData['identities'] && analysisData['identities'].length>0" class=" criminalListSec">
+					<h1>Possible affiliations based on identities</h1>
+					<div class="criminalList">
+						<div ng-repeat="criminal in analysisData['identities']" class="clearfix flexCont eachCriminal eachItem">
+							<!-- <div class="closeEach" ng-click="deleteCriminal(criminal)"><i class="fa fa-times"></i></div>
+							<div class="editEach" ng-click="editCriminal(criminal)"><i class="fa fa-pencil"></i></div> -->
+							<div class="imgCont"><img ng-repeat="img in criminal.images" ng-if="img.image_type=='front'" src="{{img.image}}"
+								 alt=""></div>
+							<div>{{criminal.name}}</div>
+							<div>{{criminal.guardian_rel}} : {{criminal.guardian_name}}</div>
+							<div class="smalldet">{{criminal.dob}} | {{criminal.community}} | {{criminal.sex}}</div>
+							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
+							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
+							<div class="onHvr flexCont">
+								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+							</div>
+						</div>
+					</div>
+				</section>
+		</section>
 	</div>
 </div>

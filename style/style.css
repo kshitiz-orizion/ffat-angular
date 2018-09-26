@@ -4576,14 +4576,14 @@ section.adminPanelCont{
     bottom: 0;
     left: 0;
 }
-.adminPanel>.pull-left>div i{
+.adminPanel>.pull-left>div>div i{
     color: rgba(255,255,255,0.8);
 }
-.adminPanel>.pull-left>div img{
+.adminPanel>.pull-left>div>div img{
     max-width: 25px;
     filter: grayscale(100%);
 }
-.adminPanel>.pull-left>div:nth-child(2) img{
+.adminPanel>.pull-left>div>div:nth-child(2) img{
     filter: grayscale(100%) invert(100%);
 }
 .adminPanel>.pull-left>div p{

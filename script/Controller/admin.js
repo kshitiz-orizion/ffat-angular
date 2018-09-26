@@ -39,9 +39,33 @@
       blockUI,
       CommonData,
     ) {
+      $scope.checkForGang=function(id){
+        $scope.showAnalysis = true;
+        $scope.analysisData={};
+        angular.element('.eachCriminal').css('display','none');
+        $http({
+          method: 'POST',
+          url: $scope.base_url + '/records/records/' + id + '/gang-analysis/',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: 'Bearer ' + $localStorage['user']['token'],
+          },
+        }).then(
+          function successCallback(response) {
+            if (response) {
+              $scope.analysisData = response.data;
+            }
+          },
+          function errorCallback(response) {
+            //console.log('ERROR'+JSON.stringify(response));
+            $scope.errorMsgs = response.data.non_field_errors;
+          }
+        );
+      }
       $scope.showMainPage=function(){
         $scope.editCriminalEnable=false;
         $scope.detailsCriminal=false;
+        $scope.showAnalysis=false;
         angular.element('.eachCriminal').css('display','block');
         angular.element('.advance-search').css('display','flex');
       }
@@ -49,6 +73,7 @@
         angular.element('.eachCriminal').css('display','none');
         angular.element('.advance-search').css('display','none');
         $scope.detailsCriminal=true;
+        $scope.showAnalysis=false;
         $http({
           method:'GET',
           url:$scope.base_url+'/records/records/'+details.id,
@@ -409,6 +434,7 @@
       };
 
       $scope.criminalAdvSearch = function(advSearch) {
+        $scope.showAnalysis=false;
         $scope.detailsCriminal=false;
         if (!advSearch) {
           $scope.advSearch = {};
