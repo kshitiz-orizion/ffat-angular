@@ -16,6 +16,8 @@
         function($rootScope,$scope,$location,$http,$localStorage,CONFIG,$window) {
             $scope.enable = function(label){
                 $scope.enableList = label;
+                $scope.activeMenu= label;
+
             }
 
             $scope.getSearchata = function(){
@@ -221,6 +223,8 @@
             };
 
             var init = function (){
+                $scope.menuItems=['records','counts','search'];
+                $scope.activeMenu=$scope.menuItems[0];
                 $scope.base_url = CONFIG.base_url;
                 $rootScope.locationCrumb = 'Criminals-analysis';
                 $scope.enableList = 'records';

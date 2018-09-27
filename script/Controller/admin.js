@@ -40,6 +40,8 @@
       CommonData,
     ) {
       $scope.checkForGang=function(id){
+        $scope.fromGangPage=false;
+        $scope.gangPage=true;
         $scope.showAnalysis = true;
         $scope.analysisData={};
         angular.element('.eachCriminal').css('display','none');
@@ -63,13 +65,30 @@
         );
       }
       $scope.showMainPage=function(){
+        if($scope.fromGangPage==true){
+        $scope.editCriminalEnable=false;
+        $scope.detailsCriminal=false;
+        $scope.showAnalysis=true;
+        $scope.fromGangPage=false;
+        angular.element('.eachCriminal').css('display','none');
+        angular.element('.advance-search').css('display','flex');
+        }
+        else{
         $scope.editCriminalEnable=false;
         $scope.detailsCriminal=false;
         $scope.showAnalysis=false;
         angular.element('.eachCriminal').css('display','block');
         angular.element('.advance-search').css('display','flex');
+         }
       }
-      $scope.openDetails=function(details){
+      $scope.openDetails=function(details,label){
+        if(label=='fromGang'){
+          $scope.fromGangPage=true;
+        }
+        else{
+          $scope.fromGangPage=false;
+        }
+        $scope.criminalDetail={};
         angular.element('.eachCriminal').css('display','none');
         angular.element('.advance-search').css('display','none');
         $scope.detailsCriminal=true;
@@ -400,34 +419,66 @@
         );
       };
 
-      $scope.getCriminalData = function(searchParams) {
+      $scope.getCriminalData = function(searchParams,index) {
+        $scope.criminals={};
         blockUI.start();
-        $http({
-          method: 'GET',
-          url: $scope.base_url + '/records/records/',
-          params: searchParams,
-          headers: {
-            'Content-Type': 'application/json',
-            authorization: 'Bearer ' + $localStorage['user']['token'],
-          },
-        }).then(
-          function successCallback(response) {
-            if (response) {
-              $scope.criminals = response.data.results;
+        if(searchParams==undefined){
+          $http({
+            method: 'GET',
+            url: $scope.base_url+'/records/records/?limit=50&offset='+(50*index),
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: 'Bearer ' + $localStorage['user']['token'],
+            },
+          }).then(
+            function successCallback(response) {
+              if (response) {
+                $scope.criminals = response.data.results;
+                $scope.activeMenu= index;
+                if(response.data.count%50==0){
+                  $scope.pages=response.data.count/50;
+                }
+                else{
+                  $scope.pages=new Array(Math.floor((response.data.count/50)+1));
+                }
+              }
+              blockUI.stop();
+            },
+            function errorCallback(response) {
+              //console.log('ERROR'+JSON.stringify(response));
+              $scope.errorMsgs = response.data.non_field_errors;
+              blockUI.stop();
             }
-            blockUI.stop();
-          },
-          function errorCallback(response) {
-            //console.log('ERROR'+JSON.stringify(response));
-            $scope.errorMsgs = response.data.non_field_errors;
-            blockUI.stop();
-          }
-        );
+          );
+        }
+        if(searchParams!==undefined){
+            $http({
+                method: 'GET',
+                url: $scope.base_url + '/records/records/',
+                params: searchParams,
+                headers: {
+                  'Content-Type': 'application/json',
+                  authorization: 'Bearer ' + $localStorage['user']['token'],
+                },
+              }).then(
+                function successCallback(response) {
+                  if (response) {
+                    $scope.criminals = response.data.results;
+                  }
+                  blockUI.stop();
+                },
+                function errorCallback(response) {
+                  //console.log('ERROR'+JSON.stringify(response));
+                  $scope.errorMsgs = response.data.non_field_errors;
+                  blockUI.stop();
+                }
+              );
+        }
       };
 
       $scope.getPeople = function() {
         if (!$scope.userEnable) {
-          $scope.getCriminalData();
+          $scope.getCriminalData(undefined,0);
         } else {
           $scope.getUserData();
         }

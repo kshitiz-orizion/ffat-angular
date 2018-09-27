@@ -1,8 +1,7 @@
-
-<div class="paginationCont flexCont">
-	<div ng-click="enable('records')">records</div>
-	<div ng-click="enable('counts')">counts</div>
-	<div ng-click="enable('search')">searches</div>
+<div class="paginationCont flexCont row menuItem">
+	<div ng-repeat="menu in menuItems" class="col-md-4" ng-class="{activeField : activeMenu === menu}" ng-click="enable(menu)" >
+		<div style="text-align: center;">{{menu.toUpperCase()}}</div>
+	</div>
 </div>
 <div class="dataCont">
 	<div ng-if="enableList=='records'" class="criminalList">

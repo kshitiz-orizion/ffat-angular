@@ -43,7 +43,7 @@
 			<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 			<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 			<div class="smalldet">
-				<button ng-click="openDetails(criminal)" class="btn btn-success">Details</button>
+				<button ng-click="openDetails(criminal,'details')" class="btn btn-success">Details</button>
 				<button ng-click="checkForGang(criminal.id)" class="btn btn-success">Gang Analysis</button>
 			</div>
 		</div>
@@ -139,8 +139,6 @@
 						<div class="col-md-4">
 							<label>Address 2 : </label> {{criminalDetail.address2}}
 						</div>	
-					</div>
-					<div class="row">
 						<div class="col-md-4">
 							<label>City : </label> {{criminalDetail.city}}
 						</div>
@@ -150,12 +148,10 @@
 						<div class="col-md-4">
 							<label>Police Post : </label> {{criminalDetail.police_post}}
 						</div>	
-					</div>
-					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>Police Station : </label> {{criminalDetail.police_station}}
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>District : </label> {{criminalDetail.district}}
 						</div>
 					</div>
@@ -163,21 +159,21 @@
 					<fieldset>
 						<legend>Criminal Record</legend>
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>DD Num : </label> {{criminalDetail.dd_num}}
 						</div>	
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>DD Date: </label> {{criminalDetail.dd_date}}
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>Criminal Category: </label> {{criminalDetail.criminal_category}}
 						</div>	
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>Offence Area: </label> {{criminalDetail.offence_area}}
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<label>Offence Type: </label> {{criminalDetail.offence_type}}
 						</div>
 					</div>
@@ -263,7 +259,7 @@
 				</div>
 				<div ng-if="key=='eyes'" class="row edit-field">
 						<div class="col-md-2">
-							<label for="{{value}}">Face</label>
+							<label for="{{value}}">Eyes</label>
 						</div>
 						<div class="col-sm-9">
 							<select ng-model="thisCriminal[key]" class="form-control">
@@ -276,7 +272,7 @@
 				</div>
 				<div ng-if="key=='hair'" class="row edit-field">
 						<div class="col-md-2">
-							<label for="{{value}}">Face</label>
+							<label for="{{value}}">Hair</label>
 						</div>
 						<div class="col-sm-9">
 							<select ng-model="thisCriminal[key]" class="form-control">
@@ -554,7 +550,7 @@
 							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 							<div class="onHvr flexCont">
-								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+								<a ng-click="openDetails(criminal,'fromGang')" class="btn btn-link">View record</a>
 							</div>
 						</div>
 					</div>
@@ -573,7 +569,7 @@
 							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 							<div class="onHvr flexCont">
-								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+								<a ng-click="openDetails(criminal,'fromGang')" class="btn btn-link">View record</a>
 							</div>
 						</div>
 					</div>
@@ -592,7 +588,7 @@
 							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 							<div class="onHvr flexCont">
-								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+								<a ng-click="openDetails(criminal,'fromGang')" class="btn btn-link">View record</a>
 							</div>
 						</div>
 					</div>
@@ -611,11 +607,16 @@
 							<div class="smalldet">{{criminal.complexion}} complexion | {{criminal.hair}} hair | {{criminal.eyes}} eyes</div>
 							<div class="smalldet"><b>Address : </b>{{criminal.address1}}</div>
 							<div class="onHvr flexCont">
-								<a ng-click="openDetails(criminal)" class="btn btn-link">View record</a>
+								<a ng-click="openDetails(criminal,'fromGang')" class="btn btn-link">View record</a>
 							</div>
 						</div>
 					</div>
 				</section>
 		</section>
 	</div>
+	<ul class="pagination"  style="display: flex;justify-content: center;cursor: pointer">
+		<li ng-repeat="page in pages track by $index" ng-click="getCriminalData(undefined,$index)" ng-class="{active : activeMenu == $index}"><a>{{$index+1}}</a></li>
+	</ul>
 </div>
+
+
