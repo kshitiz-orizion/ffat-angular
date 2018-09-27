@@ -40,6 +40,7 @@
       CommonData,
     ) {
       $scope.checkForGang=function(id){
+        angular.element('.pagination').css('display','none');
         $scope.fromGangPage=false;
         $scope.gangPage=true;
         $scope.showAnalysis = true;
@@ -77,11 +78,13 @@
         $scope.editCriminalEnable=false;
         $scope.detailsCriminal=false;
         $scope.showAnalysis=false;
+        angular.element('.pagination').css('display','flex');
         angular.element('.eachCriminal').css('display','block');
         angular.element('.advance-search').css('display','flex');
          }
       }
       $scope.openDetails=function(details,label){
+        angular.element('.pagination').css('display','none');
         if(label=='fromGang'){
           $scope.fromGangPage=true;
         }
