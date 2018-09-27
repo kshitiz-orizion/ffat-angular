@@ -319,6 +319,9 @@
 
       $scope.editCriminal = function(criminal) {
         angular.element('.advance-search').css('display','none');
+        $scope.thisCriminalImgL={};
+        $scope.thisCriminalImgR={};
+        $scope.thisCriminalImgF={};
         $scope.editCriminalEnable = true;
         $scope.thisCriminal = {};
         $scope.thisCriminalId = criminal.id;
@@ -423,6 +426,7 @@
       };
 
       $scope.getCriminalData = function(searchParams,index) {
+        angular.element('.pagination').css('display','none');
         $scope.criminals={};
         blockUI.start();
         if(searchParams==undefined){
@@ -437,6 +441,7 @@
             function successCallback(response) {
               if (response) {
                 $scope.criminals = response.data.results;
+                angular.element('.pagination').css('display','flex');
                 $scope.activeMenu= index;
                 if(response.data.count%50==0){
                   $scope.pages=response.data.count/50;
@@ -455,6 +460,7 @@
           );
         }
         if(searchParams!==undefined){
+            angular.element('.pagination').css('display','none');
             $http({
                 method: 'GET',
                 url: $scope.base_url + '/records/records/',
@@ -493,7 +499,7 @@
         if (!advSearch) {
           $scope.advSearch = {};
         }
-        $scope.getCriminalData(advSearch);
+        $scope.getCriminalData(advSearch,0);
       };
 
       function init() {
