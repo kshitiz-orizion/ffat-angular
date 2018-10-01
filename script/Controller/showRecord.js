@@ -38,13 +38,21 @@
             blockUI.stop();
           },
           function errorCallback(response) {
+            console.log(response);
             //console.log('ERROR'+JSON.stringify(response));
             blockUI.stop();
-            $scope.errorMsgs = response.data.non_field_errors;
+            // $scope.errorMsgs = response.data.non_field_errors;
           }
         );
       };
+      $scope.enable=function(label){
+        $scope.infoContent=label;
+        $scope.newMenu= label;
+      }
       function init() {
+        $scope.menuItems=['Basic Information','Physical Information','Location Information','Criminal Record','Identities'];
+        $scope.infoContent='Basic Information';
+        $scope.newMenu='Basic Information';
         $rootScope.locationCrumb = 'Show-record';
         $scope.base_url = CONFIG.base_url;
         var criminalId = $location.search().id;

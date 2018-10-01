@@ -84,6 +84,8 @@
          }
       }
       $scope.openDetails=function(details,label){
+        $scope.infoContent='Basic Information';
+        $scope.newMenu='Basic Information';
         angular.element('.pagination').css('display','none');
         if(label=='fromGang'){
           $scope.fromGangPage=true;
@@ -319,6 +321,7 @@
 
       $scope.editCriminal = function(criminal) {
         angular.element('.advance-search').css('display','none');
+        $scope.detailsCriminal=false;
         $scope.thisCriminalImgL={};
         $scope.thisCriminalImgR={};
         $scope.thisCriminalImgF={};
@@ -501,7 +504,10 @@
         }
         $scope.getCriminalData(advSearch,0);
       };
-
+      $scope.enable=function(label){
+        $scope.infoContent=label;
+        $scope.newMenu= label;
+      }
       function init() {
         $scope.base_url = CONFIG.base_url;
         $rootScope.locationCrumb = 'Criminals-record';
@@ -510,6 +516,9 @@
         var user = $localStorage['user'];
         $scope.userEnable = false;
         $scope.getPeople();
+        $scope.menuItems=['Basic Information','Physical Information','Location Information','Criminal Record','Identities'];
+        $scope.infoContent='Basic Information';
+        $scope.newMenu='Basic Information';
       }
       init();
     },

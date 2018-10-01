@@ -1,148 +1,266 @@
-<div class="recordHolder">
-	<h1 class="text-center">{{record.name}}</h1>
-	<div class="container-fluid flexCont">
-		<div class="col-md-4">
-			<div ng-repeat="img in record.images">
-				<img class="criminal-image"  ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
-				<h4 ng-if="img.image_type=='left'">Left</h4>
+<div class="recordHolder" >
+				<h1 class="text-center">{{record.name}}</h1>
+				<div class="container-fluid flexCont">
+					<div class="col-md-4">
+						<div ng-repeat="img in record.images">
+							<img class="criminal-image"  ng-if="img.image_type=='left'" src="{{img.image}}" alt="">
+							<h3 ng-if="img.image_type=='left'">Left</h3>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div ng-repeat="img in record.images">
+							<img class="criminal-image"  ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
+							<h3 ng-if="img.image_type=='front'">Front</h3>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div ng-repeat="img in record.images" >
+							<img class="criminal-image" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
+							<h3 ng-if="img.image_type=='right'">Right</h3>
+						</div>
+					</div>
+				</div>
+				<div class="text-center">
+						<ul class="nav nav-tabs">
+							<li style="width:20%;font-size:20px;color:#286090" ng-repeat="menu in menuItems" ng-class="{active : newMenu == menu}" ng-click="enable(menu)">
+								<a data-toggle="tab">{{menu}}</a>	
+							</li>
+						</ul>
+				</div>
+					<div ng-if="infoContent=='Basic Information'" style="margin-top: 50px;">
+							  <div class="form-row">
+								    <div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Name:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.name}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Guardian Relation:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.guardian_rel}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Guardian Name:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.guardian_name}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Date of Birth:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.dob}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Community:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.community}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Religion:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.religion}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Gender:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.sex}}
+								      		</div>
+								    </div>
+							  </div>
+					</div>					
+					<div ng-if="infoContent=='Physical Information'" style="margin-top: 50px;">
+							<div class="form-row">
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Height:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.height}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Build:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.build}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Complexion:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.complexion}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Face:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.face}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Hair:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.hair}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Eyes:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.eyes}}
+								      		</div>
+								</div>
+							</div>
+					</div>
+					<div ng-if="infoContent=='Location Information'" style="margin-top: 50px;">
+						<div class="form-row">
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Address1:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.address1}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Address2:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.address2}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">City:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.city}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">State:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.state}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Police Post:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.police_post}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Police Station:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.police_station}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">District:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.district}}
+								      		</div>
+								</div>
+						</div>
+					</div>
+					<div ng-if="infoContent=='Criminal Record'" style="margin-top: 50px;">
+						<div class="form-row">
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">DD Num:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.dd_num}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">DD Date:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.dd_date}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Criminal Category:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.criminal_category}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Offence Area:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.offence_area}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Offence Type:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{record.offence_type}}
+								      		</div>
+								</div>
+						</div>
+					</div>
+					<div ng-if="infoContent=='Identities'" class="record-identities" style="margin-top:50px;">
+						<table class="table table-bordered well">
+							<tr>
+								<th class="newLabel">Proof Type</th>
+								<th class="newLabel">Identity Number</th>
+								<th class="newLabel">Front Image</th>
+								<th class="newLabel">Back Image</th>
+							</tr>
+							<tr ng-repeat="identity in record.identities track by $index">
+								<td>{{identity.identity_type}}</td>
+								<td>{{identity.identity_number}}</td>
+								<td>
+									<img ng-src="{{identity.image_front}}" alt="identity front image">
+								</td>
+								<td>
+									<img ng-src="{{identity.image_back}}" alt="identity back image">
+								</td>
+							</tr>
+						</table>
+					</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div  ng-repeat="img in record.images">
-				<img class="criminal-image" ng-if="img.image_type=='front'" src="{{img.image}}" alt="">
-				<h4 ng-if="img.image_type=='front'" >Front</h4>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div  ng-repeat="img in record.images">
-				<img class="criminal-image" ng-if="img.image_type=='right'" src="{{img.image}}" alt="">
-				<h4 ng-if="img.image_type=='right'">Right</h4>
-			</div>
-		</div>
-	</div>
-<!-- 	<div class="text-center container-fluid">
-		<label for="">{{record.guardian_rel}} : </label>{{record.guardian_name}}
-	</div> -->
-	<div class="col-md-12" style="height: 30px;">
-	</div>
-	<fieldset>
-		<legend style="text-align: center;color:#F7BA72">Basic Info</legend>
-			<div class="text-center container-fluid ">
-				<label>Name : </label> {{record.name}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Guardian Relation : </label> {{record.guardian_rel}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Guardian Name : </label> {{record.guardian_name}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Year of Birth : </label> {{record.yob}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Date of Birth : </label> {{record.dob}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Community : </label> {{record.community}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Religion : </label> {{record.religion}}
-			</div>
-			<div class="text-center container-fluid">
-				<label>Gender : </label> {{record.sex}}
-			</div>
-	</fieldset>
-	<div class="col-md-12" style="height: 30px;">
-	</div>
-	<fieldset>
-		<legend style="text-align: center;color:#F7BA72">Physical Appearance</legend>
-		<div class="text-center container-fluid">
-			<label>Height : </label> {{record.height}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Build : </label> {{record.build}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Complexion : </label> {{record.complexion}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Face : </label> {{record.face}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Hair : </label> {{record.hair}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Eyes : </label> {{record.eyes}}
-		</div>
-	</fieldset>
-	<div class="col-md-12" style="height: 30px;">
-	</div>
-	<fieldset>
-		<legend style="text-align: center;color:#F7BA72">Location Information</legend>
-		<div class="text-center container-fluid">
-			<label>Address 1 : </label> {{record.address1}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Address 2 : </label> {{record.address2}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>City : </label> {{record.city}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>District : </label> {{record.district}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>State : </label> {{record.state}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Police Station : </label> {{record.police_station}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Police Post : </label> {{record.police_post}}
-		</div>
-	</fieldset>
-	<div class="col-md-12" style="height: 30px;">
-	</div>
-	<fieldset>
-		<legend style="text-align: center;color:#F7BA72">Criminal Information</legend>
-		<div class="text-center container-fluid">
-			<label>Fir Number : </label> {{record.fir_num}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>DD Number : </label> {{record.dd_num}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>DD Date : </label> {{record.dd_date}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Criminal Category : </label> {{record.criminal_category}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Offence Area: </label> {{record.offence_area}}
-		</div>
-		<div class="text-center container-fluid">
-			<label>Offence Type : </label> {{record.offence_type}}
-		</div>
-	</fieldset>
-	<div class="container-fluid record-identities">
-		<h3>Identity</h3>
-		<table class="table table-bordered well">
-			<tr>
-				<th>Proof Type</th>
-				<th>Identity Number</th>
-				<th>Front Image</th>
-				<th>Back Image</th>
-			</tr>
-			<tr ng-repeat="identity in record.identities track by $index">
-				<td>{{identity.identity_type}}</td>
-				<td>{{identity.identity_number}}</td>
-				<td>
-					<img ng-src="{{identity.image_front}}" alt="identity front image">
-				</td>
-				<td>
-					<img ng-src="{{identity.image_back}}" alt="identity back image">
-				</td>
-			</tr>
-		</table>
-	</div>
-</div>

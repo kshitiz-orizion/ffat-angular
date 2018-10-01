@@ -47,9 +47,10 @@
 				<button ng-click="checkForGang(criminal.id)" class="btn btn-success">Gang Analysis</button>
 			</div>
 		</div>
-		<div ng-if="detailsCriminal" style="width:100vw;">
+		<div ng-if="detailsCriminal" style="width:90vw;">
 			<div class="recordHolder" >
-				<h1 class="text-center">{{criminalDetail.name}}</h1><button style="float:right" class="btn btn-primary" ng-click="editCriminal(criminalDetail)"><i class="fa fa-pencil" style="float:right">Edit</i></button>
+				<button style="clear:both;float:right" class="btn btn-primary" ng-click="editCriminal(criminalDetail)"><i class="fa fa-pencil" style="float:right">Edit</i></button>
+				<h1 class="text-center">{{criminalDetail.name}}</h1>
 				<div class="container-fluid flexCont">
 					<div class="col-md-4">
 						<div ng-repeat="img in criminalDetail.images">
@@ -71,140 +72,252 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<fieldset>
-					<legend>Basic Information</legend>
-						<div class="row">
-							<div class="col-md-4">
-								<label>Name : </label> {{criminalDetail.name}}
-							</div>
-							<div class="col-md-4">
-								<label>Guardian Name : </label> {{criminalDetail.guardian_name}}
-							</div>
-							<div class="col-md-4">
-								<label>Guardian Relation : </label> {{criminalDetail.guardian_rel}}
-							</div>	
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<label>Date Of Birth : </label> {{criminalDetail.dob}}
-							</div>
-							<div class="col-md-4">
-								<label>Community : </label> {{criminalDetail.community}}
-							</div>
-							<div class="col-md-4">
-								<label>Religion : </label> {{criminalDetail.religion}}
-							</div>	
-						</div>
-					<div class="row">
-						<div class="col-md-4">
-							<label>Gender : </label> {{criminalDetail.sex}}
-						</div>
-					</div>
-					</fieldset>
-					<fieldset>
-						<legend>Physical Information</legend>
-					<div class="row">
-						<div class="col-md-4">
-							<label>Height : </label> {{criminalDetail.height}}
-						</div>
-						<div class="col-md-4">
-							<label>Build : </label> {{criminalDetail.build}}
-						</div>	
-					</div>
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>Complexion : </label> {{criminalDetail.complexion}}
-						</div>
-						<div class="col-md-4">
-							<label>Fair : </label> {{criminalDetail.fair}}
-						</div>
-						<div class="col-md-4">
-							<label>Hair : </label> {{criminalDetail.hair}}
-						</div>	
-					</div>
-					
-					<div class="row">
-						<div class="col-md-4">
-							<label>Eyes : </label> {{criminalDetail.eyes}}
-						</div>
-					</div>
-						</fieldset>
-					<fieldset>
-						<legend>Location Information</legend>
-					<div class="row">
-						<div class="col-md-4">
-							<label>Address 1 : </label> {{criminalDetail.address1}}
-						</div>
-						<div class="col-md-4">
-							<label>Address 2 : </label> {{criminalDetail.address2}}
-						</div>	
-						<div class="col-md-4">
-							<label>City : </label> {{criminalDetail.city}}
-						</div>
-						<div class="col-md-4">
-							<label>State : </label> {{criminalDetail.state}}
-						</div>
-						<div class="col-md-4">
-							<label>Police Post : </label> {{criminalDetail.police_post}}
-						</div>	
-						<div class="col-md-4">
-							<label>Police Station : </label> {{criminalDetail.police_station}}
-						</div>
-						<div class="col-md-4">
-							<label>District : </label> {{criminalDetail.district}}
-						</div>
-					</div>
-					</fieldset>
-					<fieldset>
-						<legend>Criminal Record</legend>
-					<div class="row">
-						<div class="col-md-4">
-							<label>DD Num : </label> {{criminalDetail.dd_num}}
-						</div>	
-						<div class="col-md-4">
-							<label>DD Date: </label> {{criminalDetail.dd_date}}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<label>Criminal Category: </label> {{criminalDetail.criminal_category}}
-						</div>	
-						<div class="col-md-4">
-							<label>Offence Area: </label> {{criminalDetail.offence_area}}
-						</div>
-						<div class="col-md-4">
-							<label>Offence Type: </label> {{criminalDetail.offence_type}}
-						</div>
-					</div>
-					</fieldset>
-					<fieldset>
-						<legend>Identities</legend>
-					<div class="col-sm-12">
-						<div class="row" ng-repeat="(key, identity) in criminalDetail.identities">
-							<div class="form-group col-md-3">
-								<label for="">Identity Type </label>{{identity.identity_type}}
-							</div>
-							<div class="form-group col-md-3">
-								<label for="">{{identity.identity_type}} Id </label>{{identity.identity_number}}
-							</div>
-							<div class="form-group col-md-3">￼
-								<!-- <label for="">AAdhar Image Front</label> -->
-								<label for="imageFront">{{identity.identity_type}} Image Front</label>
-								<img ngf-thumbnail="identity[identity.identity_type].image_front || identity.image_front" style="width:50px;height:50px;">
-							</div>
-							<div class="form-group col-md-3">
-								<!-- <label for="">AAdhar Image Back</label> -->
-								<label for="imageBack">{{identity.identity_type}} Image Back</label>
-								<img ngf-thumbnail="identity[identity.identity_type].image_back || identity.image_back" style="width:50px;height:50px;">
-							</div>
-						</div>
-					</div>
-					</fieldset>
+						<ul class="nav nav-tabs">
+							<li style="width:20%;font-size:20px;color:#286090" ng-repeat="menu in menuItems" ng-class="{active : newMenu == menu}" ng-click="enable(menu)">
+								<a data-toggle="tab">{{menu}}</a>	
+							</li>
+						</ul>
 				</div>
+					<div ng-if="infoContent=='Basic Information'" style="margin-top: 50px;">
+							  <div class="form-row">
+								    <div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Name:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.name}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Guardian Relation:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.guardian_rel}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Guardian Name:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.guardian_name}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Date of Birth:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.dob}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Community:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.community}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Religion:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.religion}}
+								      		</div>
+								    </div>
+								    <div class="form-group col-md-6 LabelDiv">
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Gender:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.sex}}
+								      		</div>
+								    </div>
+							  </div>
+					</div>					
+					<div ng-if="infoContent=='Physical Information'" style="margin-top: 50px;">
+							<div class="form-row">
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Height:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.height}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Build:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.build}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Complexion:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.complexion}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Face:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.face}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Hair:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.hair}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Eyes:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.eyes}}
+								      		</div>
+								</div>
+							</div>
+					</div>
+					<div ng-if="infoContent=='Location Information'" style="margin-top: 50px;">
+						<div class="form-row">
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Address1:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.address1}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Address2:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.address2}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">City:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.city}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">State:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.state}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Police Post:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.police_post}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Police Station:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.police_station}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">District:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.district}}
+								      		</div>
+								</div>
+						</div>
+					</div>
+					<div ng-if="infoContent=='Criminal Record'" style="margin-top: 50px;">
+						<div class="form-row">
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">DD Num:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.dd_num}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">DD Date:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.dd_date}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Criminal Category:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.criminal_category}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Offence Area:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.offence_area}}
+								      		</div>
+								</div>
+								<div class="form-group col-md-6 LabelDiv">								    	
+								    		<div class="col-md-6">
+								      			<div class="newLabel">Offence Type:</div>
+								      		</div>
+								      		<div class="col-md-6">
+								      			{{criminalDetail.offence_type}}
+								      		</div>
+								</div>
+						</div>
+					</div>
+					<div ng-if="infoContent=='Identities'" class="record-identities" style="margin-top:50px;">
+						<table class="table table-bordered well">
+							<tr>
+								<th class="newLabel">Proof Type</th>
+								<th class="newLabel">Identity Number</th>
+								<th class="newLabel">Front Image</th>
+								<th class="newLabel">Back Image</th>
+							</tr>
+							<tr ng-repeat="identity in criminalDetail.identities track by $index">
+								<td>{{identity.identity_type}}</td>
+								<td>{{identity.identity_number}}</td>
+								<td>
+									<img ng-src="{{identity.image_front}}" alt="identity front image">
+								</td>
+								<td>
+									<img ng-src="{{identity.image_back}}" alt="identity back image">
+								</td>
+							</tr>
+						</table>
+					</div>
 			</div>
 		</div>
-		<div ng-show="editCriminalEnable" class="editCriminalCont">
+	
+		<div ng-show="editCriminalEnable" class="editCriminalCont" >
 			<div class="clearfix">
 				<div class="lftImg UserImg">
 					<form name="upload_formL" enctype="multipart/form-data">
@@ -528,6 +641,7 @@
 				<button class=" saveBtn LoginBtn" ng-click="editSave('save')">Save</button>
 			</div>
 		</div>
+	</div>
 		<section ng-if="showAnalysis">
 				<section ng-if="analysisData['address'].length==0 && analysisData['fir_num'].length==0 && analysisData['guardian_name'].length==0 && analysisData['identities'].length==0">
 					<div class="criminalList clearfix flexCont eachCriminal eachItem" style="text-align: center;color:red">
@@ -613,10 +727,9 @@
 					</div>
 				</section>
 		</section>
-	</div>
-	<ul class="pagination" style="display: flex;justify-content: center;cursor: pointer">
-		<li ng-repeat="page in pages track by $index" ng-click="getCriminalData(undefined,$index)" ng-class="{active : activeMenu == $index}"><a>{{$index+1}}</a></li>
-	</ul>
+		<ul class="pagination" style="display: flex;justify-content: center;cursor: pointer">
+			<li ng-repeat="page in pages track by $index" ng-click="getCriminalData(undefined,$index)" ng-class="{active : activeMenu == $index}"><a>{{$index+1}}</a></li>
+		</ul>
 </div>
 
 

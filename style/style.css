@@ -5160,7 +5160,23 @@ color:white;
 .menuItem{
     cursor:pointer;
 }
+.InfoBox{
 
+    border-bottom: 1px solid #337AB7;
+    font-size: 20px;
+    cursor:pointer;
+}
+.newLabel{
+    color:#337AB7 !important; 
+}
+.LabelDiv{
+    border-right: 1px solid #337AB7;
+    font-size:20px;
+}
 
-
-
+.activeMenu{
+    color: #337AB7;
+    border-right:1px solid #337AB7;
+    border-left:1px solid #337AB7;
+    border-top: 1px solid #337AB7;
+}
