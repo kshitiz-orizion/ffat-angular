@@ -444,7 +444,7 @@
                 angular.element('.pagination').css('display','flex');
                 $scope.activeMenu= index;
                 if(response.data.count%50==0){
-                  $scope.pages=response.data.count/50;
+                  $scope.pages= new Array(Math.floor(response.data.count/50));
                 }
                 else{
                   $scope.pages=new Array(Math.floor((response.data.count/50)+1));
